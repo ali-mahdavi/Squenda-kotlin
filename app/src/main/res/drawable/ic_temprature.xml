@@ -1,0 +1,60 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:viewportWidth="16.206"
+    android:viewportHeight="29.259"
+    android:width="16.206dp"
+    android:height="29.259dp">
+    <group
+        android:translateX="-166.723"
+        android:translateY="-501.682">
+        <group
+            android:translateX="170.613"
+            android:translateY="512.482">
+            <path
+                android:pathData="M2.932 0L0 0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="1"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+        </group>
+        <group
+            android:translateX="170.613"
+            android:translateY="507.493">
+            <path
+                android:pathData="M2.932 0L0 0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="1"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+        </group>
+        <group
+            android:translateX="170.613"
+            android:translateY="509.987">
+            <path
+                android:pathData="M0 0L4.28 0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="1"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+        </group>
+        <group
+            android:translateX="-125.024"
+            android:translateY="391.838">
+            <path
+                android:pathData="M295.637 124.895a7.5 7.5 0 1 0 8.426 0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="1"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+        </group>
+        <group
+            android:translateX="-129.758"
+            android:translateY="412.694">
+            <path
+                android:pathData="M308.8 104.039V93.7a4.213 4.213 0 0 0 -8.426 0v10.338"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="1"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+        </group>
+    </group>
+</vector>

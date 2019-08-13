@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#0099cc"
+             tools:context=".activities.MyHomeActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView android:id="@+id/fullscreen_content"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:keepScreenOn="true"
+              android:textColor="#33b5e5"
+              android:textStyle="bold"
+              android:textSize="50sp"
+              android:gravity="center"
+              android:text="@string/dummy_content"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBackGround"
+                    tools:context="com.ictit.squenda.activities.MyHomeActivity">
+        <FrameLayout
+                android:id="@+id/rl_main_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:elevation="8dp"
+                android:alpha=".5"
+                android:background="@color/black_overlay"
+        >
+            <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical"
+                    android:elevation="4dp"
+                    android:weightSum="1">
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_profile"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="25dp"
+                        android:layout_weight=".25"
+                        android:tint="@color/colordarkGray"
+                        android:background="@drawable/ripple"
+                        android:src="@drawable/ic_profile" />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_home"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="25dp"
+                        android:background="@drawable/ripple"
+                        android:layout_weight=".25"
+                        android:src="@drawable/ic_home" />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_location"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="25dp"
+                        android:background="@drawable/ripple"
+                        android:layout_weight=".25"
+                        android:tint="@color/colordarkGray"
+                        android:src="@drawable/ic_loc" />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_setting"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="25dp"
+                        android:background="@drawable/ripple"
+                        android:layout_weight=".25"
+                        android:tint="@color/colordarkGray"
+                        android:src="@drawable/ic_setting" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+                android:id="@+id/my_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+        >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_home"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_notification"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical|center"
+                    android:layout_marginLeft="40dp"
+                    android:tint="@android:color/white"
+                    android:background="@drawable/ripple"
+
+                    android:src="@drawable/ic_notifications_none_black_24dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+                android:id="@+id/rl_all"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:layout_below="@id/my_home"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/rl_main_menu"
+                android:background="@drawable/my_home_all_home">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/all_devices"
+                    android:textColor="@color/colordarkGray"
+                    android:textSize="18sp" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="45"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_all"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:weightSum="2"
+                android:layout_toLeftOf="@+id/rl_main_menu"
+
+        >
+
+            <RelativeLayout
+                    android:id="@+id/rl_living_room"
+                    android:layout_width="110dp"
+                    android:layout_height="160dp"
+            >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight=".5"
+                        android:src="@drawable/img_livingroom" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/living_room"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="12sp"
+                />
+
+                <TextView
+                        android:id="@+id/txt_living_room_devices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="9 devices"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="10sp"
+                />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="110dp"
+                    android:layout_height="160dp"
+            >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight=".5"
+                        android:src="@drawable/img_bathroom" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/bath_room"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="12sp"
+                />
+
+                <TextView
+                        android:id="@+id/txt_bath_room_devices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="2 devices"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="10sp"
+                />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="110dp"
+                    android:layout_height="160dp"
+            >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight=".5"
+                        android:src="@drawable/img_bedroom" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/bed_room"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="12sp"
+                />
+
+                <TextView
+                        android:id="@+id/txt_bed_room_devices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="5 devices"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="10sp"
+                />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="110dp"
+                    android:layout_height="160dp"
+            >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight=".5"
+                        android:src="@drawable/img_kitchen" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/kitchen"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="12sp"
+                />
+
+                <TextView
+                        android:id="@+id/txt_kitchen_devices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="3 devices"
+                        android:textColor="@color/colordarkGray"
+                        android:textSize="10sp"
+                />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

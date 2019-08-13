@@ -1,6 +1,63 @@
 <resources>
+    ources>
     <string name="app_name">Squenda</string>
+    <string name="my_home">My Home</string>
+    <string name="all_devices">All Devices</string>
+    <string name="living_room">Living Room</string>
+    <string name="devices">Devices</string>
+    <string name="chandelier">Chandelier</string>
+    <string name="Table_light">Table Light</string>
+    <string name="curtain">Curtain</string>
+    <string name="music">Music</string>
+    <string name="radiator">Radiator</string>
+    <string name="fan">Fan</string>
+    <string name="temp">Temp</string>
+    <string name="bath_room">Bath Room</string>
+    <string name="bed_room">Bed Room</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="call">Call</string>
+    <string name="motion_sensor">Motion Sensor</string>
+    <string name="lighting">Ligthing</string>
+    <string name="smoke_alarm">Smoke alarm</string>
+    <string name="windows_and_door"><![CDATA[windows & door]]></string>
+    <string name="tempretur">Temprature</string>
+    <string name="camera">Camera</string>
+    <string name="record">Record</string>
+    <string name="stop">Stop</string>
+    <string name="description_info">Info</string>
+    <string name="permission_request">This sample needs permission for camera and audio recording.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="action_ok">Ok</string>
+    <string name="permission_alert_dialog_title">permission alert</string>
+    <string name="permission_dialog_message">application needs your permissions</string>
+    <string name="settings">Settings</string>
+    <string name="add_new_device">Add a new device</string>
+    <string name="my_family">My Family</string>
+    <string name="notifications">Notifications</string>
+    <string name="home_program">Home Program</string>
+    <string name="countres_and_time"><![CDATA[Countres & Time]]></string>
+    <string name="data_and_storage"><![CDATA[Data & Storage]]></string>
+    <string name="privacy_and_security"><![CDATA[Privacy & Security]]></string>
+    <string name="display_brigthness_sounds"><![CDATA[Display,Brightness & Sounds]]></string>
+    <string name="emergency_sos">Emergency SOS</string>
+    <string name="services">Services</string>
+    <string name="language">Language</string>
+    <string name="help_and_support"><![CDATA[Help & Support]]></string>
+    <string name="about_us">About Us</string>
 
+    <string name="title_activity_media">MediaActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="live">Live</string>
+    <string name="rec">REC</string>
+    <string name="End">End</string>
+    <string name="notification">Notification</string>
+    <string name="gallery">Gallery</string>
+    <string name="video">Video</string>
+    <string name="videos">Videos</string>
+    <string name="photes">Photos</string>
+
+    <string name="title_activity_setting">SettingActivity</string>
+
+    <string name="title_activity_all_devices">AllDevicesActivity</string>
 </resources>

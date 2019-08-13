@@ -1,0 +1,49 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:viewportWidth="50.744"
+    android:viewportHeight="50.746"
+    android:width="50.744dp"
+    android:height="50.746dp">
+    <group
+        android:translateX="0.001">
+        <path
+            android:pathData="M49.094 25.373A23.722 23.723 0 0 1 1.65 25.373A23.722 23.723 0 0 1 49.094 25.373Z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="3.3" />
+        <group
+            android:translateX="25.372"
+            android:translateY="43.154">
+            <path
+                android:pathData="M0 0L0 5.295"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="3.3"
+                android:strokeLineCap="round" />
+        </group>
+        <group
+            android:translateX="1.923"
+            android:translateY="25.373">
+            <path
+                android:pathData="M5.669 0L0 0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="3.3"
+                android:strokeLineCap="round" />
+        </group>
+        <group
+            android:translateX="25.371"
+            android:translateY="3.129">
+            <path
+                android:pathData="M0 0L0 4.037"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="3.3"
+                android:strokeLineCap="round" />
+        </group>
+        <group
+            android:translateX="43.465"
+            android:translateY="25.373">
+            <path
+                android:pathData="M3.777 0L0 0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="3.3"
+                android:strokeLineCap="round" />
+        </group>
+    </group>
+</vector>
