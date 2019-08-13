@@ -1,20 +1,20 @@
 package com.electropeyk.squenda.activities
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import com.electropeyk.squenda.R
-import kotlinx.android.synthetic.main.activity_first_menue.*
-import kotlinx.android.synthetic.main.activity_my_home.*
-import kotlinx.android.synthetic.main.activity_my_home.fullscreen_content
+import kotlinx.android.synthetic.main.activity_call.*
+import kotlinx.android.synthetic.main.activity_call.fullscreen_content
 import kotlinx.android.synthetic.main.activity_setting.*
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class MyHomeActivity : AppCompatActivity() {
+class CallActivity : AppCompatActivity() {
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -44,25 +44,9 @@ class MyHomeActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_home)
+        setContentView(R.layout.activity_setting)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mVisible = true
-
-        rl_all.setOnClickListener {
-            val intent = Intent(this, AllDevicesActivity::class.java)
-            // start your next activity
-            startActivity(intent)
-            finish()
-        }
-
-        btn_setting_home.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            // start your next activity
-            startActivity(intent)
-            finish()
-        }
-
-
     }
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

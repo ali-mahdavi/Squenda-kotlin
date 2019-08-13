@@ -37,7 +37,7 @@
                     android:elevation="8dp"
                     android:weightSum="1">
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_profile"
+                        android:id="@+id/btn_profile_home"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_margin="45dp"
@@ -46,7 +46,7 @@
                         android:background="@drawable/ripple"
                         android:src="@drawable/ic_profile" />
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_home"
+                        android:id="@+id/btn_home_home"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_margin="45dp"
@@ -54,7 +54,7 @@
                         android:background="@drawable/ripple"
                         android:src="@drawable/ic_home" />
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_location"
+                        android:id="@+id/btn_location_home"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_margin="45dp"
@@ -62,7 +62,7 @@
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_loc" />
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_setting"
+                        android:id="@+id/btn_setting_home"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:layout_margin="45dp"

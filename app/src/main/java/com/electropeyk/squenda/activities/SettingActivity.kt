@@ -1,10 +1,12 @@
 package com.electropeyk.squenda.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import com.electropeyk.squenda.R
+import kotlinx.android.synthetic.main.activity_first_menue.*
 import kotlinx.android.synthetic.main.activity_my_home.*
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_setting.fullscreen_content
@@ -43,9 +45,17 @@ class SettingActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_home)
+        setContentView(R.layout.activity_setting)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mVisible = true
+        btn_home_setting.setOnClickListener {
+            val intent = Intent(this, MyHomeActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            finish()
+        }
+
+
     }
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

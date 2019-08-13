@@ -46,7 +46,7 @@
                     android:elevation="4dp"
             >
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_profile"
+                        android:id="@+id/btn_profile_setting"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_weight=".25"
@@ -54,7 +54,7 @@
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_profile"/>
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_home"
+                        android:id="@+id/btn_home_setting"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_weight=".25"
@@ -62,7 +62,7 @@
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_home"/>
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_location"
+                        android:id="@+id/btn_location_setting"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_weight=".25"
@@ -70,12 +70,11 @@
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_loc"/>
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/btn_setting"
+                        android:id="@+id/btn_setting_setting"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_weight=".25"
                         android:layout_margin="20dp"
-
                         android:src="@drawable/ic_setting"/>
 
             </LinearLayout>

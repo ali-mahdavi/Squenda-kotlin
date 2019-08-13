@@ -15,11 +15,6 @@ import kotlinx.android.synthetic.main.activity_first_menue.*
 class FirstMenueActivity : AppCompatActivity() {
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
-        // Delayed removal of status and navigation bar
-
-        // Note that some of these constants are new as of API 16 (Jelly Bean)
-        // and API 19 (KitKat). It is safe to use them, as they are inlined
-        // at compile-time and do nothing on earlier devices.
         fullscreen_content.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LOW_PROFILE or
                     View.SYSTEM_UI_FLAG_FULLSCREEN or
@@ -31,7 +26,6 @@ class FirstMenueActivity : AppCompatActivity() {
     private val mShowPart2Runnable = Runnable {
         // Delayed display of UI elements
         supportActionBar?.show()
-
     }
     private var mVisible: Boolean = false
     private val mHideRunnable = Runnable { hide() }
@@ -45,13 +39,13 @@ class FirstMenueActivity : AppCompatActivity() {
         setContentView(R.layout.activity_first_menue)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mVisible = true
-        btn_home.setOnClickListener {
+        btn_home_first.setOnClickListener {
             val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
             startActivity(intent)
             finish()
         }
-        btn_setting.setOnClickListener {
+        btn_setting_first.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             // start your next activity
             startActivity(intent)

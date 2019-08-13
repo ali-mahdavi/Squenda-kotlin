@@ -23,7 +23,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".AllDevicesActivity"
+                android:name=".activities.CallActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="landscape"
+                android:theme="@style/FullscreenTheme">
+        </activity>
+        <activity
+                android:name=".activities.AllDevicesActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="landscape"
                 android:theme="@style/FullscreenTheme">

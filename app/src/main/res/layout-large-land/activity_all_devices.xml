@@ -26,21 +26,22 @@
                     tools:context="com.ictit.squenda.activities.AllDevicesActivity"
                     android:background="@color/colorBackGround">
         <RelativeLayout
-                android:layout_width="40dp"
+                android:layout_width="77dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/rectangle_all_devices"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginBottom="30dp"
         />
         <FrameLayout
                 android:id="@+id/rl_main_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:elevation="4dp"
+                android:elevation="8dp"
                 android:alpha=".5"
                 android:background="@color/black_overlay"
         >
+
 
             <LinearLayout
 
@@ -48,43 +49,43 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_alignParentRight="true"
-                    android:elevation="4dp"
+                    android:elevation="6dp"
                     android:weightSum="1"
             >
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btn_profile_all"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_weight=".25"
-                        android:layout_margin="20dp"
+                        android:layout_margin="25dp"
                         android:tint="@color/colordarkGray"
                         android:background="@drawable/ripple"
                         android:src="@drawable/ic_profile"/>
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btn_home_all"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_weight=".25"
-                        android:layout_margin="20dp"
+                        android:layout_margin="25dp"
                         android:background="@drawable/ripple"
                         android:src="@drawable/ic_home"/>
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btn_location_all"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_weight=".25"
-                        android:layout_margin="20dp"
-                        android:tint="@color/colordarkGray"
+                        android:layout_margin="25dp"
                         android:background="@drawable/ripple"
+                        android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_loc"/>
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btn_setting_all"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_weight=".25"
-                        android:layout_margin="20dp"
-                        android:tint="@color/colordarkGray"
+                        android:layout_margin="25dp"
                         android:background="@drawable/ripple"
+                        android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_setting"/>
 
             </LinearLayout>
@@ -96,17 +97,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="100dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
 
-
+                android:layout_toLeftOf="@+id/rl_main_menu"
+                android:layout_marginTop="35dp"
         >
             <TextView
                     android:id="@+id/txt_all_devices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
+                    android:textSize="35sp"
                     android:text="@string/all_devices"
                     android:textColor="@android:color/white"
             />
@@ -115,9 +116,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/txt_all_devices"
-                    android:textSize="24sp"
+                    android:textSize="35sp"
                     android:layout_marginLeft="40dp"
-                    android:text="45"
+                    android:text="35"
                     android:textColor="@android:color/white"
             />
             <LinearLayout
@@ -128,14 +129,14 @@
                     android:layout_centerVertical="true"
                     android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_margin="5dp"
                         android:src="@drawable/ic_call"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="22sp"
+                        android:textSize="27sp"
                         android:text="@string/call"
                         android:textColor="@color/colordarkGray"
                 />
@@ -150,15 +151,14 @@
                 android:orientation="vertical"
                 android:layout_toLeftOf="@+id/rl_main_menu"
                 android:layout_below="@+id/my_alldevices"
-                android:layout_marginTop="40dp"
-                android:layout_marginLeft="20sp"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="60dp"
         >
             <LinearLayout
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="15dp"
                     android:weightSum="3">
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -168,12 +168,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_motion"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -181,14 +181,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/motion_sensor"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -199,7 +199,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="3"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -208,7 +208,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="3dp"
 
                             />
@@ -224,12 +224,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_lighting"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -237,14 +237,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/lighting"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -255,7 +255,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="9"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -264,7 +264,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="3dp"
 
                             />
@@ -280,12 +280,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_fan"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -293,14 +293,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/fan"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -311,7 +311,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="3"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -320,7 +320,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="7dp"
 
                             />
@@ -335,7 +335,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
                     android:weightSum="3">
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -345,27 +345,28 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_smok_alarm"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
                     <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
                             android:orientation="vertical"
+                            android:layout_marginLeft="8dp"
+
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/smoke_alarm"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -376,7 +377,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="5"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -385,7 +386,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="3dp"
 
                             />
@@ -397,17 +398,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginLeft="3dp"
                         android:background="@drawable/ripple"
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="18sp"
-                                android:layout_height="18sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_curtain"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -415,14 +415,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/curtain"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -433,7 +433,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="9"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -442,7 +442,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="2dp"
 
                             />
@@ -458,12 +458,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_radiator"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -471,14 +471,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/radiator"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -489,7 +489,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="8"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -498,7 +498,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="7dp"
 
                             />
@@ -513,6 +513,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
                     android:weightSum="3">
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -522,12 +523,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_windows_door"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -535,7 +536,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <LinearLayout
@@ -547,7 +548,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/windows_and_door"
-                                    android:textSize="12sp"
+                                    android:textSize="18sp"
                                     android:textColor="@color/colorlightGray"/>
 
                         </LinearLayout>
@@ -561,7 +562,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="3"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -570,7 +571,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="3dp"
 
                             />
@@ -586,12 +587,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_temprature"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -599,14 +600,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/tempretur"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -617,7 +618,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="1"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -626,7 +627,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="3dp"
 
                             />
@@ -642,12 +643,12 @@
                         android:orientation="horizontal">
 
                     <RelativeLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/rectangle_icon_all_devices_small">
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rectangle_icon_all_devices">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20sp"
-                                android:layout_height="20sp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:src="@drawable/ic_camera"
                                 android:layout_centerInParent="true"/>
                     </RelativeLayout>
@@ -655,14 +656,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_gravity="center_vertical"
                     >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/camera"
-                                android:textSize="12sp"
+                                android:textSize="18sp"
                                 android:textColor="@color/colorlightGray"/>
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -673,7 +674,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="3"
-                                    android:textSize="12sp"
+                                    android:textSize="20sp"
                                     android:textColor="@color/colorBlue"
 
                             />
@@ -682,7 +683,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/devices"
                                     android:textColor="@color/colordarkGray"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:layout_marginLeft="7dp"
 
                             />
@@ -699,4 +700,6 @@
 
 
     </RelativeLayout>
+
+
 </FrameLayout>

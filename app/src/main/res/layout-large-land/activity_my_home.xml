@@ -41,7 +41,7 @@
                 android:orientation="vertical"
                 android:weightSum="1">
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_profile"
+                    android:id="@+id/btn_profile_home"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="40dp"
@@ -51,7 +51,7 @@
                     android:src="@drawable/ic_profile" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_home"
+                    android:id="@+id/btn_home_home"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="40dp"
@@ -60,7 +60,7 @@
                     android:src="@drawable/ic_home" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_location"
+                    android:id="@+id/btn_location_home"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="40dp"
@@ -70,7 +70,7 @@
                     android:src="@drawable/ic_loc" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_setting"
+                    android:id="@+id/btn_setting_home"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="40dp"
