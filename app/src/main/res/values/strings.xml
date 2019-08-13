@@ -62,4 +62,6 @@
     <string name="title_activity_all_devices">AllDevicesActivity</string>
 
     <string name="title_activity_call">CallActivity</string>
+
+    <string name="title_activity_notification">NotificationActivity</string>
 </resources>
