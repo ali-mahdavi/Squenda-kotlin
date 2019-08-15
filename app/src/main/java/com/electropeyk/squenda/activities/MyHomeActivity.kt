@@ -61,6 +61,12 @@ class MyHomeActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        btn_notification.setOnClickListener {
+            val intent = Intent(this, NotificationActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            finish()
+        }
 
 
     }

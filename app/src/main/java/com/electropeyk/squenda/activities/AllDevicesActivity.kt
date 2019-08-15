@@ -46,7 +46,7 @@ class AllDevicesActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_call)
+        setContentView(R.layout.activity_all_devices)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mVisible = true
         btn_home_all.setOnClickListener {
