@@ -192,6 +192,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+                android:id="@+id/rl_bathroom"
                 android:layout_width="200dp"
                 android:layout_height="260dp"
         >
@@ -230,6 +231,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+                android:id="@+id/rl_bedroom"
                 android:layout_width="200dp"
                 android:layout_height="260dp"
         >
@@ -269,6 +271,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+                android:id="@+id/rl_kitchen"
                 android:layout_width="200dp"
                 android:layout_height="260dp"
         >

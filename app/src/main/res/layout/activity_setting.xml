@@ -51,6 +51,7 @@
                         android:layout_height="20dp"
                         android:layout_weight=".25"
                         android:layout_margin="20dp"
+                        android:background="@drawable/ripple"
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_profile"/>
                 <androidx.appcompat.widget.AppCompatImageView
@@ -59,6 +60,7 @@
                         android:layout_height="20dp"
                         android:layout_weight=".25"
                         android:layout_margin="20dp"
+                        android:background="@drawable/ripple"
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_home"/>
                 <androidx.appcompat.widget.AppCompatImageView
@@ -67,6 +69,7 @@
                         android:layout_height="20dp"
                         android:layout_weight=".25"
                         android:layout_margin="20dp"
+                        android:background="@drawable/ripple"
                         android:tint="@color/colordarkGray"
                         android:src="@drawable/ic_loc"/>
                 <androidx.appcompat.widget.AppCompatImageView
@@ -75,6 +78,7 @@
                         android:layout_height="24dp"
                         android:layout_weight=".25"
                         android:layout_margin="20dp"
+                        android:background="@drawable/ripple"
                         android:src="@drawable/ic_setting"/>
 
             </LinearLayout>

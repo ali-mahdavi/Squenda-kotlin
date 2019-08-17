@@ -1,47 +1,41 @@
 package com.electropeyk.squenda.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import kotlinx.android.synthetic.main.activity_all_devices.*
-import kotlinx.android.synthetic.main.activity_all_devices.fullscreen_content
-import kotlinx.android.synthetic.main.activity_first_menue.*
-import kotlinx.android.synthetic.main.activity_my_home.*
-import kotlinx.android.synthetic.main.activity_setting.*
+import kotlinx.android.synthetic.main.activity_living_room.*
 
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
-class AllDevicesActivity : AppCompatActivity() {
-
+class LivingRoomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         super.onCreate(savedInstanceState)
+        overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+        setContentView(com.electropeyk.squenda.R.layout.activity_living_room)
+        val intent = intent
 
-        setContentView(R.layout.activity_all_devices)
-
-
-        btn_home_all.setOnClickListener {
+        val title = intent.extras!!.getString("title")
+        val devices = intent.extras!!.getString("devices")
+        txt_title.text=title
+        device_numbers.text=devices
+        overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+        btn_home_living.setOnClickListener {
             val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
             startActivity(intent)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
             finish()
         }
-        btn_setting_all.setOnClickListener {
+        btn_setting_living.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             // start your next activity
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             startActivity(intent)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
             finish()
         }
-
-        btn_profile_all.setOnClickListener {
+        btn_profile_living.setOnClickListener {
             val intent = Intent(this, MediaActivity::class.java)
             // start your next activity
             startActivity(intent)
@@ -49,13 +43,6 @@ class AllDevicesActivity : AppCompatActivity() {
             finish()
         }
 
-        rl_call.setOnClickListener {
-            val intent = Intent(this, CallActivity::class.java)
-            // start your next activity
-            startActivity(intent)
-            finish()
-
-        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -87,4 +74,5 @@ class AllDevicesActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
+
 }

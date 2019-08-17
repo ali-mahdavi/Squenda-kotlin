@@ -28,6 +28,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
 import com.electropeyk.squenda.R;
 import com.electropeyk.squenda.activities.FirstMenueActivity;
+import com.electropeyk.squenda.activities.GalleryActivity;
 import com.electropeyk.squenda.utils.AutoFitTextureView;
 import com.electropeyk.squenda.utils.Common;
 import com.electropeyk.squenda.utils.GlobalInstanse;
@@ -334,9 +335,9 @@ public class Camera2VideoFragment extends Fragment
                 break;
             }
             case R.id.btn_gallary: {
-               /* Intent gallaryIntent = new Intent(getActivity(), GalleryActivity.class);
+                Intent gallaryIntent = new Intent(getActivity(), GalleryActivity.class);
                 startActivity(gallaryIntent);
-                getActivity().finish();*/
+                getActivity().finish();
                 break;
             }
             case R.id.btn_camera: {
