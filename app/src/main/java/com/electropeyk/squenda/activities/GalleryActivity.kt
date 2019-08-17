@@ -2,7 +2,9 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.utils.Common
@@ -13,7 +15,7 @@ import java.io.File
 
 
 class GalleryActivity : AppCompatActivity() {
-
+    val TAG :String =GalleryActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.electropeyk.squenda.R.layout.activity_gallery)
@@ -41,25 +43,26 @@ class GalleryActivity : AppCompatActivity() {
         Paper.init(this)
         setSize()
         rl_video.setOnClickListener(){
-           /* if (Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST == null || Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.size == 0) {
+            if (Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST == null || Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.size == 0) {
                 Toast.makeText(this, "There is not any video", Toast.LENGTH_LONG).show()
-                return
             } else {
                 val videoList = Intent(this, VideoListActivity::class.java)
                 startActivity(videoList)
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 finish()
-            }*/
+            }
         }
         rl_photo.setOnClickListener(){
-          /*  if (Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST == null || Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size == 0) {
+            if (Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST == null || Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size == 0) {
                 Toast.makeText(this, "There is not any photo ", Toast.LENGTH_LONG).show()
-                return
+
             } else {
-                Log.i(FragmentActivity.TAG, "Photo size is: " + Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size)
-                val cameraList = Intent(this, CameraListActivity::class.java)
+                Log.i(TAG, "Photo size is: " + Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size)
+                val cameraList = Intent(this, PhotoListActivity::class.java)
                 startActivity(cameraList)
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 finish()
-            }*/
+            }
         }
     }
 

@@ -22,10 +22,28 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.GalleryActivity"
+        <activity android:name=".activities.PhotoListActivity"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:screenOrientation="landscape"
+
         >
+        </activity>
+        <activity android:name=".activities.VideoListActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".activities.PhotoPreviewActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".activities.VideoPreviewActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="landscape">
+        </activity>
+        <activity
+                android:name=".activities.GalleryActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="landscape">
         </activity>
         <activity
                 android:name=".activities.LivingRoomActivity"

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/colorBackGround">
+    <com.rey.material.widget.ImageView
+            android:id="@+id/img_video"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/ic_camera2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+    />
+
+
+    <com.rey.material.widget.CheckBox
+            android:id="@+id/btn_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+
+
+    />
+
+</RelativeLayout>
