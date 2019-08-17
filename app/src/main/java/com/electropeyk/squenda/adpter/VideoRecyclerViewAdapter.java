@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,9 @@ import android.view.animation.AlphaAnimation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.electropeyk.squenda.R;
 
-
 import java.util.List;
 
+import static com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED;
 
 
 /**
@@ -28,6 +27,7 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
     private ItemClickListener mClickListener;
     private ItemLongClickListener mLongClickListener;
     private final static int FADE_DURATION = 1000;
+
     // data is passed into the constructor
     public VideoRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
@@ -86,14 +86,14 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
         @Override
         public boolean onLongClick(View view) {
             if (mLongClickListener != null) {
-                if(mCheckbox.isChecked()){
+                if (mCheckbox.isChecked()) {
                     mCheckbox.setVisibility(View.GONE);
                     mCheckbox.setChecked(false);
-                    if(NUM_SELECCTED.contains(getAdapterPosition()))
-                        NUM_SELECCTED.remove(getAdapterPosition());
+                    if (VIDEO_NUM_SELECCTED.contains(getAdapterPosition()))
+                        VIDEO_NUM_SELECCTED.remove(getAdapterPosition());
                     return false;
-                }else{
-                    NUM_SELECCTED.add(getAdapterPosition());
+                } else {
+                    VIDEO_NUM_SELECCTED.add(getAdapterPosition());
                     mCheckbox.setVisibility(View.VISIBLE);
                     mCheckbox.setChecked(true);
                     mLongClickListener.onItemLongClick(view, getAdapterPosition());
@@ -113,6 +113,7 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
+
     public void setLongClickListener(ItemLongClickListener itemLongClickListener) {
         this.mLongClickListener = itemLongClickListener;
     }

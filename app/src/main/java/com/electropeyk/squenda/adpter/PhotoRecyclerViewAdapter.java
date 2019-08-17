@@ -3,7 +3,6 @@ package com.electropeyk.squenda.adpter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,8 @@ import com.electropeyk.squenda.R;
 
 import java.io.File;
 import java.util.List;
+
+import static com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED;
 
 /**
  * Created by ali on 7/26/2019 AD.
@@ -27,6 +28,7 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     private ItemClickListener mClickListener;
     private ItemLongClickListener mLongClickListener;
     private final static int FADE_DURATION = 1000;
+
     // data is passed into the constructor
     public PhotoRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
@@ -45,9 +47,9 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String filePath = mData.get(position);
-        Log.i(TAG,"filePath is: "+filePath);
-        File imgFile = new  File(filePath);
-        if(imgFile.exists()){
+        Log.i(TAG, "filePath is: " + filePath);
+        File imgFile = new File(filePath);
+        if (imgFile.exists()) {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             holder.img_video.setImageBitmap(myBitmap);
         }
@@ -56,7 +58,7 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     // total number of rows
     @Override
     public int getItemCount() {
-        if(mData!=null)
+        if (mData != null)
             return mData.size();
         else
             return 0;
@@ -93,14 +95,14 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
         @Override
         public boolean onLongClick(View view) {
             if (mLongClickListener != null) {
-                if(mCheckbox.isChecked()){
+                if (mCheckbox.isChecked()) {
                     mCheckbox.setVisibility(View.GONE);
                     mCheckbox.setChecked(false);
-                    if(CameraListActivity.NUM_SELECCTED_PHOTO.contains(getAdapterPosition()))
-                        CameraListActivity.NUM_SELECCTED_PHOTO.remove(getAdapterPosition());
+                    if (PHOTO_NUM_SELECCTED.contains(getAdapterPosition()))
+                        PHOTO_NUM_SELECCTED.remove(getAdapterPosition());
                     return false;
-                }else{
-                    CameraListActivity.NUM_SELECCTED_PHOTO.add(getAdapterPosition());
+                } else {
+                    PHOTO_NUM_SELECCTED.add(getAdapterPosition());
                     mCheckbox.setVisibility(View.VISIBLE);
                     mCheckbox.setChecked(true);
                     mLongClickListener.onItemLongClick(view, getAdapterPosition());
@@ -120,6 +122,7 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
+
     public void setLongClickListener(ItemLongClickListener itemLongClickListener) {
         this.mLongClickListener = itemLongClickListener;
     }

@@ -10,4 +10,7 @@ public class Common {
     public static List<String> ABSOLUTE_PATH_NAMES_VIDEO_LIST =new ArrayList<>();
     public static String ABSOLUTE_PATH_NAMES_PHOTO="absolute_path_name_photo" ;
     public static List<String> ABSOLUTE_PATH_NAMES_PHOTO_LIST =new ArrayList<>();
+    public  static List<Integer> VIDEO_NUM_SELECCTED = new ArrayList<>();
+    public  static List<Integer> PHOTO_NUM_SELECCTED = new ArrayList<>();
+
 }
