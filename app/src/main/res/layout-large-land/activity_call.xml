@@ -27,7 +27,7 @@
                     android:padding="8dp"
             >
                 <TextView
-                        android:id="@+id/txt_time"
+                        android:id="@+id/txt_time_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -80,7 +80,7 @@
                         android:text="|"
                 />
                 <TextView
-                        android:id="@+id/txt_date"
+                        android:id="@+id/txt-date_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"

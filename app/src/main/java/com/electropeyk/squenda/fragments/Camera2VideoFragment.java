@@ -37,13 +37,12 @@ import io.paperdb.Paper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import static android.os.Looper.getMainLooper;
 import static com.electropeyk.squenda.utils.GlobalInstanse.CAMERA_ROTATION;
 
 
@@ -60,7 +59,7 @@ public class Camera2VideoFragment extends Fragment
     private static final String FRAGMENT_DIALOG = "dialog";
     private AppCompatImageView btn_video,btn_rotate,btn_gallary,btn_camera,img_back;
     private View view_status;
-    private TextView txt_status,txt_tempreture;
+    private TextView txt_status,txt_tempreture,txt_date_camera_video,txt_time_camera_video;
     private RelativeLayout rl_main;
     private  String PATH;
 
@@ -282,6 +281,8 @@ public class Camera2VideoFragment extends Fragment
         txt_status=(TextView) view.findViewById(R.id.txt_status);
         view_status=(View)view.findViewById(R.id.view_status);
         txt_tempreture=(TextView)view.findViewById(R.id.txt_tempreture);
+        txt_date_camera_video=(TextView)view.findViewById(R.id.txt_date_camera_video);
+        txt_time_camera_video=(TextView)view.findViewById(R.id.txt_time_camera_video);
         txt_tempreture.setText(GlobalInstanse.TEMPRETURE);
         btn_video.setOnClickListener(this);
         btn_rotate=(AppCompatImageView)view.findViewById(R.id.btn_rotate);
@@ -293,6 +294,19 @@ public class Camera2VideoFragment extends Fragment
         img_back=(AppCompatImageView)view.findViewById(R.id.img_back_camera_video);
         img_back.setOnClickListener(this);
         rl_main=(RelativeLayout)view.findViewById(R.id.rl_main);
+
+        final Handler someHandler = new Handler(getMainLooper());
+        someHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_time_camera_video.setText(new SimpleDateFormat("HH:mm", Locale.US).format(new Date()));
+                someHandler.postDelayed(this, 1000);
+            }
+        }, 10);
+        int lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100;
+        String day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1];
+        String month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1];
+        txt_date_camera_video.setText( String.format("${0},${1} ${2}",day,month,String.valueOf(lastTwoDigits)));
 
     }
     @Override

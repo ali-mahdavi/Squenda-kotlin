@@ -23,7 +23,7 @@
             >
 
                 <TextView
-                        android:id="@+id/txt_time"
+                        android:id="@+id/txt_time_camera_video"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
@@ -77,7 +77,7 @@
                         android:text="|"
                 />
                 <TextView
-                        android:id="@+id/txt_date"
+                        android:id="@+id/txt-date_camera_video"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"

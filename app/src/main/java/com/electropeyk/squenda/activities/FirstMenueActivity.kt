@@ -1,4 +1,5 @@
 package com.electropeyk.squenda.activities
+
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,9 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.electropeyk.squenda.R
-import kotlinx.android.synthetic.main.activity_all_devices.*
+import com.electropeyk.squenda.utils.Common.days
+import com.electropeyk.squenda.utils.Common.months
 import kotlinx.android.synthetic.main.activity_first_menue.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -20,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_first_menue.*
 
 class FirstMenueActivity : AppCompatActivity() {
     private val REQUEST_PERMISSION_CODE = 1000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
@@ -53,7 +57,33 @@ class FirstMenueActivity : AppCompatActivity() {
         }
 
         if(!checkPermissionFromDevice())
-            requestPermission();
+            requestPermission()
+
+        val thread = object : Thread() {
+
+            override fun run() {
+                try {
+                    while (!this.isInterrupted) {
+                        sleep(1000)
+                        runOnUiThread {
+                            txt_time_first.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+                        }
+                    }
+                } catch (e: InterruptedException) {
+                }
+
+            }
+        }
+
+        thread.start()
+        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+        val day = days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
+        val month = months[Calendar.getInstance().get(Calendar.MONTH) - 1]
+        txt_date_first.text= "$day,$month $lastTwoDigits"
+
+
+
+
     }
 
     private fun requestPermission() {

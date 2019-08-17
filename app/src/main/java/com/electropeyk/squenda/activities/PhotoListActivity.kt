@@ -17,9 +17,12 @@ import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST
 import com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED
 import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
+import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_living_room.*
 import kotlinx.android.synthetic.main.activity_photo_list.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClickListener,
@@ -96,6 +99,28 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
+
+        val thread = object : Thread() {
+
+            override fun run() {
+                try {
+                    while (!this.isInterrupted) {
+                        sleep(1000)
+                        runOnUiThread {
+                            txt_time_photo_list.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+                        }
+                    }
+                } catch (e: InterruptedException) {
+                }
+
+            }
+        }
+
+        thread.start()
+        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+        val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
+        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1]
+        txt_date_photo_list.text= "$day,$month $lastTwoDigits"
 
 
     }

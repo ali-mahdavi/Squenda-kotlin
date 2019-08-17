@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
+import com.electropeyk.squenda.utils.Common
 import kotlinx.android.synthetic.main.activity_all_devices.*
-
+import kotlinx.android.synthetic.main.activity_first_menue.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -59,6 +62,29 @@ class AllDevicesActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
+
+
+        val thread = object : Thread() {
+
+            override fun run() {
+                try {
+                    while (!this.isInterrupted) {
+                        sleep(1000)
+                        runOnUiThread {
+                            txt_time_all.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+                        }
+                    }
+                } catch (e: InterruptedException) {
+                }
+
+            }
+        }
+
+        thread.start()
+        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+        val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
+        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1]
+        txt_date_all.text= "$day,$month $lastTwoDigits"
 
 
 
