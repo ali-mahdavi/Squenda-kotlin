@@ -1,15 +1,12 @@
 package com.electropeyk.squenda.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
-import kotlinx.android.synthetic.main.activity_first_menue.*
-import kotlinx.android.synthetic.main.activity_my_home.*
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.activity_setting.fullscreen_content
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -32,6 +29,13 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(this, MediaActivity::class.java)
             // start your next activity
             startActivity(intent)
+            finish()
+        }
+        img_back_setting.setOnClickListener {
+            val intent = Intent(this, FirstMenueActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
     }

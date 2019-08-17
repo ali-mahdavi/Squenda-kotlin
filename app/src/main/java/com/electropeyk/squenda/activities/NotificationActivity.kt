@@ -1,16 +1,12 @@
 package com.electropeyk.squenda.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
-import kotlinx.android.synthetic.main.activity_call.*
-import kotlinx.android.synthetic.main.activity_living_room.*
-import kotlinx.android.synthetic.main.activity_my_home.*
 import kotlinx.android.synthetic.main.activity_notification.*
-import kotlinx.android.synthetic.main.activity_notification.fullscreen_content
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,6 +34,13 @@ class NotificationActivity : AppCompatActivity() {
         }
         btn_profile_notify.setOnClickListener {
             val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        img_back_notify.setOnClickListener{
+            val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

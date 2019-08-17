@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.electropeyk.squenda.R
+import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_first_menue.*
 
 
@@ -43,6 +45,10 @@ class FirstMenueActivity : AppCompatActivity() {
             // start your next activity
             startActivity(intent)
             overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+            finish()
+        }
+
+        img_back_first.setOnClickListener{
             finish()
         }
 

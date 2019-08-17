@@ -6,7 +6,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import kotlinx.android.synthetic.main.activity_all_devices.*
+import kotlinx.android.synthetic.main.activity_gallery.*
 import kotlinx.android.synthetic.main.activity_living_room.*
+import kotlinx.android.synthetic.main.activity_living_room.txt_title
 
 
 class LivingRoomActivity : AppCompatActivity() {
@@ -37,6 +39,13 @@ class LivingRoomActivity : AppCompatActivity() {
         }
         btn_profile_living.setOnClickListener {
             val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        img_back_living.setOnClickListener{
+            val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

@@ -10,12 +10,14 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.crowdfire.cfalertdialog.CFAlertDialog
+import com.electropeyk.squenda.R
 import com.electropeyk.squenda.adpter.PhotoRecyclerViewAdapter
 import com.electropeyk.squenda.utils.Common
 import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST
 import com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED
 import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
+import kotlinx.android.synthetic.main.activity_living_room.*
 import kotlinx.android.synthetic.main.activity_photo_list.*
 import java.io.File
 
@@ -85,6 +87,14 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
             } else {
                 Toast.makeText(this, "There is not any item selected for delete", Toast.LENGTH_LONG).show()
             }
+        }
+
+        img_back_photo_list.setOnClickListener{
+            val intent = Intent(this, GalleryActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
         }
 
 

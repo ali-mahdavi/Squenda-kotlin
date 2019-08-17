@@ -23,6 +23,7 @@ import android.widget.Toast
 import com.crowdfire.cfalertdialog.CFAlertDialog
 import android.net.Uri
 import com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED
+import kotlinx.android.synthetic.main.activity_setting.*
 import java.io.File
 
 class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClickListener,
@@ -37,12 +38,12 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
         super.onCreate(savedInstanceState)
         setContentView(com.electropeyk.squenda.R.layout.activity_video_list)
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
-        Paper.init(this);
+        Paper.init(this)
         recyclerView = findViewById(R.id.recycle_videos)
-        ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO);
-        initRecyclerView();
-        btn_share.setVisibility(View.INVISIBLE);
-        btn_trash.setVisibility(View.INVISIBLE);
+        ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
+        initRecyclerView()
+        btn_share.setVisibility(View.INVISIBLE)
+        btn_trash.setVisibility(View.INVISIBLE)
 
         btn_trash.setOnClickListener {
             if (VIDEO_NUM_SELECCTED.size > 0) {
@@ -85,6 +86,14 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
             } else
                 Toast.makeText(this, "There is not any item selected for share", Toast.LENGTH_LONG).show()
 
+        }
+
+        img_back_video_list.setOnClickListener{
+            val intent = Intent(this, GalleryActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
         }
 
     }

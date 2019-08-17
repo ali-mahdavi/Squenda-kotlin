@@ -1,15 +1,10 @@
 package com.electropeyk.squenda.activities
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
-import kotlinx.android.synthetic.main.activity_first_menue.*
 import kotlinx.android.synthetic.main.activity_my_home.*
-import kotlinx.android.synthetic.main.activity_my_home.fullscreen_content
-import kotlinx.android.synthetic.main.activity_setting.*
-
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -18,15 +13,12 @@ class MyHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_home)
-
-
         rl_all.setOnClickListener {
             val intent = Intent(this, AllDevicesActivity::class.java)
             // start your next activity
             startActivity(intent)
             finish()
         }
-
         btn_setting_home.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             // start your next activity
@@ -51,8 +43,8 @@ class MyHomeActivity : AppCompatActivity() {
         rl_living_room.setOnClickListener {
             val intent = Intent(this, LivingRoomActivity::class.java)
             // start your next activity
-            intent.putExtra("title","Living Room")
-            intent.putExtra("devices","9")
+            intent.putExtra("title", "Living Room")
+            intent.putExtra("devices", "9")
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
@@ -61,8 +53,8 @@ class MyHomeActivity : AppCompatActivity() {
         rl_bathroom.setOnClickListener {
             val intent = Intent(this, LivingRoomActivity::class.java)
             // start your next activity
-            intent.putExtra("title","Bath Room")
-            intent.putExtra("devices","2")
+            intent.putExtra("title", "Bath Room")
+            intent.putExtra("devices", "2")
 
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
@@ -70,9 +62,9 @@ class MyHomeActivity : AppCompatActivity() {
         }
         rl_bedroom.setOnClickListener {
             val intent = Intent(this, LivingRoomActivity::class.java)
-            intent.putExtra("title","Bed Room")
+            intent.putExtra("title", "Bed Room")
 
-            intent.putExtra("devices","5")
+            intent.putExtra("devices", "5")
             // start your next activity
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
@@ -80,9 +72,16 @@ class MyHomeActivity : AppCompatActivity() {
         }
         rl_kitchen.setOnClickListener {
             val intent = Intent(this, LivingRoomActivity::class.java)
-            intent.putExtra("title","Kitchen Room")
-            intent.putExtra("devices","3")
+            intent.putExtra("title", "Kitchen Room")
+            intent.putExtra("devices", "3")
 
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        img_back_home.setOnClickListener {
+            val intent = Intent(this, FirstMenueActivity::class.java)
             // start your next activity
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
@@ -90,6 +89,14 @@ class MyHomeActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, FirstMenueActivity::class.java)
+        // start your next activity
+        startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

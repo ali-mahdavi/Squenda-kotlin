@@ -1,9 +1,12 @@
 package com.electropeyk.squenda.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.electropeyk.squenda.R
+import kotlinx.android.synthetic.main.activity_video_list.*
+import kotlinx.android.synthetic.main.activity_video_preview.*
 
 class VideoPreviewActivity : AppCompatActivity() {
 
@@ -13,6 +16,13 @@ class VideoPreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_preview)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        img_back_video_preview.setOnClickListener{
+            val intent = Intent(this, VideoListActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
 
     }
 

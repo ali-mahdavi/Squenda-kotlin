@@ -1,10 +1,13 @@
 package com.electropeyk.squenda.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
+import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_call.*
+import kotlinx.android.synthetic.main.activity_media.*
 
 
 /**
@@ -18,7 +21,13 @@ class CallActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         super.onCreate(savedInstanceState)
         setContentView(com.electropeyk.squenda.R.layout.activity_call)
-
+        img_back_call.setOnClickListener{
+            val intent = Intent(this, AllDevicesActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
         btn_1.setOnClickListener {
             inputValue += "1"
             txt_call.setText(inputValue)

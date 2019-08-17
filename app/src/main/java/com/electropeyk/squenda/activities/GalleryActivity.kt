@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.utils.Common
 import io.paperdb.Paper
+import kotlinx.android.synthetic.main.activity_call.*
 import kotlinx.android.synthetic.main.activity_gallery.*
 import kotlinx.android.synthetic.main.activity_notification.*
 import java.io.File
@@ -63,6 +64,15 @@ class GalleryActivity : AppCompatActivity() {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 finish()
             }
+        }
+
+
+        img_back_gallary.setOnClickListener{
+            val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
         }
     }
 

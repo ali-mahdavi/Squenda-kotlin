@@ -92,7 +92,7 @@
                 />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_back"
+                    android:id="@+id/img_back_gallary"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_below="@+id/rl_status"

@@ -290,7 +290,7 @@ public class Camera2VideoFragment extends Fragment
         btn_gallary.setOnClickListener(this);
         btn_camera=(AppCompatImageView)view.findViewById(R.id.btn_camera);
         btn_camera.setOnClickListener(this);
-        img_back=(AppCompatImageView)view.findViewById(R.id.img_back);
+        img_back=(AppCompatImageView)view.findViewById(R.id.img_back_camera_video);
         img_back.setOnClickListener(this);
         rl_main=(RelativeLayout)view.findViewById(R.id.rl_main);
 
@@ -352,7 +352,7 @@ public class Camera2VideoFragment extends Fragment
 
                 break;
             }
-            case R.id.img_back: {
+            case R.id.img_back_camera_video: {
 
                 Intent mainIntent = new Intent(getActivity(), FirstMenueActivity.class);
                 startActivity(mainIntent);
