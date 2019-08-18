@@ -8,6 +8,7 @@ import com.electropeyk.squenda.R
 import com.electropeyk.squenda.utils.Common
 import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_call.*
+import kotlinx.android.synthetic.main.activity_first_menue.*
 import kotlinx.android.synthetic.main.activity_media.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -88,7 +89,7 @@ class CallActivity : AppCompatActivity() {
                 txt_call.setText(inputValue)
             }
         }
-
+        txt_time_call.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -106,10 +107,11 @@ class CallActivity : AppCompatActivity() {
         }
 
         thread.start()
-        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+        var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
-        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1]
-        txt_date_call.text= "$day,$month $lastTwoDigits"
+        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
+        txt_date_call.text= "$day,$month $dayOfMonth"
+
 
 
     }

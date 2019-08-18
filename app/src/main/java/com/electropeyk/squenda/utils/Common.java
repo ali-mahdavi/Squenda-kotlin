@@ -12,7 +12,8 @@ public class Common {
     public static List<String> ABSOLUTE_PATH_NAMES_PHOTO_LIST = new ArrayList<>();
     public static List<Integer> VIDEO_NUM_SELECCTED = new ArrayList<>();
     public static List<Integer> PHOTO_NUM_SELECCTED = new ArrayList<>();
-    public static String[] days = new String[]{"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
+    public static String[] days = new String[]{"Sunday", "Monday", "Tuseday",
+            "Wednesday", "Thursday", "Friday", "Saturday"};
     public static String[] months = {"January",
             "February",
             "March",

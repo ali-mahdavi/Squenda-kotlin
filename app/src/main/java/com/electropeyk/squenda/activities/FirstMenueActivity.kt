@@ -58,7 +58,7 @@ class FirstMenueActivity : AppCompatActivity() {
 
         if(!checkPermissionFromDevice())
             requestPermission()
-
+        txt_time_first.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -76,10 +76,11 @@ class FirstMenueActivity : AppCompatActivity() {
         }
 
         thread.start()
-        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+
+       var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
-        val month = months[Calendar.getInstance().get(Calendar.MONTH) - 1]
-        txt_date_first.text= "$day,$month $lastTwoDigits"
+        val month = months[Calendar.getInstance().get(Calendar.MONTH)]
+        txt_date_first.text= "$day,$month $dayOfMonth"
 
 
 
