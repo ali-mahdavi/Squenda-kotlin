@@ -322,7 +322,7 @@ public class Camera2VideoFragment extends Fragment
         }, 10);
         int dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         String day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1];
-        String month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1];
+        String month = Common.months[Calendar.getInstance().get(Calendar.MONTH)];
         String date = day + "," + month + " " + dayOfMonth;
         txt_date_camera_video.setText(date);
         audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
@@ -363,7 +363,7 @@ public class Camera2VideoFragment extends Fragment
             }
             case R.id.btn_rotate: {
                 if (CAMERA_ROTATION == 0)
-                    CAMERA_ROTATION = 1;
+                    CAMERA_ROTATION = 5;
                 else
                     CAMERA_ROTATION = 0;
                 onPause();

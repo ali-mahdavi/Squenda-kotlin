@@ -24,15 +24,8 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".UPVDemoActivity"
-
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.Holo.Light">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.tmall.ultraviewpager" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
                 android:name=".PagerActivity"
@@ -116,7 +109,11 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="landscape"
                 android:theme="@style/FullscreenTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.tmall.ultraviewpager" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

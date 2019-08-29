@@ -29,7 +29,7 @@ class VideoPreviewActivity : AppCompatActivity() {
             finish()
         }
 
-        txt_time_video_list.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+        txt_time_video_preview.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
 
         val thread = object : Thread() {
 
