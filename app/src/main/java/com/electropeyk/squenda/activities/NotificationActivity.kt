@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.utils.Common
+import kotlinx.android.synthetic.main.activity_first_menue.*
 
 import kotlinx.android.synthetic.main.activity_notification.*
 import java.text.SimpleDateFormat
@@ -50,6 +51,7 @@ class NotificationActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
+        txt_time_notify.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -67,10 +69,12 @@ class NotificationActivity : AppCompatActivity() {
         }
 
         thread.start()
-        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+        var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
-        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1]
-        txt_date_notify.text= "$day,$month $lastTwoDigits"
+        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
+        txt_date_notify.text= "$day,$month $dayOfMonth"
+
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

@@ -22,5 +22,13 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+    <style name="CustomFloaterTextAppearance" parent="android:TextAppearance.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:shadowColor">@color/colorRed</item>
+        <item name="android:shadowRadius">8</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">5</item>
+    </style>
 
 </resources>

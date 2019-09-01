@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/rl_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -104,6 +105,7 @@
 
 
     <FrameLayout
+            android:id="@+id/fr_main_menue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -203,6 +205,27 @@
         </LinearLayout>
 
 
+
+
+
     </FrameLayout>
+
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seek_volume"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            app:dsb_allowTrackClickToDrag="false"
+            app:dsb_indicatorTextAppearance="@style/CustomFloaterTextAppearance"
+            app:dsb_progressColor="@color/colordarkGray"
+            app:dsb_rippleColor="#FF7788FF"
+            app:dsb_indicatorColor="@color/colorGreen"
+            app:dsb_indicatorFormatter="%d"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/fr_main_menue"
+            android:layout_marginBottom="150dp"
+            android:layout_marginRight="10dp"
+
+
+    />
 
 </RelativeLayout>

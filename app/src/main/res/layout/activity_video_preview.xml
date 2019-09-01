@@ -160,11 +160,79 @@
 
         </LinearLayout>
     </FrameLayout>
-    <VideoView
-            android:id="@+id/videoView1"
-            android:layout_width="400dp"
-            android:layout_height="300dp"
+    <com.tmall.ultraviewpager.UltraViewPager
+            android:id="@+id/ultra_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackGround"
+            android:layout_below="@+id/rl_video_setting"
+            android:layout_toLeftOf="@+id/rl_main_menu"
+    />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/rl_video_setting"
+                  android:layout_below="@+id/fr_status"
+                  android:layout_toLeftOf="@+id/rl_main_menu"
+    >
 
-            android:layout_centerInParent="true"/>
+        <LinearLayout
+                android:id="@+id/indicator_setting"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+        >
+
+            <Spinner
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1" />
+
+            <Spinner
+                    android:id="@+id/indicator_gravity_hor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1" />
+
+            <Spinner
+                    android:id="@+id/indicator_gravity_ver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1" />
+
+            <Button
+                    android:id="@+id/indicator_build"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Apply" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/indicator_setting">
+
+            <CheckBox
+                    android:id="@+id/loop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Enable Loop" />
+
+            <CheckBox
+                    android:id="@+id/autoscroll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Auto Scroll" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

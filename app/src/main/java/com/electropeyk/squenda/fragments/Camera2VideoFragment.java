@@ -1,7 +1,6 @@
 package com.electropeyk.squenda.fragments;
 
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -12,6 +11,7 @@ import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.*;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +20,8 @@ import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.*;
-import android.widget.RelativeLayout;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ import com.electropeyk.squenda.utils.Common;
 import com.electropeyk.squenda.utils.GlobalInstanse;
 import com.electropeyk.squenda.utils.SaveViewUtil;
 import io.paperdb.Paper;
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,28 +47,22 @@ import java.util.concurrent.TimeUnit;
 import static android.os.Looper.getMainLooper;
 import static com.electropeyk.squenda.utils.GlobalInstanse.CAMERA_ROTATION;
 
-
 public class Camera2VideoFragment extends Fragment
-        implements View.OnClickListener{
-
+        implements View.OnClickListener, DiscreteSeekBar.OnProgressChangeListener {
     private static final int SENSOR_ORIENTATION_DEFAULT_DEGREES = 90;
     private static final int SENSOR_ORIENTATION_INVERSE_DEGREES = 270;
     private static final SparseIntArray DEFAULT_ORIENTATIONS = new SparseIntArray();
     private static final SparseIntArray INVERSE_ORIENTATIONS = new SparseIntArray();
-
     private static final String TAG = "Camera2VideoFragment";
-    private static final int REQUEST_VIDEO_PERMISSIONS = 1;
-    private static final String FRAGMENT_DIALOG = "dialog";
-    private AppCompatImageView btn_video,btn_rotate,btn_gallary,btn_camera,img_back;
+    private int interavlSeekbar;
+    private AppCompatImageView btn_video, btn_rotate, btn_gallary,
+            btn_sound,
+            btn_camera, img_back;
+    private boolean soundVisibilityFlage;
+    private AudioManager audioManager;
+    private org.adw.library.widgets.discreteseekbar.DiscreteSeekBar seek_volume;
     private View view_status;
-    private TextView txt_status,txt_tempreture,txt_date_camera_video,txt_time_camera_video;
-    private RelativeLayout rl_main;
-    private  String PATH;
-
-    private static final String[] VIDEO_PERMISSIONS = {
-            Manifest.permission.CAMERA,
-            Manifest.permission.RECORD_AUDIO,
-    };
+    private TextView txt_status, txt_tempreture, txt_date_camera_video, txt_time_camera_video;
 
     static {
         DEFAULT_ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -266,49 +262,66 @@ public class Camera2VideoFragment extends Fragment
     }
 
 
-
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
         Paper.init(getActivity());
-        Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST =Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO);
-        if(Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST ==null)
-            Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST =new ArrayList<>();
-        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST =Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
-        if(Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST ==null)
-            Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST =new ArrayList<>();
-        btn_video=(AppCompatImageView)view.findViewById(R.id.btn_video);
-        txt_status=(TextView) view.findViewById(R.id.txt_status);
-        view_status=(View)view.findViewById(R.id.view_status);
-        txt_tempreture=(TextView)view.findViewById(R.id.txt_tempreture);
-        txt_date_camera_video=(TextView)view.findViewById(R.id.txt_date_camera_video);
-        txt_time_camera_video=(TextView)view.findViewById(R.id.txt_time_camera_video);
+        Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO);
+        if (Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST == null)
+            Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = new ArrayList<>();
+        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
+        if (Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST == null)
+            Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = new ArrayList<>();
+        btn_video = (AppCompatImageView) view.findViewById(R.id.btn_video);
+        txt_status = (TextView) view.findViewById(R.id.txt_status);
+        view_status = (View) view.findViewById(R.id.view_status);
+        txt_tempreture = (TextView) view.findViewById(R.id.txt_tempreture);
+        txt_date_camera_video = (TextView) view.findViewById(R.id.txt_date_camera_video);
+        txt_time_camera_video = (TextView) view.findViewById(R.id.txt_time_camera_video);
+        soundVisibilityFlage = false;
+        btn_sound = (AppCompatImageView) view.findViewById(R.id.btn_sound);
+        btn_sound.setOnClickListener(this);
+        seek_volume = view.findViewById(R.id.seek_volume);
+        seek_volume.setVisibility(View.GONE);
         txt_tempreture.setText(GlobalInstanse.TEMPRETURE);
         btn_video.setOnClickListener(this);
-        btn_rotate=(AppCompatImageView)view.findViewById(R.id.btn_rotate);
+        btn_rotate = (AppCompatImageView) view.findViewById(R.id.btn_rotate);
         btn_rotate.setOnClickListener(this);
-        btn_gallary=(AppCompatImageView)view.findViewById(R.id.btn_gallary);
+        btn_gallary = (AppCompatImageView) view.findViewById(R.id.btn_gallary);
         btn_gallary.setOnClickListener(this);
-        btn_camera=(AppCompatImageView)view.findViewById(R.id.btn_camera);
+        btn_camera = (AppCompatImageView) view.findViewById(R.id.btn_camera);
         btn_camera.setOnClickListener(this);
-        img_back=(AppCompatImageView)view.findViewById(R.id.img_back_camera_video);
+        img_back = (AppCompatImageView) view.findViewById(R.id.img_back_camera_video);
         img_back.setOnClickListener(this);
-        rl_main=(RelativeLayout)view.findViewById(R.id.rl_main);
-
+        interavlSeekbar = 0;
+        txt_time_camera_video.setText(new SimpleDateFormat("HH:mm", Locale.US).format(new Date()));
         final Handler someHandler = new Handler(getMainLooper());
         someHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (interavlSeekbar == 3 && soundVisibilityFlage) {
+                    Animation aniFade = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+                    seek_volume.startAnimation(aniFade);
+                    seek_volume.setVisibility(View.GONE);
+                    soundVisibilityFlage = false;
+                } else
+                    interavlSeekbar++;
+
                 txt_time_camera_video.setText(new SimpleDateFormat("HH:mm", Locale.US).format(new Date()));
                 someHandler.postDelayed(this, 1000);
             }
         }, 10);
-        int lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100;
+        int dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         String day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1];
-        String month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1];
-        txt_date_camera_video.setText( String.format("${0},${1} ${2}",day,month,String.valueOf(lastTwoDigits)));
+        String month = Common.months[Calendar.getInstance().get(Calendar.MONTH)];
+        String date = day + "," + month + " " + dayOfMonth;
+        txt_date_camera_video.setText(date);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        seek_volume.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        seek_volume.setOnProgressChangeListener(this);
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -340,10 +353,10 @@ public class Camera2VideoFragment extends Fragment
                 break;
             }
             case R.id.btn_rotate: {
-                if(CAMERA_ROTATION==0)
-                    CAMERA_ROTATION = 1;
+                if (CAMERA_ROTATION == 0)
+                    CAMERA_ROTATION = 5;
                 else
-                    CAMERA_ROTATION=0;
+                    CAMERA_ROTATION = 0;
                 onPause();
                 onResume();
                 break;
@@ -356,13 +369,12 @@ public class Camera2VideoFragment extends Fragment
             }
             case R.id.btn_camera: {
 
-                if(SaveViewUtil.saveScreen(mTextureView.getBitmap())) {
+                if (SaveViewUtil.saveScreen(mTextureView.getBitmap())) {
                     Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO,
                             Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST);
                     Toast.makeText(getActivity(), "Image Saved", Toast.LENGTH_LONG).show();
-                }
-                else
-                    Toast.makeText(getActivity(),"Image NOT Saved!",Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(getActivity(), "Image NOT Saved!", Toast.LENGTH_LONG).show();
 
                 break;
             }
@@ -374,10 +386,25 @@ public class Camera2VideoFragment extends Fragment
                 break;
             }
 
+            case R.id.btn_sound:
+                if (soundVisibilityFlage) {
+                    Animation aniFade = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+                    seek_volume.startAnimation(aniFade);
+                    seek_volume.setVisibility(View.GONE);
+                    soundVisibilityFlage = false;
+                } else {
+                    Animation aniFade = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+                    seek_volume.startAnimation(aniFade);
+                    seek_volume.setVisibility(View.VISIBLE);
+                    soundVisibilityFlage = true;
+                }
+
+                break;
+
+
         }
 
     }
-
 
 
     /**
@@ -402,9 +429,6 @@ public class Camera2VideoFragment extends Fragment
             e.printStackTrace();
         }
     }
-
-
-
 
 
     private boolean hasPermissionsGranted(String[] permissions) {
@@ -649,7 +673,7 @@ public class Camera2VideoFragment extends Fragment
                         @Override
                         public void run() {
                             // UI
-                            Toast.makeText(getActivity(),"Start video recording ...",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Start video recording ...", Toast.LENGTH_SHORT).show();
                             view_status.setBackground(getResources().getDrawable(R.drawable.red_ellipse_video));
                             txt_status.setText(getText(R.string.rec));
                             mIsRecordingVideo = true;
@@ -684,7 +708,7 @@ public class Camera2VideoFragment extends Fragment
     private void stopRecordingVideo() {
         // UI
         mIsRecordingVideo = false;
-        Toast.makeText(getActivity(),"Stop video recording",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Stop video recording", Toast.LENGTH_SHORT).show();
         view_status.setBackground(getResources().getDrawable(R.drawable.green_ellipse_live));
         txt_status.setText(getText(R.string.live));
 
@@ -695,7 +719,7 @@ public class Camera2VideoFragment extends Fragment
         Activity activity = getActivity();
         if (null != activity) {
             Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.add(mNextVideoAbsolutePath);
-            Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO,Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST);
+            Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST);
             Toast.makeText(activity, "Video saved",
                     Toast.LENGTH_SHORT).show();
           /*  Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
@@ -704,6 +728,25 @@ public class Camera2VideoFragment extends Fragment
         }
         mNextVideoAbsolutePath = null;
         startPreview();
+    }
+
+    @Override
+    public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, value, 0);
+        interavlSeekbar = 0;
+        soundVisibilityFlage = true;
+    }
+
+    @Override
+    public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+        interavlSeekbar = 0;
+        soundVisibilityFlage = true;
+    }
+
+    @Override
+    public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+        interavlSeekbar = 0;
+        soundVisibilityFlage = true;
     }
 
     /**
@@ -719,8 +762,6 @@ public class Camera2VideoFragment extends Fragment
         }
 
     }
-
-
 
 
 }

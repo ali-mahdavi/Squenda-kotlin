@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.utils.Common
 import kotlinx.android.synthetic.main.activity_all_devices.*
+import kotlinx.android.synthetic.main.activity_first_menue.*
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,6 +43,7 @@ class SettingActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
+        txt_time_setting.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -59,10 +61,12 @@ class SettingActivity : AppCompatActivity() {
         }
 
         thread.start()
-        val lastTwoDigits = Calendar.getInstance().get(Calendar.YEAR) % 100
+        var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
-        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH) - 1]
-        txt_date_setting.text= "$day,$month $lastTwoDigits"
+        val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
+        txt_date_setting.text= "$day,$month $dayOfMonth"
+
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

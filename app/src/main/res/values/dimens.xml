@@ -6,4 +6,8 @@
     <dimen name="activity_main_layout_margin">16dp</dimen>
     <dimen name="activity_horizontal_linear_layout_manager_sample_recyclerViewWidth">80dp</dimen>
     <dimen name="list_item_sample_text_padding">8dp</dimen>
+    <!--extra-->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
