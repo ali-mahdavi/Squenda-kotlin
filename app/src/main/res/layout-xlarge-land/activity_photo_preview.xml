@@ -160,11 +160,37 @@
         </LinearLayout>
     </FrameLayout>
 
+    <com.tmall.ultraviewpager.UltraViewPager
+            android:id="@+id/ultra_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackGround"
+            android:layout_below="@+id/rl_video_setting"
+            android:layout_toLeftOf="@+id/rl_main_menu"
+    />
 
-    <ImageView
+    <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                  android:orientation="horizontal"
+                  android:id="@+id/rl_video_setting"
+                  android:layout_below="@+id/fr_status"
+                  android:layout_toLeftOf="@+id/rl_main_menu"
+    >
+        <CheckBox
+                android:id="@+id/loop"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Enable Loop"/>
 
-            android:id="@+id/imageView"
-            android:layout_width="800dp"
-            android:layout_height="600dp"
-            android:layout_centerInParent="true"/>
+        <CheckBox
+                android:id="@+id/autoscroll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Auto Scroll"/>
+
+
+
+    </LinearLayout>
 </RelativeLayout>

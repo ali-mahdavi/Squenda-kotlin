@@ -1,7 +1,6 @@
 package com.electropeyk.squenda.adpter;
 
 import android.content.Context;
-import android.graphics.Color;
 
 import android.net.Uri;
 import android.util.TypedValue;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
-import android.widget.TextView;
 import android.widget.VideoView;
 import androidx.viewpager.widget.PagerAdapter;
 import com.electropeyk.squenda.R;
@@ -41,7 +39,7 @@ public class VideoPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.layout_child, null);
+        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.layout_video_child, null);
         //new LinearLayout(container.getContext());
         VideoView videoView = (VideoView) linearLayout.findViewById(R.id.videoView1);
 

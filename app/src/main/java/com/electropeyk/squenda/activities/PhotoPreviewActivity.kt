@@ -3,9 +3,17 @@ package com.electropeyk.squenda.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.SparseIntArray
 import android.view.View
+import android.widget.CheckBox
+import android.widget.CompoundButton
+import androidx.viewpager.widget.PagerAdapter
 import com.electropeyk.squenda.R
+import com.electropeyk.squenda.adpter.VideoPagerAdapter
 import com.electropeyk.squenda.utils.Common
+import com.tmall.ultraviewpager.UltraViewPager
+import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer
+import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_first_menue.*
 import kotlinx.android.synthetic.main.activity_photo_list.*
@@ -14,13 +22,39 @@ import kotlinx.android.synthetic.main.activity_setting.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PhotoPreviewActivity : AppCompatActivity() {
+class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
+
+
+    private var ultraViewPager: UltraViewPager? = null
+    private var adapter: PagerAdapter? = null
+    private var loopCheckBox: CheckBox? = null
+    private var autoScrollCheckBox: CheckBox? = null
+    private var gravity_indicator: UltraViewPager.Orientation? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_preview)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        Paper.init(this)
+        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO)
+        ultraViewPager = findViewById(R.id.ultra_viewpager) as UltraViewPager
+        val extras :Bundle
+        extras= getIntent().getExtras()!!
+        ultraViewPager!!.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL)
+        adapter = VideoPagerAdapter(this,true, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        ultraViewPager!!.setAdapter(adapter)
+        ultraViewPager!!.setMultiScreen(0.6f)
+        ultraViewPager!!.setItemRatio(1.0)
+        ultraViewPager!!.setRatio(2.0f)
+        ultraViewPager!!.setMaxHeight(800)
+        ultraViewPager!!.setCurrentItem(extras.getInt("position"))
+        ultraViewPager!!.disableAutoScroll()
+        ultraViewPager!!.setAutoMeasureHeight(true)
+        gravity_indicator = UltraViewPager.Orientation.HORIZONTAL
+        ultraViewPager!!.setPageTransformer(false, UltraDepthScaleTransformer())
+
+        initUI()
         img_back_photo_preview.setOnClickListener{
             val intent = Intent(this, PhotoListActivity::class.java)
             // start your next activity
@@ -53,6 +87,34 @@ class PhotoPreviewActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun initUI() {
+
+
+
+        loopCheckBox = findViewById(R.id.loop) as CheckBox
+        loopCheckBox!!.setOnCheckedChangeListener(this)
+
+        autoScrollCheckBox = findViewById(R.id.autoscroll) as CheckBox
+        autoScrollCheckBox!!.setOnCheckedChangeListener(this)
+
+
+    }
+
+    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+        if (buttonView === loopCheckBox) {
+            ultraViewPager!!.setInfiniteLoop(isChecked)
+        }
+        if (buttonView === autoScrollCheckBox) {
+            if (isChecked) {
+                val special = SparseIntArray()
+                special.put(0, 5000)
+                special.put(1, 1500)
+                ultraViewPager!!.setAutoScroll(2000, special)
+            } else
+                ultraViewPager!!.disableAutoScroll()
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
