@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import androidx.viewpager.widget.PagerAdapter
 import com.electropeyk.squenda.R
+import com.electropeyk.squenda.adpter.ImagePagerAdapter
 import com.electropeyk.squenda.adpter.VideoPagerAdapter
 import com.electropeyk.squenda.utils.Common
 import com.tmall.ultraviewpager.UltraViewPager
@@ -42,7 +43,7 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
         val extras :Bundle
         extras= getIntent().getExtras()!!
         ultraViewPager!!.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL)
-        adapter = VideoPagerAdapter(this,true, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        adapter = ImagePagerAdapter(this,true, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
         ultraViewPager!!.setAdapter(adapter)
         ultraViewPager!!.setMultiScreen(0.6f)
         ultraViewPager!!.setItemRatio(1.0)
@@ -55,6 +56,28 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
         ultraViewPager!!.setPageTransformer(false, UltraDepthScaleTransformer())
 
         initUI()
+        btn_home_photo_preview.setOnClickListener {
+            val intent = Intent(this, MyHomeActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        btn_setting_photo_preview.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            // start your next activity
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_profile_photo_preview.setOnClickListener {
+            val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
         img_back_photo_preview.setOnClickListener{
             val intent = Intent(this, PhotoListActivity::class.java)
             // start your next activity

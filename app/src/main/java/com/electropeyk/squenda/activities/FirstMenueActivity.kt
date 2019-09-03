@@ -52,6 +52,14 @@ class FirstMenueActivity : AppCompatActivity() {
             finish()
         }
 
+        btn_location_first.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+            finish()
+        }
+
         img_back_first.setOnClickListener{
             finish()
         }

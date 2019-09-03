@@ -50,6 +50,29 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
         btn_share.setVisibility(View.INVISIBLE)
         btn_trash.setVisibility(View.INVISIBLE)
 
+        btn_home_video_list.setOnClickListener {
+            val intent = Intent(this, MyHomeActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        btn_setting_video_list.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            // start your next activity
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_profile_video_list.setOnClickListener {
+            val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+
         btn_trash.setOnClickListener {
             if (VIDEO_NUM_SELECCTED.size > 0) {
 

@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
             android:allowBackup="true"
@@ -22,16 +24,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity
-                android:name=".UPVDemoActivity"
-                android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Holo.Light">
+        <activity android:name=".activities.MainActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="landscape">
 
         </activity>
-        <activity
-                android:name=".PagerActivity"
-                android:theme="@android:style/Theme.Holo.Light" />
-
 
         <activity
                 android:name=".activities.PhotoListActivity"
@@ -111,11 +108,16 @@
                 android:screenOrientation="landscape"
                 android:theme="@style/FullscreenTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.tmall.ultraviewpager" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <service
+                android:name=".mqttdemo.MqttMessageService"
+                android:enabled="true"
+                android:exported="false"></service>
     </application>
 
 </manifest>

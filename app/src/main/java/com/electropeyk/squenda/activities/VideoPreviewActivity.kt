@@ -13,6 +13,7 @@ import com.electropeyk.squenda.utils.Common
 import com.tmall.ultraviewpager.UltraViewPager
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer
 import io.paperdb.Paper
+import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_video_preview.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,6 +31,28 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_preview)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        btn_home_video_preview.setOnClickListener {
+            val intent = Intent(this, MyHomeActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        btn_setting_video_preview.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            // start your next activity
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_profile_video_preview.setOnClickListener {
+            val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
         Paper.init(this)
         Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
         ultraViewPager = findViewById(R.id.ultra_viewpager) as UltraViewPager

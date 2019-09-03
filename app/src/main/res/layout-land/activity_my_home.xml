@@ -272,7 +272,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-
+                android:id="@+id/rl_bedroom"
                 android:layout_width="110dp"
                 android:layout_height="160dp"
         >

@@ -39,9 +39,31 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
         setContentView(com.electropeyk.squenda.R.layout.activity_photo_list)
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
         Paper.init(this);
-        recyclerView = findViewById(com.electropeyk.squenda.R.id.recycle_videos)
-        Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO);
+        recyclerView = findViewById(com.electropeyk.squenda.R.id.recycle_photos)
+        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
         initRecyclerView();
+        btn_home_photo_list.setOnClickListener {
+            val intent = Intent(this, MyHomeActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+        btn_setting_photo_list.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            // start your next activity
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_profile_photo_list.setOnClickListener {
+            val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
         btn_share.setVisibility(View.INVISIBLE);
         btn_trash.setVisibility(View.INVISIBLE);
         btn_trash.setOnClickListener {

@@ -52,7 +52,7 @@ public class VideoPagerAdapter extends PagerAdapter {
             videoView.setMediaController(mediaController);
             videoView.setVideoURI(uri);
             videoView.requestFocus();
-
+            videoView.start();
             linearLayout.setId(R.id.item_id);
 
             container.addView(linearLayout);

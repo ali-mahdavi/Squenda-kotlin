@@ -40,7 +40,7 @@ public class ImagePagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.layout_video_child, null);
+        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.layout_image_child, null);
         //new LinearLayout(container.getContext());
         ImageView imageView = (ImageView) linearLayout.findViewById(R.id.imageView);
         String filePath = mData.get(position);

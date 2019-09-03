@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorBackGround"
+        tools:context=".activities.MainActivity"
+        android:layout_height="match_parent">
+        <TableLayout
+                android:id="@+id/table"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:stretchColumns="0,1"
+                android:padding="5dp"
+                android:background="@android:color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+
+        >
+
+            <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:text="Connect Status"
+
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:id="@+id/cnxStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:layout_centerVertical="true"
+                        android:background="#FFFFFF"
+
+                        android:gravity="center_vertical"
+                        android:hint="Connect status"
+                        android:textStyle="normal"/>
+
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:text="Mqtt Broker"
+                        android:textStyle="bold"/>
+
+                <EditText
+                        android:id="@+id/urlBroker"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black_overlay"
+                        android:text="tcp://5.253.24.110:1883"
+                        android:textStyle="normal"/>
+            </TableRow>
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:text="Mqtt Client UN"
+                        android:textStyle="bold"/>
+
+                <EditText
+                        android:id="@+id/clientUn"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black_overlay"
+                        android:hint="Enter User Name"
+                        android:text=""
+                        android:textStyle="normal"/>
+            </TableRow>
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:text="Mqtt Client PW"
+                        android:textStyle="bold"/>
+
+                <EditText
+                        android:id="@+id/clientPw"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Password"
+                        android:text=""
+                        android:textStyle="normal"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:text="Subscribe Topic "
+                        android:textColor="@color/black_overlay"
+                        android:textStyle="bold"/>
+
+                <EditText
+                        android:id="@+id/subTopic"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Topic"
+                        android:text="SmartHub"
+                        android:textStyle="normal"/>
+
+            </TableRow>
+
+
+            <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:text="Publish Topic "
+                        android:textColor="@color/black_overlay"
+                        android:textStyle="bold"/>
+
+                <EditText
+                        android:id="@+id/pubTopic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black_overlay"
+                        android:hint="Enter Topic"
+                        android:text="SmartHub"
+                        android:textStyle="normal"/>
+
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center_vertical"
+                        android:text="Publish Message "
+                        android:textColor="@color/black_overlay"
+                        android:textStyle="bold"/>
+
+                <EditText
+                        android:id="@+id/pubMsg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#FFFFFF"
+                        android:textColor="@color/black_overlay"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Message"
+                        android:inputType="textMultiLine"
+                        android:scrollbars="vertical"
+                        android:singleLine="false"
+                        android:textStyle="normal"/>
+            </TableRow>
+
+        </TableLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:weightSum="5"
+                      android:layout_margin="5dp"
+                      android:layout_below="@+id/table"
+
+        >
+            <com.rey.material.widget.Button
+                                            android:id="@+id/connect"
+                                            android:layout_width="0dp"
+                                            android:layout_height="40dp"
+                                            android:onClick="connect"
+                                            android:text="Connect"
+                                            android:layout_weight="1"/>
+            <com.rey.material.widget.Button android:id="@+id/subscribe"
+                                            android:layout_width="0dp"
+                                            android:layout_height="40dp"
+                                            android:onClick="subscribe"
+                                            android:text="Subscribe"
+                                            android:layout_weight="1"/>
+            <com.rey.material.widget.Button
+                                            android:id="@+id/publish"
+                                            android:layout_width="0dp"
+                                            android:layout_height="40dp"
+                                            android:onClick="publish"
+                                            android:text="Publish"
+                                            android:layout_weight="1"/>
+            <com.rey.material.widget.Button android:id="@+id/clear"
+                                            android:layout_width="0dp"
+                                            android:layout_height="40dp"
+                                            android:text="Clear"
+                                            android:onClick="clear"
+                                            android:layout_weight="1"/>
+            <com.rey.material.widget.Button android:id="@+id/exit"
+                                            android:layout_width="0dp"
+                                            android:layout_height="40dp"
+                                            android:text="Exit"
+                                            android:onClick="exit"
+                                            android:layout_weight="1"/>
+        </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="5dp"
+
+    >
+
+        <ScrollView
+                android:id="@+id/SCROLLER_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:scrollbars="vertical"
+        >
+
+            <TextView
+                    android:id="@+id/subscribedMsg"
+                    android:layout_width="374dp"
+                    android:layout_height="520dp"
+                    android:gravity="bottom"
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1.0"
+            />
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
+
