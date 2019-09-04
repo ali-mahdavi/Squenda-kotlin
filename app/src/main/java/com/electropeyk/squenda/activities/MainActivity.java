@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         String urlBroker    = etBroker.getText().toString().trim();
         String username     = etUName.getText().toString().trim();
         String password     = etPWord.getText().toString().trim();
-        tvMessage = (TextView) findViewById(R.id.subscribedMsg);
+
 
 
         pahoMqttClient = new PahoMqttClient();
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             //This method runs in the same thread as the UI.
 
             //Check MQTT Connection Status
-            TextView tvMessage  = (TextView) findViewById(R.id.cnxStatus);
+            tvMessage  = (TextView) findViewById(R.id.cnxStatus);
             String msg_new="";
 
             if(pahoMqttClient.mqttAndroidClient.isConnected() ) {
