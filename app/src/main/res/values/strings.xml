@@ -64,6 +64,8 @@
     <string name="title_activity_call">CallActivity</string>
 
     <string name="title_activity_notification">NotificationActivity</string>
+    <string name="back_door">Back Door</string>
+    <string name="front_door">Front Door</string>
 
     <!--extra -->
     <string-array name="indicator_style">

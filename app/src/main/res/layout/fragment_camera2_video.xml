@@ -237,6 +237,65 @@
 
 
         />
+    <FrameLayout
+            android:id="@+id/fr_btn_camera"
+            android:layout_width="80dp" android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:alpha=".4"
+            android:elevation="4dp"
+            android:background="@drawable/rectangle_door"
+
+    >
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:background="@drawable/ripple">
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_margin="13sp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/door"
+            />
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+            android:id="@+id/fr_camera"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:alpha=".4"
+            android:elevation="4dp"
+            android:visibility="gone"
+            android:layout_toLeftOf="@+id/fr_main_menue"
+            android:background="@color/black_overlay"
+            android:layout_marginBottom="50dp"
+    >
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/back_door"
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent"
+            />
+            <Button
+                    android:id="@+id/btn_front"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:text="@string/front_door"
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent"
+            />
+        </RelativeLayout>
+    </FrameLayout>
 
 
 

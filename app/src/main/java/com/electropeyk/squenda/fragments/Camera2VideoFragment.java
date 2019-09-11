@@ -22,6 +22,8 @@ import android.util.SparseIntArray;
 import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -60,9 +62,11 @@ public class Camera2VideoFragment extends Fragment
             btn_camera, img_back;
     private boolean soundVisibilityFlage;
     private AudioManager audioManager;
+    private FrameLayout fr_btn_camera,fr_rl_camera;
     private org.adw.library.widgets.discreteseekbar.DiscreteSeekBar seek_volume;
     private View view_status;
     private TextView txt_status, txt_tempreture, txt_date_camera_video, txt_time_camera_video;
+    private Button btn_back,btn_front;
 
     static {
         DEFAULT_ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -293,6 +297,13 @@ public class Camera2VideoFragment extends Fragment
         btn_camera.setOnClickListener(this);
         img_back = (AppCompatImageView) view.findViewById(R.id.img_back_camera_video);
         img_back.setOnClickListener(this);
+        fr_btn_camera=(FrameLayout)view.findViewById(R.id.fr_btn_camera);
+        fr_rl_camera=(FrameLayout)view.findViewById(R.id.fr_rl_camera);
+        fr_btn_camera.setOnClickListener(this);
+        btn_back=(Button) view.findViewById(R.id.btn_back);
+        btn_front=(Button) view.findViewById(R.id.btn_front);
+        btn_back.setOnClickListener(this);
+        btn_front.setOnClickListener(this);
         interavlSeekbar = 0;
         txt_time_camera_video.setText(new SimpleDateFormat("HH:mm", Locale.US).format(new Date()));
         final Handler someHandler = new Handler(getMainLooper());
@@ -399,6 +410,23 @@ public class Camera2VideoFragment extends Fragment
                     soundVisibilityFlage = true;
                 }
 
+                break;
+
+            case R.id.fr_btn_camera:
+                fr_btn_camera.setVisibility(View.GONE);
+                fr_rl_camera.setVisibility(View.VISIBLE);
+                Animation    RightSwipe = AnimationUtils.loadAnimation(getActivity(), R.anim.right_swipe);
+                fr_rl_camera.startAnimation(RightSwipe);
+                break;
+            case R.id.btn_back:
+                CAMERA_ROTATION = 0;
+                onPause();
+                onResume();
+                break;
+            case R.id.btn_front:
+                CAMERA_ROTATION = 5;
+                onPause();
+                onResume();
                 break;
 
 
