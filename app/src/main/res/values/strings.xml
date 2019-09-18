@@ -78,6 +78,10 @@
     <string name="services_message1">Your service and support coverage</string>
     <string name="services_message2">Serial number:</string>
     <string name="services_message3">Garantee</string>
+    <string name="door1">Door 1</string>
+    <string name="door2">Door 2</string>
+    <string name="inter_com">InterCom</string>
+    <string name="autoCall">Auto Call</string>
 
 
     <!--extra -->
