@@ -70,6 +70,12 @@
     <string name="serial_number">Enter serial number</string>
     <string name="active">Active</string>
     <string name="activated_message">Sqenda is activated!</string>
+    <string name="countries_and_time">Countries and Time</string>
+    <string name="done">DONE</string>
+    <string name="theme">Theme</string>
+    <string name="melody">Melody</string>
+    <string name="reflection">Reflection</string>
+
 
     <!--extra -->
     <string-array name="indicator_style">
