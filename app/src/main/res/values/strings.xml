@@ -66,6 +66,10 @@
     <string name="title_activity_notification">NotificationActivity</string>
     <string name="back_door">Back Door</string>
     <string name="front_door">Front Door</string>
+    <string name="title_activate_code">Redeem your registration code and activate your guarantee</string>
+    <string name="serial_number">Enter serial number</string>
+    <string name="active">Active</string>
+    <string name="activated_message">Sqenda is activated!</string>
 
     <!--extra -->
     <string-array name="indicator_style">

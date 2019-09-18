@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackGround"
+        tools:context=".activities.EnterCodeActivity">
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colordarkGray"
+            android:text="@string/title_activate_code"
+            android:textSize="38sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+    />
+    <TextView
+            android:id="@+id/serialNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colordarkGray"
+            android:text="@string/serial_number"
+            android:layout_below="@+id/title"
+            android:textSize="23sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+    />
+
+    <LinearLayout
+            android:id="@+id/rl_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/serialNumber"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="70dp"
+    >
+        <EditText
+                android:id="@+id/edit_1"
+                android:layout_width="140dp" android:layout_height="70dp"
+                android:background="@drawable/rectangle_active_code"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorlightGray"
+        />
+
+        <View
+                android:layout_width="20dp" android:layout_height="2dp"
+                android:background="@color/cardview_light_background"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="14dp"
+        />
+        <EditText
+                android:id="@+id/edit_2"
+                android:layout_width="140dp" android:layout_height="70dp"
+                android:background="@drawable/rectangle_active_code"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorlightGray"
+        />
+
+        <View
+                android:layout_width="20dp" android:layout_height="2dp"
+                android:background="@color/cardview_light_background"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="14dp"
+        />
+        <EditText
+                android:id="@+id/edit_3"
+                android:layout_width="140dp" android:layout_height="70dp"
+                android:background="@drawable/rectangle_active_code"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorlightGray"
+        />
+
+        <View
+                android:layout_width="20dp" android:layout_height="2dp"
+                android:background="@color/cardview_light_background"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="14dp"
+        />
+        <EditText
+                android:id="@+id/edit_4"
+                android:layout_width="140dp" android:layout_height="70dp"
+                android:background="@drawable/rectangle_active_code"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorlightGray"
+        />
+
+        <View
+                android:layout_width="20dp" android:layout_height="2dp"
+                android:background="@color/cardview_light_background"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="14dp"
+        />
+        <EditText
+                android:id="@+id/edit_5"
+                android:layout_width="140dp" android:layout_height="70dp"
+                android:background="@drawable/rectangle_active_code"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorlightGray"
+
+        />
+
+
+    </LinearLayout>
+    <Button
+
+            android:id="@+id/btn_active"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/rl_code"
+            android:layout_centerInParent="true"
+            android:textSize="23sp"
+            android:layout_marginTop="120dp"
+            android:text="@string/active"
+            android:background="@drawable/rectangle_activate_white"
+    />
+
+
+</RelativeLayout>

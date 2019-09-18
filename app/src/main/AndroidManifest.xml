@@ -24,7 +24,26 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".activities.FinishActivationActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="landscape"
+        >
+        </activity>
+        <activity
+                android:name=".activities.EnterCodeActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="landscape">
+        </activity>
+        <activity
+                android:name=".activities.SplashActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
                 android:name=".activities.MainActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
@@ -107,11 +126,6 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="landscape"
                 android:theme="@style/FullscreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService"/>
