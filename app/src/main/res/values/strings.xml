@@ -82,6 +82,13 @@
     <string name="door2">Door 2</string>
     <string name="inter_com">InterCom</string>
     <string name="autoCall">Auto Call</string>
+    <string name="keep_media">Keep Media</string>
+    <string name="store_msg">Videos, Photos files from cloud that you have not accessed during this period will be
+        removed.
+    </string>
+    <string name="photo">Photo</string>
+    <string name="storage">Storage</string>
+    <string name="reset">Reset</string>
 
 
     <!--extra -->

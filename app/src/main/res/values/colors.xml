@@ -7,6 +7,8 @@
     <color name="colorFillAllDevices">#514F50</color>
     <color name="colorBorderAllDevices">#707070</color>
     <color name="colorBlue">#4C80F8</color>
+    <color name="colorBlue2">#5AC8FA</color>
+
     <color name="colordarkGray">#848384</color>
     <color name="colorlightGray">#BDBDBD</color>
     <color name="colorRed">#F84C4C</color>
