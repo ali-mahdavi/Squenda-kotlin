@@ -24,10 +24,14 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.DisplayBrightnessMelodyActivity"
+        <activity android:name=".activities.ServicesActivity"
                   android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="landscape"
-        >
+                  android:screenOrientation="landscape">
+        </activity>
+        <activity
+                android:name=".activities.DisplayBrightnessMelodyActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="landscape">
         </activity>
         <activity
                 android:name=".activities.CountryAndTimeActivity"

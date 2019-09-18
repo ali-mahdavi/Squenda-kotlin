@@ -75,6 +75,9 @@
     <string name="theme">Theme</string>
     <string name="melody">Melody</string>
     <string name="reflection">Reflection</string>
+    <string name="services_message1">Your service and support coverage</string>
+    <string name="services_message2">Serial number:</string>
+    <string name="services_message3">Garantee</string>
 
 
     <!--extra -->
