@@ -92,6 +92,9 @@
     <string name="sqenda">Sqenda</string>
     <string name="sdcard">SD Card</string>
     <string name="storage_message">Copy all data to SD card</string>
+    <string name="one_week">1 week</string>
+    <string name="one_month">1 month</string>
+    <string name="for_ever">Forever</string>
 
 
     <!--extra -->
