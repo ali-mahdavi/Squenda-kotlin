@@ -89,6 +89,9 @@
     <string name="photo">Photo</string>
     <string name="storage">Storage</string>
     <string name="reset">Reset</string>
+    <string name="sqenda">Sqenda</string>
+    <string name="sdcard">SD Card</string>
+    <string name="storage_message">Copy all data to SD card</string>
 
 
     <!--extra -->
