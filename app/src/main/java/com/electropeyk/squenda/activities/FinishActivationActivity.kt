@@ -1,16 +1,38 @@
 package com.electropeyk.squenda.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
+import kotlinx.android.synthetic.main.activity_finish_activation.*
 
 class FinishActivationActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_finish_activation)
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+        setContentView(R.layout.activity_finish_activation)
+
+        txt_1.setText("1234")
+        txt_2.setText("1234")
+        txt_3.setText("1234")
+        txt_4.setText("1234")
+        txt_5.setText("1234")
+        txt_1.setEnabled(false)
+        txt_2.setEnabled(false)
+        txt_3.setEnabled(false)
+        txt_4.setEnabled(false)
+        txt_5.setEnabled(false)
+
+        rl_logo.setOnClickListener {
+            val intent = Intent(this, FirstMenueActivity::class.java)
+            finish()
+            startActivity(intent)
+        }
+
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

@@ -28,7 +28,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
     />
-
     <LinearLayout
             android:id="@+id/rl_code"
             android:layout_width="wrap_content"
@@ -38,13 +37,14 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="40dp"
     >
-        <TextView
+        <EditText
                 android:id="@+id/txt_1"
                 android:layout_width="60dp" android:layout_height="30dp"
                 android:background="@drawable/rectangle_active_code_success"
                 android:textSize="12sp"
                 android:textColor="@color/colorlightGray"
                 android:textAlignment="center"
+
         />
 
         <View
@@ -53,13 +53,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="8dp"
         />
-        <TextView
+        <EditText
                 android:id="@+id/txt_2"
                 android:layout_width="60dp" android:layout_height="30dp"
                 android:background="@drawable/rectangle_active_code_success"
                 android:textSize="12sp"
                 android:textColor="@color/colorlightGray"
                 android:textAlignment="center"
+
         />
 
         <View
@@ -68,13 +69,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="8dp"
         />
-        <TextView
+        <EditText
                 android:id="@+id/txt_3"
                 android:layout_width="60dp" android:layout_height="30dp"
                 android:background="@drawable/rectangle_active_code_success"
                 android:textSize="12sp"
                 android:textColor="@color/colorlightGray"
                 android:textAlignment="center"
+
         />
 
         <View
@@ -83,13 +85,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="8dp"
         />
-        <TextView
+        <EditText
                 android:id="@+id/txt_4"
                 android:layout_width="60dp" android:layout_height="30dp"
                 android:background="@drawable/rectangle_active_code_success"
                 android:textSize="12sp"
                 android:textColor="@color/colorlightGray"
                 android:textAlignment="center"
+
         />
 
         <View
@@ -98,13 +101,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="8dp"
         />
-        <TextView
+        <EditText
                 android:id="@+id/txt_5"
                 android:layout_width="60dp" android:layout_height="30dp"
                 android:background="@drawable/rectangle_active_code_success"
                 android:textSize="12sp"
                 android:textColor="@color/colorlightGray"
                 android:textAlignment="center"
+
         />
 
 
