@@ -78,11 +78,7 @@
                 android:name=".activities.SplashActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".activities.MainActivity"
@@ -154,6 +150,7 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="landscape"
                 android:theme="@style/FullscreenTheme">
+
         </activity>
         <activity
                 android:name=".activities.MyHomeActivity"
@@ -166,6 +163,11 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="landscape"
                 android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService"/>

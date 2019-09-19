@@ -176,7 +176,7 @@
                 android:id="@+id/txt_all_devices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="46sp"
+                android:textSize="26sp"
                 android:text="@string/settings"
                 android:textColor="@android:color/white"
         />
@@ -418,6 +418,7 @@
                     android:background="@android:color/black"/>
             <!--Data and storage-->
             <RelativeLayout
+                    android:id="@+id/rl_data_storage"
                     android:layout_width="match_parent"
                     android:layout_height="55dp">
                 <com.rey.material.widget.ImageView

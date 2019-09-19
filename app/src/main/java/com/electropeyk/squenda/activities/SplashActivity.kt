@@ -9,10 +9,10 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 
 class SplashActivity : AppCompatActivity() {
-    private val SPLASH_DURATION = 2500L
+    private val SPLASH_DURATION = 4500L
     private var mHandler: Handler? = null
     private var mRunnable: Runnable? = null
-    val TAG: String = GalleryActivity::class.java.simpleName
+    val TAG: String = SplashActivity::class.java.simpleName
 
     private val L = true
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +21,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(com.electropeyk.squenda.R.layout.activity_splash)
 
         mHandler = Handler()
+        mHandler?.postDelayed(mRunnable, SPLASH_DURATION)
         mRunnable = Runnable { dismissSplash() }
 
         rl_root.setOnClickListener {

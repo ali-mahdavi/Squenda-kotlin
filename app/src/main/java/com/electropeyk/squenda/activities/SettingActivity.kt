@@ -6,8 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.utils.Common
-import kotlinx.android.synthetic.main.activity_all_devices.*
-import kotlinx.android.synthetic.main.activity_first_menue.*
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -65,6 +63,14 @@ class SettingActivity : AppCompatActivity() {
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
         txt_date_setting.text= "$day,$month $dayOfMonth"
+
+
+        rl_data_storage.setOnClickListener {
+            val intent = Intent(this, DataAndStorageActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            finish()
+        }
 
 
     }

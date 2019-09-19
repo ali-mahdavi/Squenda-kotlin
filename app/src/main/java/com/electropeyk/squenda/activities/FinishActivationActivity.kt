@@ -2,12 +2,18 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
+import com.electropeyk.squenda.utils.Common
 import kotlinx.android.synthetic.main.activity_finish_activation.*
 
 class FinishActivationActivity : AppCompatActivity() {
+    private val SPLASH_DURATION = 4500L
+    private var mHandler: Handler? = null
+    private var mRunnable: Runnable? = null
+    val TAG: String = FinishActivationActivity::class.java.simpleName
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,16 +21,19 @@ class FinishActivationActivity : AppCompatActivity() {
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
         setContentView(R.layout.activity_finish_activation)
 
+        Common.hideKeyboard(this)
+
         txt_1.setText("1234")
         txt_2.setText("1234")
         txt_3.setText("1234")
         txt_4.setText("1234")
         txt_5.setText("1234")
-        txt_1.setEnabled(false)
-        txt_2.setEnabled(false)
-        txt_3.setEnabled(false)
-        txt_4.setEnabled(false)
-        txt_5.setEnabled(false)
+
+
+        mHandler = Handler()
+        mHandler?.postDelayed(mRunnable, SPLASH_DURATION)
+        mRunnable = Runnable { dismissSplash() }
+
 
         rl_logo.setOnClickListener {
             val intent = Intent(this, FirstMenueActivity::class.java)
@@ -33,6 +42,22 @@ class FinishActivationActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mHandler?.postDelayed(mRunnable, SPLASH_DURATION)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mHandler?.removeCallbacks(mRunnable)
+    }
+
+    private fun dismissSplash() {
+        val intent = Intent(this, FirstMenueActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

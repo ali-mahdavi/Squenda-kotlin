@@ -28,7 +28,7 @@
             >
 
                 <TextView
-                        android:id="@+id/txt_time_living"
+                        android:id="@+id/txt_time_storage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
@@ -84,7 +84,7 @@
                         android:text="|"
                 />
                 <TextView
-                        android:id="@+id/txt_date_living"
+                        android:id="@+id/txt_date_storage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
@@ -94,7 +94,7 @@
                 />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_back_living"
+                    android:id="@+id/img_back_storage"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_below="@+id/rl_status"
@@ -125,7 +125,7 @@
                 android:weightSum="1"
         >
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_profile_living"
+                    android:id="@+id/btn_profile_storage"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_weight=".25"
@@ -134,7 +134,7 @@
                     android:background="@drawable/ripple"
                     android:src="@drawable/ic_profile"/>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_home_living"
+                    android:id="@+id/btn_home_storage"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_weight=".25"
@@ -143,7 +143,7 @@
                     android:background="@drawable/ripple"
                     android:src="@drawable/ic_home"/>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_location_living"
+                    android:id="@+id/btn_location_storage"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_weight=".25"
@@ -152,7 +152,7 @@
                     android:tint="@color/colordarkGray"
                     android:src="@drawable/ic_loc"/>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_setting_living"
+                    android:id="@+id/btn_setting_storage"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_weight=".25"

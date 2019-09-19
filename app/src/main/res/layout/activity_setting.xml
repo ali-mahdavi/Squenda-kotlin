@@ -421,6 +421,7 @@
                     android:background="@android:color/black"/>
             <!--Data and storage-->
             <RelativeLayout
+                    android:id="@+id/rl_data_storage"
                     android:layout_width="match_parent"
                     android:layout_height="45dp">
                 <com.rey.material.widget.ImageView
