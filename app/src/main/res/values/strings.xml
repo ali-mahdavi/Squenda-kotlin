@@ -97,6 +97,8 @@
     <string name="for_ever">Forever</string>
     <string name="activation_code_entry_msg">Please enter your serial number</string>
     <string name="activation_code_err_msg">Wrong serial number</string>
+    <string name="are_you_sure_reset_memory">Are you sure to reset?</string>
+    <string name="reser_successfully_message">Reset Successfully</string>
 
 
     <!--extra -->

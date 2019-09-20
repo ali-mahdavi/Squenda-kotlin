@@ -17,9 +17,6 @@ import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST
 import com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED
 import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
-import kotlinx.android.synthetic.main.activity_all_devices.*
-import kotlinx.android.synthetic.main.activity_first_menue.*
-import kotlinx.android.synthetic.main.activity_living_room.*
 import kotlinx.android.synthetic.main.activity_photo_list.*
 import java.io.File
 import java.text.SimpleDateFormat
@@ -170,18 +167,21 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
 
     private fun deletePhotos() {
         for (position in PHOTO_NUM_SELECCTED) {
+
             val fdelete = File(ABSOLUTE_PATH_NAMES_PHOTO_LIST[position])
             if (fdelete.exists()) {
                 if (fdelete.delete()) {
                     ABSOLUTE_PATH_NAMES_PHOTO_LIST.removeAt(position)
                 }
-            }
+                }
+
 
         }
         adapter = PhotoRecyclerViewAdapter(this, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
         recyclerView.adapter?.notifyDataSetChanged()
         Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
     }
+
 
     private fun initRecyclerView() {
         // set up the RecyclerView

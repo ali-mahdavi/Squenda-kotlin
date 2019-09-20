@@ -1,31 +1,24 @@
 package com.electropeyk.squenda.activities
 
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.crowdfire.cfalertdialog.CFAlertDialog
 import com.electropeyk.squenda.R
+import com.electropeyk.squenda.adpter.VideoRecyclerViewAdapter
 import com.electropeyk.squenda.utils.Common
 import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST
+import com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED
+import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_video_list.*
-import android.content.Intent
-
-import com.electropeyk.squenda.adpter.VideoRecyclerViewAdapter
-import com.electropeyk.squenda.utils.GridDividerItemDecoration
-
-import androidx.core.content.ContextCompat
-
-import androidx.recyclerview.widget.GridLayoutManager
-import android.widget.Toast
-import com.crowdfire.cfalertdialog.CFAlertDialog
-import android.net.Uri
-import com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED
-import kotlinx.android.synthetic.main.activity_all_devices.*
-import kotlinx.android.synthetic.main.activity_first_menue.*
-import kotlinx.android.synthetic.main.activity_setting.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -152,12 +145,14 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
 
     private fun deleteVideos() {
         for (position in VIDEO_NUM_SELECCTED) {
+
             val fdelete = File(ABSOLUTE_PATH_NAMES_VIDEO_LIST[position])
             if (fdelete.exists()) {
                 if (fdelete.delete()) {
                     ABSOLUTE_PATH_NAMES_VIDEO_LIST.removeAt(position)
                 }
-            }
+                }
+
 
         }
         adapter = VideoRecyclerViewAdapter(this, ABSOLUTE_PATH_NAMES_VIDEO_LIST)

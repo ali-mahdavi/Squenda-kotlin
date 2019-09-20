@@ -3,27 +3,39 @@ package com.electropeyk.squenda.utils;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
+import com.electropeyk.squenda.models.TypeStorage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class SaveViewUtil {
-    private static final File rootDir = new File(Environment.getExternalStorageDirectory()+File.separator+"squendaImages");
+
 
     /** Save picture to file */
-    public static boolean saveScreen(Bitmap bitmap){
-        //determine if SDCARD is available
-        if(!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
-            return false;
-        }
-        if(!rootDir.exists()){
-            rootDir.mkdir();
+    public static boolean saveScreen(Bitmap bitmap, TypeStorage typeStorage) {
+        final File directory;
+        if (typeStorage == TypeStorage.SDCARD) {
+
+
+            directory = new File(Environment.getExternalStorageDirectory() +
+                    File.separator + "images");
+            directory.mkdirs();
+        } else {
+            directory = new File(Environment.getDataDirectory() +
+                    File.separator + "images");
+
+
         }
 
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+
         try {
-            String PATH=rootDir+File.separator+ System.currentTimeMillis() + ".jpg";
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(new File(PATH)));
+            String PATH = directory.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(new File(PATH)));
             Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.add(PATH);
             return true;
         } catch (FileNotFoundException e) {

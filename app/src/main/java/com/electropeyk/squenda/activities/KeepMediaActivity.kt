@@ -5,10 +5,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
+
+import com.electropeyk.squenda.models.ResetClass
+import com.electropeyk.squenda.models.TypeOfRest
 import com.electropeyk.squenda.utils.Common
+import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_keep_media.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class KeepMediaActivity : AppCompatActivity() {
 
@@ -21,9 +26,6 @@ class KeepMediaActivity : AppCompatActivity() {
             finish()
             startActivity(intent)
         }
-
-
-
         btn_home_keep.setOnClickListener {
             val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
@@ -43,12 +45,57 @@ class KeepMediaActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
         setTime()
 
+        Paper.init(this)
+        val restClass = Paper.book(Common.DATABASE).read<ResetClass>(Common.RESET_MOMORY)
+        if (restClass.type == TypeOfRest.MONTH) {
+            img_foreever_check.visibility = View.GONE
+            img_week_check.visibility = View.GONE
+            img_month_check.visibility = View.VISIBLE
+        }
+        if (restClass.type == TypeOfRest.WEEK) {
+            img_foreever_check.visibility = View.GONE
+            img_week_check.visibility = View.VISIBLE
+            img_month_check.visibility = View.GONE
+        }
+        if (restClass.type == TypeOfRest.FOREVER) {
+            img_foreever_check.visibility = View.VISIBLE
+            img_week_check.visibility = View.GONE
+            img_month_check.visibility = View.GONE
+        }
 
+
+        rl_forever.setOnClickListener {
+            img_foreever_check.visibility = View.VISIBLE
+            img_week_check.visibility = View.GONE
+            img_month_check.visibility = View.GONE
+            val cal = Calendar.getInstance()
+
+            val resetClass = ResetClass(TypeOfRest.FOREVER, cal)
+            Paper.book(Common.DATABASE).write(Common.RESET_MOMORY, resetClass)
+        }
+        rl_week.setOnClickListener {
+            img_foreever_check.visibility = View.GONE
+            img_week_check.visibility = View.VISIBLE
+            img_month_check.visibility = View.GONE
+            val cal = Calendar.getInstance()
+            cal.add(Calendar.DAY_OF_WEEK, 6)
+            val resetClass = ResetClass(TypeOfRest.WEEK, cal)
+            Paper.book(Common.DATABASE).write(Common.RESET_MOMORY, resetClass)
+
+        }
+
+        rl_month.setOnClickListener {
+            img_foreever_check.visibility = View.GONE
+            img_week_check.visibility = View.GONE
+            img_month_check.visibility = View.VISIBLE
+            val cal = Calendar.getInstance()
+            cal.add(Calendar.MONTH, 1)
+            val resetClass = ResetClass(TypeOfRest.MONTH, cal)
+            Paper.book(Common.DATABASE).write(Common.RESET_MOMORY, resetClass)
+        }
     }
-
     private fun setTime() {
         txt_time_keep.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
         val thread = object : Thread() {

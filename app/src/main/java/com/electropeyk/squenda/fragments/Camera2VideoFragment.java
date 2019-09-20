@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -14,6 +13,7 @@ import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
@@ -28,10 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.app.ActivityCompat;
 import com.electropeyk.squenda.R;
 import com.electropeyk.squenda.activities.FirstMenueActivity;
 import com.electropeyk.squenda.activities.GalleryActivity;
+import com.electropeyk.squenda.models.TypeStorage;
 import com.electropeyk.squenda.utils.AutoFitTextureView;
 import com.electropeyk.squenda.utils.Common;
 import com.electropeyk.squenda.utils.GlobalInstanse;
@@ -56,17 +56,18 @@ public class Camera2VideoFragment extends Fragment
     private static final SparseIntArray DEFAULT_ORIENTATIONS = new SparseIntArray();
     private static final SparseIntArray INVERSE_ORIENTATIONS = new SparseIntArray();
     private static final String TAG = "Camera2VideoFragment";
+    private TypeStorage typeStorage;
     private int interavlSeekbar;
     private AppCompatImageView btn_video, btn_rotate, btn_gallary,
             btn_sound,
             btn_camera, img_back;
     private boolean soundVisibilityFlage;
     private AudioManager audioManager;
-    private FrameLayout fr_btn_camera,fr_rl_camera;
+    private FrameLayout fr_btn_camera, fr_rl_camera;
     private org.adw.library.widgets.discreteseekbar.DiscreteSeekBar seek_volume;
     private View view_status;
     private TextView txt_status, txt_tempreture, txt_date_camera_video, txt_time_camera_video;
-    private Button btn_back,btn_front;
+    private Button btn_back, btn_front;
 
     static {
         DEFAULT_ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -206,6 +207,7 @@ public class Camera2VideoFragment extends Fragment
     private String mNextVideoAbsolutePath;
     private CaptureRequest.Builder mPreviewBuilder;
 
+
     public static Camera2VideoFragment newInstance() {
         return new Camera2VideoFragment();
     }
@@ -297,11 +299,11 @@ public class Camera2VideoFragment extends Fragment
         btn_camera.setOnClickListener(this);
         img_back = (AppCompatImageView) view.findViewById(R.id.img_back_camera_video);
         img_back.setOnClickListener(this);
-        fr_btn_camera=(FrameLayout)view.findViewById(R.id.fr_btn_camera);
-        fr_rl_camera=(FrameLayout)view.findViewById(R.id.fr_rl_camera);
+        fr_btn_camera = (FrameLayout) view.findViewById(R.id.fr_btn_camera);
+        fr_rl_camera = (FrameLayout) view.findViewById(R.id.fr_rl_camera);
         fr_btn_camera.setOnClickListener(this);
-        btn_back=(Button) view.findViewById(R.id.btn_back);
-        btn_front=(Button) view.findViewById(R.id.btn_front);
+        btn_back = (Button) view.findViewById(R.id.btn_back);
+        btn_front = (Button) view.findViewById(R.id.btn_front);
         btn_back.setOnClickListener(this);
         btn_front.setOnClickListener(this);
         interavlSeekbar = 0;
@@ -330,6 +332,10 @@ public class Camera2VideoFragment extends Fragment
         audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         seek_volume.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         seek_volume.setOnProgressChangeListener(this);
+        typeStorage = Paper.book(Common.DATABASE).read(Common.PATH_TYPE);
+        if (typeStorage == null)
+            typeStorage = TypeStorage.SQENDA;
+
 
     }
 
@@ -380,7 +386,7 @@ public class Camera2VideoFragment extends Fragment
             }
             case R.id.btn_camera: {
 
-                if (SaveViewUtil.saveScreen(mTextureView.getBitmap())) {
+                if (SaveViewUtil.saveScreen(mTextureView.getBitmap(), typeStorage)) {
                     Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO,
                             Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST);
                     Toast.makeText(getActivity(), "Image Saved", Toast.LENGTH_LONG).show();
@@ -415,7 +421,7 @@ public class Camera2VideoFragment extends Fragment
             case R.id.fr_btn_camera:
                 fr_btn_camera.setVisibility(View.GONE);
                 fr_rl_camera.setVisibility(View.VISIBLE);
-                Animation    RightSwipe = AnimationUtils.loadAnimation(getActivity(), R.anim.right_swipe);
+                Animation RightSwipe = AnimationUtils.loadAnimation(getActivity(), R.anim.right_swipe);
                 fr_rl_camera.startAnimation(RightSwipe);
                 break;
             case R.id.btn_back:
@@ -458,16 +464,6 @@ public class Camera2VideoFragment extends Fragment
         }
     }
 
-
-    private boolean hasPermissionsGranted(String[] permissions) {
-        for (String permission : permissions) {
-            if (ActivityCompat.checkSelfPermission(getActivity(), permission)
-                    != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Tries to open a {@link CameraDevice}. The result is listened by `mStateCallback`.
@@ -640,7 +636,7 @@ public class Camera2VideoFragment extends Fragment
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         if (mNextVideoAbsolutePath == null || mNextVideoAbsolutePath.isEmpty()) {
-            mNextVideoAbsolutePath = getVideoFilePath(getActivity());
+            mNextVideoAbsolutePath = getVideoFilePath();
         }
         mMediaRecorder.setOutputFile(mNextVideoAbsolutePath);
         mMediaRecorder.setVideoEncodingBitRate(10000000);
@@ -660,9 +656,27 @@ public class Camera2VideoFragment extends Fragment
         mMediaRecorder.prepare();
     }
 
-    private String getVideoFilePath(Context context) {
-        final File dir = context.getExternalFilesDir(null);
-        return (dir == null ? "" : (dir.getAbsolutePath() + "/"))
+    private String getVideoFilePath() {
+        final File directory;
+        if (typeStorage == TypeStorage.SDCARD) {
+
+
+            directory = new File(Environment.getExternalStorageDirectory() +
+                    File.separator + "videos");
+            directory.mkdirs();
+        } else {
+            directory = new File(Environment.getDataDirectory() +
+                    File.separator + "videos");
+
+
+        }
+
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+
+        return (directory == null ? "" : (directory.getAbsolutePath() + "/"))
                 + System.currentTimeMillis() + ".mp4";
     }
 

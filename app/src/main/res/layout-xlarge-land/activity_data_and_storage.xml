@@ -177,6 +177,7 @@
                   android:layout_below="@+id/txt_title"
                   android:layout_toLeftOf="@id/rl_main_menu"
                   android:orientation="vertical"
+                  android:id="@+id/rl_snack"
 
     >
         <View
@@ -216,7 +217,7 @@
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
             <TextView
-
+                    android:id="@+id/txt_keep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forever"
@@ -426,7 +427,7 @@
 
                     android:layout_marginLeft="10dp"/>
             <TextView
-
+                    android:id="@+id/storage_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SD Card"
@@ -454,13 +455,14 @@
         >
 
             <TextView
+                    android:id="@+id/txt_reset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/reset"
                     android:textSize="18sp"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorRed"
-
+                    android:background="@drawable/ripple"
                     android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>

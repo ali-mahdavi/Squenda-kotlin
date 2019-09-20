@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/black"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="55dp"
                 android:layout_marginRight="20dp"
         />
@@ -285,7 +285,7 @@
                 android:layout_marginLeft="55dp"
         />
         <RelativeLayout
-                android:id="@+id/rl_keep_media"
+                android:id="@+id/rl_copy_all_to_sd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"

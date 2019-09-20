@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
+import com.electropeyk.squenda.models.TypeStorage
 import com.electropeyk.squenda.utils.Common
+import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_storage.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -46,6 +48,39 @@ class StorageActivity : AppCompatActivity() {
 
 
         setTime()
+
+
+
+        Paper.init(this)
+
+        val storageType = Paper.book(Common.DATABASE).read<TypeStorage>(Common.PATH_TYPE)
+        if (storageType == TypeStorage.SQENDA) {
+            img_sdcard_check.visibility = View.GONE
+            img_sqenda_check.visibility = View.VISIBLE
+        } else {
+            img_sdcard_check.visibility = View.VISIBLE
+            img_sqenda_check.visibility = View.GONE
+        }
+
+
+        rl_sqenda.setOnClickListener {
+            img_sdcard_check.visibility = View.GONE
+            img_sqenda_check.visibility = View.VISIBLE
+            Paper.book(Common.DATABASE).write(Common.PATH_TYPE, TypeStorage.SQENDA)
+        }
+
+        rl_sdcard.setOnClickListener {
+            img_sdcard_check.visibility = View.VISIBLE
+            img_sqenda_check.visibility = View.GONE
+            Paper.book(Common.DATABASE).write(Common.PATH_TYPE, TypeStorage.SDCARD)
+        }
+
+        rl_copy_all_to_sd.setOnClickListener {
+
+
+        }
+
+
     }
 
     private fun setTime() {
@@ -105,4 +140,6 @@ class StorageActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
+
+
 }

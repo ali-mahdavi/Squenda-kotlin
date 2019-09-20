@@ -4,9 +4,15 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.electropeyk.squenda.R
+import com.electropeyk.squenda.models.ResetClass
+import com.electropeyk.squenda.models.TypeOfRest
+import com.electropeyk.squenda.models.TypeStorage
 import com.electropeyk.squenda.utils.Common
+import com.pd.chocobar.ChocoBar
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_data_and_storage.*
 import kotlinx.android.synthetic.main.activity_gallery.txt_photo_size
@@ -74,19 +80,89 @@ class DataAndStorageActivity : AppCompatActivity() {
 
         txt_available.text = storageMsg
 
-        /* progress_data.setProgress(41,true)
-         progress_data.secondaryProgress = 31
- */
-        // progress_data.setProgress( photoSize/100,true)
+
         val variable = total.substring(0, total.length - 2)
 
         progress_data.max = Integer.parseInt(variable)
         progress_data.progress = viedoSize / 1024
         progress_data.secondaryProgress = photoSize / 1024
 
+        val typeStorage = Paper.book(Common.DATABASE).read<TypeStorage>(Common.PATH_TYPE)
+        if (typeStorage != null) {
+            if (typeStorage == TypeStorage.SDCARD)
+                storage_type.text = "SD Card"
+            else
+                storage_type.text = "SQENDA"
+        }
+
+        val resetMemory = Paper.book(Common.DATABASE).read<ResetClass>(Common.RESET_MOMORY)
+        if (resetMemory != null) {
+            if (resetMemory.type == TypeOfRest.MONTH)
+                txt_keep.text = "Month"
+            else
+                if (resetMemory.type == TypeOfRest.WEEK)
+                    txt_keep.text = "Week"
+
+        } else
+            txt_keep.text = "Forever"
+
+
+
+        txt_reset.setOnClickListener {
+            ChocoBar.builder().setView(rl_snack).setText(R.string.are_you_sure_reset_memory)
+                .setDuration(ChocoBar.LENGTH_INDEFINITE).red().setAction(
+                    android.R.string.ok
+                ) {
+                    deletePhotos()
+                    deleteVideos()
+                    txt_photo_size.setText("0 KB")
+                    txt_video_size.setText("0 KB")
+                    progress_data.progress = 0
+                    progress_data.secondaryProgress = 0
+                    Toast.makeText(
+                        this,
+                        R.string.reser_successfully_message,
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }.show()
+            setSize()
+        }
+
 
     }
 
+
+    private fun deletePhotos() {
+        var i = 0
+        for (path in Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
+            val fdelete = File(path)
+            if (fdelete.exists()) {
+                fdelete.delete()
+
+            }
+            i++
+
+        }
+
+        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = ArrayList<String>()
+        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+    }
+
+    private fun deleteVideos() {
+        var i = 0
+        for (path in Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
+            val fdelete = File(path)
+            if (fdelete.exists()) {
+
+                fdelete.delete()
+            }
+            i++
+
+        }
+        Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = ArrayList<String>()
+        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST)
+    }
 
     private fun setTime() {
         txt_time_data_storage.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())

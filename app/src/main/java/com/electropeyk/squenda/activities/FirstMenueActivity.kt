@@ -91,8 +91,6 @@ class FirstMenueActivity : AppCompatActivity() {
         txt_date_first.text= "$day,$month $dayOfMonth"
 
 
-
-
     }
 
     private fun requestPermission() {
