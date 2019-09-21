@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.electropeyk.squenda.R;
+import com.electropeyk.squenda.models.MetaFile;
 
 import java.util.List;
 
-import static com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED;
+import static com.electropeyk.squenda.utils.Common.*;
 
 
 /**
@@ -22,14 +23,14 @@ import static com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED;
 
 public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<MetaFile> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private ItemLongClickListener mLongClickListener;
     private final static int FADE_DURATION = 1000;
 
     // data is passed into the constructor
-    public VideoRecyclerViewAdapter(Context context, List<String> data) {
+    public VideoRecyclerViewAdapter(Context context, List<MetaFile> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -44,7 +45,7 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String filePath = mData.get(position);
+        String filePath = mData.get(position).getPath();
         Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
         holder.img_video.setImageBitmap(thumb);
     }
@@ -89,11 +90,10 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
                 if (mCheckbox.isChecked()) {
                     mCheckbox.setVisibility(View.GONE);
                     mCheckbox.setChecked(false);
-                    if (VIDEO_NUM_SELECCTED.contains(getAdapterPosition()))
-                        VIDEO_NUM_SELECCTED.remove(getAdapterPosition());
+                    ABSOLUTE_PATH_NAMES_VIDEO_LIST.get(getAdapterPosition()).setChecked(false);
                     return false;
                 } else {
-                    VIDEO_NUM_SELECCTED.add(getAdapterPosition());
+                    ABSOLUTE_PATH_NAMES_VIDEO_LIST.get(getAdapterPosition()).setChecked(true);
                     mCheckbox.setVisibility(View.VISIBLE);
                     mCheckbox.setChecked(true);
                     mLongClickListener.onItemLongClick(view, getAdapterPosition());
@@ -104,12 +104,6 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
         }
     }
 
-    // convenience method for getting data at click position
-    public String getItem(int id) {
-        return mData.get(id);
-    }
-
-    // allows clicks events to be caught
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }

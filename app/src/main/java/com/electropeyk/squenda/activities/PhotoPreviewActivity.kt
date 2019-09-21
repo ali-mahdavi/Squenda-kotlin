@@ -1,25 +1,20 @@
 package com.electropeyk.squenda.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.SparseIntArray
 import android.view.View
 import android.widget.CheckBox
 import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.adpter.ImagePagerAdapter
-import com.electropeyk.squenda.adpter.VideoPagerAdapter
 import com.electropeyk.squenda.utils.Common
 import com.tmall.ultraviewpager.UltraViewPager
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer
 import io.paperdb.Paper
-import kotlinx.android.synthetic.main.activity_all_devices.*
-import kotlinx.android.synthetic.main.activity_first_menue.*
-import kotlinx.android.synthetic.main.activity_photo_list.*
 import kotlinx.android.synthetic.main.activity_photo_preview.*
-import kotlinx.android.synthetic.main.activity_setting.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,10 +35,10 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
         Paper.init(this)
         Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO)
         ultraViewPager = findViewById(R.id.ultra_viewpager) as UltraViewPager
-        val extras :Bundle
-        extras= getIntent().getExtras()!!
+        val extras: Bundle
+        extras = getIntent().getExtras()!!
         ultraViewPager!!.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL)
-        adapter = ImagePagerAdapter(this,true, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        adapter = ImagePagerAdapter(this, true, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
         ultraViewPager!!.setAdapter(adapter)
         ultraViewPager!!.setMultiScreen(0.6f)
         ultraViewPager!!.setItemRatio(1.0)
@@ -78,14 +73,14 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
-        img_back_photo_preview.setOnClickListener{
+        img_back_photo_preview.setOnClickListener {
             val intent = Intent(this, PhotoListActivity::class.java)
             // start your next activity
             startActivity(intent)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
-        txt_time_photo_preview.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+        txt_time_photo_preview.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -93,7 +88,7 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
                     while (!this.isInterrupted) {
                         sleep(1000)
                         runOnUiThread {
-                            txt_time_photo_preview.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+                            txt_time_photo_preview.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
                         }
                     }
                 } catch (e: InterruptedException) {
@@ -103,17 +98,15 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
         }
 
         thread.start()
-        var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        var dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
-        txt_date_photo_preview.text= "$day,$month $dayOfMonth"
-
+        txt_date_photo_preview.text = "$day,$month $dayOfMonth"
 
 
     }
 
     private fun initUI() {
-
 
 
         loopCheckBox = findViewById(R.id.loop) as CheckBox

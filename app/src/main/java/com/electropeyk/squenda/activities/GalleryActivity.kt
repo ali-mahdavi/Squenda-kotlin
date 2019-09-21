@@ -109,8 +109,8 @@ class GalleryActivity : AppCompatActivity() {
         Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
         if (Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST != null && Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.size > 0) {
             var videoSize = 0
-            for (path in Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
-                val file = File(path)
+            for (MetaFile in Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
+                val file = File(MetaFile.path)
                 val file_size = Integer.parseInt((file.length() / 1024).toString())
                 videoSize += file_size
             }
@@ -118,8 +118,8 @@ class GalleryActivity : AppCompatActivity() {
         }
         if (Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST != null && Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size > 0) {
             var photoSize = 0
-            for (path in Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
-                val file = File(path)
+            for (MetaFile in Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
+                val file = File(MetaFile.path)
                 val file_size = Integer.parseInt((file.length() / 1024).toString())
                 photoSize += file_size
             }

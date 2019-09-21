@@ -7,6 +7,7 @@ import android.os.StatFs;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import com.electropeyk.squenda.models.MetaFile;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,11 +20,9 @@ public class Common {
     public static final String RESET_MOMORY = "reset_memory";
     public static final String PATH_TYPE = "path_type";
     public static final String DATABASE = "squenda_db";
-    public static List<String> ABSOLUTE_PATH_NAMES_VIDEO_LIST = new ArrayList<>();
+    public static List<MetaFile> ABSOLUTE_PATH_NAMES_VIDEO_LIST = new ArrayList<>();
     public static String ABSOLUTE_PATH_NAMES_PHOTO = "absolute_path_name_photo";
-    public static List<String> ABSOLUTE_PATH_NAMES_PHOTO_LIST = new ArrayList<>();
-    public static List<Integer> VIDEO_NUM_SELECCTED = new ArrayList<>();
-    public static List<Integer> PHOTO_NUM_SELECCTED = new ArrayList<>();
+    public static List<MetaFile> ABSOLUTE_PATH_NAMES_PHOTO_LIST = new ArrayList<>();
     public static String[] days = new String[]{"Sunday", "Monday", "Tuseday",
             "Wednesday", "Thursday", "Friday", "Saturday"};
     public static String[] months = {"January",
@@ -67,7 +66,15 @@ public class Common {
         return formatSize(availableBlocks * blockSize);
     }
 
-    public static String getTotalInternalMemorySize() {
+    public static long getTotalInternalMemorySize() {
+        File path = Environment.getDataDirectory();
+        StatFs stat = new StatFs(path.getPath());
+        long blockSize = stat.getBlockSizeLong();
+        long totalBlocks = stat.getBlockCountLong();
+        return totalBlocks * blockSize;
+    }
+
+    public static String getTotalInternalMemorySizeFormateSize() {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
         long blockSize = stat.getBlockSizeLong();
@@ -210,6 +217,13 @@ public class Common {
         }
 
     }
+
+    public static String ReplaceAllCammaToBlank(String str){
+        return str.replaceAll(",", "");
+    }
+
+
+
 
 
 

@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.SparseIntArray
 import android.view.View
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.electropeyk.squenda.R
@@ -13,13 +14,11 @@ import com.electropeyk.squenda.utils.Common
 import com.tmall.ultraviewpager.UltraViewPager
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer
 import io.paperdb.Paper
-import kotlinx.android.synthetic.main.activity_all_devices.*
 import kotlinx.android.synthetic.main.activity_video_preview.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeListener
-   {
+class VideoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
     private var ultraViewPager: UltraViewPager? = null
     private var adapter: PagerAdapter? = null
     private var loopCheckBox: CheckBox? = null
@@ -56,10 +55,10 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
         Paper.init(this)
         Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
         ultraViewPager = findViewById(R.id.ultra_viewpager) as UltraViewPager
-        val extras :Bundle
-        extras= getIntent().getExtras()!!
+        val extras: Bundle
+        extras = getIntent().getExtras()!!
         ultraViewPager!!.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL)
-        adapter = VideoPagerAdapter(this,true, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST)
+        adapter = VideoPagerAdapter(this, true, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST)
         ultraViewPager!!.setAdapter(adapter)
         ultraViewPager!!.setMultiScreen(0.6f)
         ultraViewPager!!.setItemRatio(1.0)
@@ -72,7 +71,7 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
         ultraViewPager!!.setPageTransformer(false, UltraDepthScaleTransformer())
 
         initUI()
-          img_back_video_preview.setOnClickListener{
+        img_back_video_preview.setOnClickListener {
             val intent = Intent(this, VideoListActivity::class.java)
             // start your next activity
             startActivity(intent)
@@ -80,7 +79,7 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
             finish()
         }
 
-        txt_time_video_preview.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+        txt_time_video_preview.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
 
         val thread = object : Thread() {
 
@@ -89,7 +88,7 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
                     while (!this.isInterrupted) {
                         sleep(1000)
                         runOnUiThread {
-                            txt_time_video_preview.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+                            txt_time_video_preview.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
                         }
                     }
                 } catch (e: InterruptedException) {
@@ -99,16 +98,15 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
         }
 
         thread.start()
-        var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        var dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
-        txt_date_video_preview.text= "$day,$month $dayOfMonth"
+        txt_date_video_preview.text = "$day,$month $dayOfMonth"
 
 
     }
 
     private fun initUI() {
-
 
 
         loopCheckBox = findViewById(R.id.loop) as CheckBox
@@ -119,7 +117,6 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
 
 
     }
-
 
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
@@ -136,10 +133,6 @@ class VideoPreviewActivity : AppCompatActivity(),CompoundButton.OnCheckedChangeL
                 ultraViewPager!!.disableAutoScroll()
         }
     }
-
-
-
-
 
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

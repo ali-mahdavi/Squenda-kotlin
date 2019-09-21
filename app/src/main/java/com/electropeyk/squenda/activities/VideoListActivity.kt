@@ -13,12 +13,15 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.electropeyk.squenda.adpter.VideoRecyclerViewAdapter
+import com.electropeyk.squenda.models.MetaFile
 import com.electropeyk.squenda.utils.Common
 import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST
-import com.electropeyk.squenda.utils.Common.VIDEO_NUM_SELECCTED
 import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_video_list.*
+import kotlinx.android.synthetic.main.activity_video_list.btn_share
+import kotlinx.android.synthetic.main.activity_video_list.btn_trash
+import kotlinx.android.synthetic.main.activity_video_list.fr_msg
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -70,7 +73,10 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
         }
 
         btn_trash.setOnClickListener {
-            if (VIDEO_NUM_SELECCTED.size > 0) {
+
+            var checked: List<MetaFile> = ABSOLUTE_PATH_NAMES_VIDEO_LIST.filter { it.checked == true }
+
+            if (checked.size > 0) {
                 fr_msg.setVisibility(View.VISIBLE)
                 val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.right_swipe)
                 fr_msg.startAnimation(RightSwipe)
@@ -98,20 +104,22 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
             val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.left_swipe)
             fr_msg.startAnimation(RightSwipe)
             fr_msg.setVisibility(View.GONE)
-            isOpen=false
+            isOpen = false
 
         }
 
         btn_share.setOnClickListener {
-            if (VIDEO_NUM_SELECCTED.size > 0) {
+            var checked: List<MetaFile> = ABSOLUTE_PATH_NAMES_VIDEO_LIST.filter { it.checked == true }
+
+            if (checked.size > 0) {
                 val imageUris = ArrayList<Uri>()
-                for (pos in VIDEO_NUM_SELECCTED) {
-                    imageUris.add(Uri.parse(Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST[pos]))
+                for (pos in checked) {
+                    imageUris.add(Uri.parse(pos.path))
                 }
                 val shareIntent = Intent()
                 shareIntent.action = Intent.ACTION_SEND_MULTIPLE
                 shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
-                shareIntent.type = "image/*"
+                shareIntent.type = "video/*"
                 startActivity(Intent.createChooser(shareIntent, "Share images to.."))
 
             } else
@@ -154,23 +162,28 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
     }
 
     private fun deleteVideos() {
-        if(ABSOLUTE_PATH_NAMES_VIDEO_LIST.size==VIDEO_NUM_SELECCTED.size)
-            ABSOLUTE_PATH_NAMES_VIDEO_LIST=ArrayList()
-        else {
-            for (position in VIDEO_NUM_SELECCTED) {
-
-                val fdelete = File(ABSOLUTE_PATH_NAMES_VIDEO_LIST[position])
+        var checked: List<MetaFile> = Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.filter { it.checked == true }
+        var isReset=false
+        if(ABSOLUTE_PATH_NAMES_VIDEO_LIST.size==checked.size)
+            isReset=true
+        if(checked.size==0)return
+        for (MetaFile in checked) {
+                val fdelete = File(MetaFile.path)
                 if (fdelete.exists()) {
                     if (fdelete.delete()) {
-                        ABSOLUTE_PATH_NAMES_VIDEO_LIST.removeAt(position)
+                        ABSOLUTE_PATH_NAMES_VIDEO_LIST.remove(MetaFile)
                     }
                 }
-
-
-            }
         }
+
+        if(isReset)
+            ABSOLUTE_PATH_NAMES_VIDEO_LIST=ArrayList<MetaFile>()
+
         adapter = VideoRecyclerViewAdapter(this, ABSOLUTE_PATH_NAMES_VIDEO_LIST)
+        adapter!!.setClickListener(this)
+        adapter!!.setLongClickListener(this)
         recyclerView!!.adapter = adapter
+
         Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST)
     }
 
@@ -193,12 +206,12 @@ class VideoListActivity : AppCompatActivity(), VideoRecyclerViewAdapter.ItemClic
     }
 
     override fun onItemLongClick(view: View, position: Int) {
-        if (VIDEO_NUM_SELECCTED.size > 0) {
-            btn_trash.visibility = View.VISIBLE
-            btn_share.visibility = View.VISIBLE
-        } else {
-            btn_trash.visibility = View.INVISIBLE
-            btn_share.visibility = View.INVISIBLE
+        btn_trash.setVisibility(View.INVISIBLE)
+        btn_share.setVisibility(View.INVISIBLE)
+        var checked: List<MetaFile> = ABSOLUTE_PATH_NAMES_VIDEO_LIST.filter { it.checked == true }
+        if (checked.size > 0) {
+            btn_trash.setVisibility(View.VISIBLE)
+            btn_share.setVisibility(View.VISIBLE)
         }
     }
 

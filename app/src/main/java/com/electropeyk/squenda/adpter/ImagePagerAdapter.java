@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import com.electropeyk.squenda.R;
+import com.electropeyk.squenda.models.MetaFile;
 
 import java.io.File;
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.List;
  */
 public class ImagePagerAdapter extends PagerAdapter {
     private boolean isMultiScr;
-    private List<String> mData;
+    private List<MetaFile> mData;
     private Context context;
 
-    public ImagePagerAdapter(Context context, boolean isMultiScr, List<String> data) {
+    public ImagePagerAdapter(Context context, boolean isMultiScr, List<MetaFile> data) {
         this.isMultiScr = isMultiScr;
         this.mData = data;
         this.context = context;
@@ -43,7 +44,7 @@ public class ImagePagerAdapter extends PagerAdapter {
         LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.layout_image_child, null);
         //new LinearLayout(container.getContext());
         ImageView imageView = (ImageView) linearLayout.findViewById(R.id.imageView);
-        String filePath = mData.get(position);
+        String filePath = mData.get(position).getPath();
         File imgFile = new File(filePath);
         if (imgFile.exists()) {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.electropeyk.squenda.models.MetaFile
 import com.electropeyk.squenda.models.ResetClass
 import com.electropeyk.squenda.models.TypeOfRest
 import com.electropeyk.squenda.models.TypeStorage
@@ -77,17 +78,19 @@ class DataAndStorageActivity : AppCompatActivity() {
         val available = Common.getAvailableInternalMemorySize();
 
         val total = Common.getTotalInternalMemorySize()
+        val totalString = Common.getTotalInternalMemorySizeFormateSize()
 
-        val storageMsg = available + " of " + total + " Used"
+        val storageMsg = available + " of " + totalString + " Used"
 
         txt_available.text = storageMsg
 
 
-        val variable = total.substring(0, total.length - 2)
+        val variable = totalString.substring(0, totalString.length - 2)
 
-        progress_data.max = Integer.parseInt(variable)
-        progress_data.progress = viedoSize / 1024
-        progress_data.secondaryProgress = photoSize / 1024
+
+        progress_data.max =Integer.parseInt(Common.ReplaceAllCammaToBlank(variable))
+        progress_data.progress = viedoSize/1024
+        progress_data.secondaryProgress = photoSize/1204
 
         val typeStorage = Paper.book(Common.DATABASE).read<TypeStorage>(Common.PATH_TYPE)
         if (typeStorage != null) {
@@ -145,11 +148,11 @@ class DataAndStorageActivity : AppCompatActivity() {
 
 
     private fun deletePhotos() {
-        ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
+        ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO)
         if (ABSOLUTE_PATH_NAMES_PHOTO_LIST != null && ABSOLUTE_PATH_NAMES_PHOTO_LIST.size > 0) {
             var i = 0
-            for (path in ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
-                val fdelete = File(path)
+            for (MetaFile in ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
+                val fdelete = File(MetaFile.path)
                 if (fdelete.exists()) {
                     fdelete.delete()
 
@@ -158,7 +161,7 @@ class DataAndStorageActivity : AppCompatActivity() {
 
             }
 
-            ABSOLUTE_PATH_NAMES_PHOTO_LIST = ArrayList<String>()
+            ABSOLUTE_PATH_NAMES_PHOTO_LIST = ArrayList<MetaFile>()
             Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
         }
     }
@@ -167,8 +170,8 @@ class DataAndStorageActivity : AppCompatActivity() {
         ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
         if (ABSOLUTE_PATH_NAMES_VIDEO_LIST != null && ABSOLUTE_PATH_NAMES_VIDEO_LIST.size > 0) {
             var i = 0
-            for (path in ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
-                val fdelete = File(path)
+            for (MetaFile in ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
+                val fdelete = File(MetaFile.path)
                 if (fdelete.exists()) {
 
                     fdelete.delete()
@@ -176,7 +179,7 @@ class DataAndStorageActivity : AppCompatActivity() {
                 i++
 
             }
-            ABSOLUTE_PATH_NAMES_VIDEO_LIST = ArrayList<String>()
+            ABSOLUTE_PATH_NAMES_VIDEO_LIST = ArrayList<MetaFile>()
             Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, ABSOLUTE_PATH_NAMES_VIDEO_LIST)
         }
     }
@@ -210,21 +213,21 @@ class DataAndStorageActivity : AppCompatActivity() {
 
     private fun setSize() {
         txt_video_size.setText("0 KB")
-        Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
-        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO)
-        if (Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST != null && Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.size > 0) {
+        ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
+        ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO)
+        if (ABSOLUTE_PATH_NAMES_VIDEO_LIST != null && Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.size > 0) {
 
-            for (path in Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
-                val file = File(path)
+            for (MetaFile in Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
+                val file = File(MetaFile.path)
                 val file_size = Integer.parseInt((file.length() / 1024).toString())
                 viedoSize += file_size
             }
             txt_video_size.setText("$viedoSize KB")
         }
-        if (Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST != null && Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size > 0) {
+        if (ABSOLUTE_PATH_NAMES_PHOTO_LIST != null && Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size > 0) {
 
-            for (path in Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
-                val file = File(path)
+            for (MetaFile in ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
+                val file = File(MetaFile.path)
                 val file_size = Integer.parseInt((file.length() / 1024).toString())
                 photoSize += file_size
             }
@@ -266,4 +269,8 @@ class DataAndStorageActivity : AppCompatActivity() {
 
 
 }
+
+
+
+
 

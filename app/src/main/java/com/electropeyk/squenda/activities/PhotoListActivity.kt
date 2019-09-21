@@ -1,9 +1,9 @@
 package com.electropeyk.squenda.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -11,19 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.crowdfire.cfalertdialog.CFAlertDialog
 import com.electropeyk.squenda.R
 import com.electropeyk.squenda.adpter.PhotoRecyclerViewAdapter
+import com.electropeyk.squenda.models.MetaFile
 import com.electropeyk.squenda.utils.Common
 import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST
-import com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED
 import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_photo_list.*
-import kotlinx.android.synthetic.main.activity_photo_list.btn_share
-import kotlinx.android.synthetic.main.activity_photo_list.btn_trash
-import kotlinx.android.synthetic.main.activity_photo_list.fr_msg
-import kotlinx.android.synthetic.main.activity_video_list.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,7 +40,7 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
         Paper.init(this);
         fr_msg.setVisibility(View.GONE)
         recyclerView = findViewById(com.electropeyk.squenda.R.id.recycle_photos)
-        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
+        ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO)
         initRecyclerView();
         btn_home_photo_list.setOnClickListener {
             val intent = Intent(this, MyHomeActivity::class.java)
@@ -72,7 +67,9 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
         btn_share.setVisibility(View.INVISIBLE);
         btn_trash.setVisibility(View.INVISIBLE);
         btn_trash.setOnClickListener {
-            if (PHOTO_NUM_SELECCTED.size > 0) {
+            var checked: List<MetaFile> = Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.filter { it.checked == true }
+
+            if (checked.size > 0) {
                 fr_msg.setVisibility(View.VISIBLE)
                 val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.right_swipe)
                 fr_msg.startAnimation(RightSwipe)
@@ -93,28 +90,22 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
             }
         }
         btn_share.setOnClickListener {
-            if (PHOTO_NUM_SELECCTED.size > 0) {
+            var checked: List<MetaFile> = Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.filter { it.checked == true }
 
-                val builder = CFAlertDialog.Builder(this)
-                    .setDialogStyle(CFAlertDialog.CFAlertStyle.NOTIFICATION)
-                    .setTitle("Delete Videos")
-                    .setMessage("Are you sure to delete selected videos?")
-                    .addButton(
-                        "Yes", -1, -1,
-                        CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED
-                    ) { dialog, which ->
-                        deletePhotos()
-                        dialog.dismiss()
-                    }.addButton(
-                        "NO", -1, -1,
-                        CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED
-                    ) { dialog, which -> dialog.dismiss() }
+            if (checked.size > 0) {
+                val imageUris = ArrayList<Uri>()
+                for (pos in checked) {
+                    imageUris.add(Uri.parse(pos.path))
+                }
+                val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND_MULTIPLE
+                shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
+                shareIntent.type = "image/*"
+                startActivity(Intent.createChooser(shareIntent, "Share images to.."))
 
-                // Show the alert
-                builder.show()
-            } else {
-                Toast.makeText(this, "There is not any item selected for delete", Toast.LENGTH_LONG).show()
-            }
+            } else
+                Toast.makeText(this, "There is not any item selected for share", Toast.LENGTH_LONG).show()
+
         }
 
 
@@ -123,11 +114,11 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
             val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.left_swipe)
             fr_msg.startAnimation(RightSwipe)
             fr_msg.setVisibility(View.GONE)
-            isOpen=false
+            isOpen = false
 
         }
 
-        img_back_photo_list.setOnClickListener{
+        img_back_photo_list.setOnClickListener {
             val intent = Intent(this, GalleryActivity::class.java)
             // start your next activity
             startActivity(intent)
@@ -135,7 +126,7 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
             finish()
         }
 
-        txt_time_photo_list.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+        txt_time_photo_list.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -143,7 +134,7 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
                     while (!this.isInterrupted) {
                         sleep(1000)
                         runOnUiThread {
-                            txt_time_photo_list.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
+                            txt_time_photo_list.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
                         }
                     }
                 } catch (e: InterruptedException) {
@@ -153,11 +144,10 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
         }
 
         thread.start()
-        var dayOfMonth=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        var dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
-        txt_date_photo_list.text= "$day,$month $dayOfMonth"
-
+        txt_date_photo_list.text = "$day,$month $dayOfMonth"
 
 
     }
@@ -170,35 +160,43 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
     }
 
     override fun onItemLongClick(view: View, position: Int) {
-        Log.i("NUM_SELECCTED COUNT IS:", PHOTO_NUM_SELECCTED.size.toString())
-        if (PHOTO_NUM_SELECCTED.size > 0) {
-            btn_trash.setVisibility(View.VISIBLE)
-            btn_share.setVisibility(View.VISIBLE)
-        } else {
-            btn_trash.setVisibility(View.INVISIBLE)
-            btn_share.setVisibility(View.INVISIBLE)
+        btn_trash.setVisibility(View.INVISIBLE)
+        btn_share.setVisibility(View.INVISIBLE)
+        for (MetaFile in ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
+            if (MetaFile.checked) {
+                btn_trash.setVisibility(View.VISIBLE)
+                btn_share.setVisibility(View.VISIBLE)
+            }
         }
+
     }
 
     private fun deletePhotos() {
-        if(ABSOLUTE_PATH_NAMES_PHOTO_LIST.size== PHOTO_NUM_SELECCTED.size)
-            ABSOLUTE_PATH_NAMES_PHOTO_LIST =ArrayList()
-        else {
-            for (position in PHOTO_NUM_SELECCTED) {
+        var checked: List<MetaFile> = Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.filter { it.checked == true }
+        var isReset=false
+        if(Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size==checked.size)
+            isReset=true
+        if(checked.size==0)return
+        for (MetaFile in checked) {
 
-                val fdelete = File(ABSOLUTE_PATH_NAMES_PHOTO_LIST[position])
+                val fdelete = File(MetaFile.path)
                 if (fdelete.exists()) {
                     if (fdelete.delete()) {
-                        ABSOLUTE_PATH_NAMES_PHOTO_LIST.removeAt(position)
+                        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.remove(MetaFile)
                     }
                 }
 
-
-            }
         }
-        adapter = PhotoRecyclerViewAdapter(this, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        if(isReset)
+            Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST =ArrayList<MetaFile>()
+        adapter = PhotoRecyclerViewAdapter(this, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        adapter!!.setClickListener(this)
+        adapter!!.setLongClickListener(this)
         recyclerView!!.adapter = adapter
-        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+
+
+
     }
 
 
@@ -208,7 +206,7 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
         val dividerDrawable = ContextCompat.getDrawable(this, com.electropeyk.squenda.R.drawable.divider_sample)
         mDividerItemDecoration = GridDividerItemDecoration(dividerDrawable!!, dividerDrawable, NUM_COLUMNS)
         recyclerView?.addItemDecoration(mDividerItemDecoration as GridDividerItemDecoration)
-        Log.i(TAG, ABSOLUTE_PATH_NAMES_PHOTO_LIST[0])
+
         adapter = PhotoRecyclerViewAdapter(this, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
         adapter.setClickListener(this)
         adapter.setLongClickListener(this)

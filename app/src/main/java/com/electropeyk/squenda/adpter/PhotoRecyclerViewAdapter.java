@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.electropeyk.squenda.R;
+import com.electropeyk.squenda.models.MetaFile;
 
 import java.io.File;
 import java.util.List;
 
-import static com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED;
+import static com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST;
+
 
 /**
  * Created by ali on 7/26/2019 AD.
@@ -23,14 +25,14 @@ import static com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED;
 public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "PhotoRecyclerViewAdapte";
-    private List<String> mData;
+    private List<MetaFile> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private ItemLongClickListener mLongClickListener;
     private final static int FADE_DURATION = 1000;
 
     // data is passed into the constructor
-    public PhotoRecyclerViewAdapter(Context context, List<String> data) {
+    public PhotoRecyclerViewAdapter(Context context, List<MetaFile> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
 
@@ -46,7 +48,7 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String filePath = mData.get(position);
+        String filePath = mData.get(position).getPath();
         Log.i(TAG, "filePath is: " + filePath);
         File imgFile = new File(filePath);
         if (imgFile.exists()) {
@@ -98,11 +100,10 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
                 if (mCheckbox.isChecked()) {
                     mCheckbox.setVisibility(View.GONE);
                     mCheckbox.setChecked(false);
-                    if (PHOTO_NUM_SELECCTED.contains(getAdapterPosition()))
-                        PHOTO_NUM_SELECCTED.remove(getAdapterPosition());
+                    ABSOLUTE_PATH_NAMES_PHOTO_LIST.get(getAdapterPosition()).setChecked(false);
                     return false;
                 } else {
-                    PHOTO_NUM_SELECCTED.add(getAdapterPosition());
+                    ABSOLUTE_PATH_NAMES_PHOTO_LIST.get(getAdapterPosition()).setChecked(true);
                     mCheckbox.setVisibility(View.VISIBLE);
                     mCheckbox.setChecked(true);
                     mLongClickListener.onItemLongClick(view, getAdapterPosition());
@@ -113,10 +114,6 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
         }
     }
 
-    // convenience method for getting data at click position
-    public String getItem(int id) {
-        return mData.get(id);
-    }
 
     // allows clicks events to be caught
     public void setClickListener(ItemClickListener itemClickListener) {

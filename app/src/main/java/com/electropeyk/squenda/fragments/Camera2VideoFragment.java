@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -28,9 +29,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.app.ActivityCompat;
 import com.electropeyk.squenda.R;
 import com.electropeyk.squenda.activities.FirstMenueActivity;
 import com.electropeyk.squenda.activities.GalleryActivity;
+import com.electropeyk.squenda.models.MetaFile;
 import com.electropeyk.squenda.models.TypeStorage;
 import com.electropeyk.squenda.utils.AutoFitTextureView;
 import com.electropeyk.squenda.utils.Common;
@@ -333,8 +336,10 @@ public class Camera2VideoFragment extends Fragment
         seek_volume.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         seek_volume.setOnProgressChangeListener(this);
         typeStorage = Paper.book(Common.DATABASE).read(Common.PATH_TYPE);
-        if (typeStorage == null)
-            typeStorage = TypeStorage.SQENDA;
+        if (typeStorage == null) {
+            typeStorage = TypeStorage.SDCARD;
+            Paper.book(Common.DATABASE).write(Common.PATH_TYPE,typeStorage);
+        }
 
 
     }
@@ -464,6 +469,15 @@ public class Camera2VideoFragment extends Fragment
         }
     }
 
+    private boolean hasPermissionsGranted(String[] permissions) {
+        for (String permission : permissions) {
+            if (ActivityCompat.checkSelfPermission(getActivity(), permission)
+                    != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Tries to open a {@link CameraDevice}. The result is listened by `mStateCallback`.
@@ -760,7 +774,9 @@ public class Camera2VideoFragment extends Fragment
 
         Activity activity = getActivity();
         if (null != activity) {
-            Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.add(mNextVideoAbsolutePath);
+
+            MetaFile metaFile=new MetaFile(false,mNextVideoAbsolutePath);
+            Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST.add(metaFile);
             Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST);
             Toast.makeText(activity, "Video saved",
                     Toast.LENGTH_SHORT).show();
