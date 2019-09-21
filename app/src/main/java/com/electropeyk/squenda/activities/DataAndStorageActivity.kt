@@ -3,16 +3,17 @@ package com.electropeyk.squenda.activities
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
-import android.widget.Toast
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.electropeyk.squenda.R
 import com.electropeyk.squenda.models.ResetClass
 import com.electropeyk.squenda.models.TypeOfRest
 import com.electropeyk.squenda.models.TypeStorage
 import com.electropeyk.squenda.utils.Common
-import com.pd.chocobar.ChocoBar
+import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST
+import com.electropeyk.squenda.utils.Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_data_and_storage.*
 import kotlinx.android.synthetic.main.activity_gallery.txt_photo_size
@@ -25,6 +26,7 @@ import java.util.*
 class DataAndStorageActivity : AppCompatActivity() {
     private var viedoSize = 0
     private var photoSize = 0
+    private var isOpen: Boolean = false
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,27 +108,36 @@ class DataAndStorageActivity : AppCompatActivity() {
         } else
             txt_keep.text = "Forever"
 
-
+        fr_msg.setVisibility(View.GONE)
 
         txt_reset.setOnClickListener {
-            ChocoBar.builder().setView(rl_snack).setText(R.string.are_you_sure_reset_memory)
-                .setDuration(ChocoBar.LENGTH_INDEFINITE).red().setAction(
-                    android.R.string.ok
-                ) {
-                    deletePhotos()
-                    deleteVideos()
-                    txt_photo_size.setText("0 KB")
-                    txt_video_size.setText("0 KB")
-                    progress_data.progress = 0
-                    progress_data.secondaryProgress = 0
-                    Toast.makeText(
-                        this,
-                        R.string.reser_successfully_message,
-                        Toast.LENGTH_LONG
-                    ).show()
+            fr_msg.setVisibility(View.VISIBLE)
+            val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.right_swipe)
+            fr_msg.startAnimation(RightSwipe)
+            isOpen = true
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                if (isOpen) {
+                    val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.left_swipe)
+                    fr_msg.startAnimation(RightSwipe)
+                    fr_msg.setVisibility(View.GONE)
+                }
 
-                }.show()
-            setSize()
+            }, 4000)
+        }
+
+        btn_check_rest.setOnClickListener {
+            deletePhotos()
+            deleteVideos()
+            txt_photo_size.setText("0 KB")
+            txt_video_size.setText("0 KB")
+            progress_data.progress = 0
+            progress_data.secondaryProgress = 0
+            val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.left_swipe)
+            fr_msg.startAnimation(RightSwipe)
+            fr_msg.setVisibility(View.GONE)
+            isOpen = false
+
         }
 
 
@@ -134,34 +145,40 @@ class DataAndStorageActivity : AppCompatActivity() {
 
 
     private fun deletePhotos() {
-        var i = 0
-        for (path in Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
-            val fdelete = File(path)
-            if (fdelete.exists()) {
-                fdelete.delete()
+        ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
+        if (ABSOLUTE_PATH_NAMES_PHOTO_LIST != null && ABSOLUTE_PATH_NAMES_PHOTO_LIST.size > 0) {
+            var i = 0
+            for (path in ABSOLUTE_PATH_NAMES_PHOTO_LIST) {
+                val fdelete = File(path)
+                if (fdelete.exists()) {
+                    fdelete.delete()
+
+                }
+                i++
 
             }
-            i++
 
+            ABSOLUTE_PATH_NAMES_PHOTO_LIST = ArrayList<String>()
+            Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
         }
-
-        Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = ArrayList<String>()
-        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
     }
 
     private fun deleteVideos() {
-        var i = 0
-        for (path in Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
-            val fdelete = File(path)
-            if (fdelete.exists()) {
+        ABSOLUTE_PATH_NAMES_VIDEO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_VIDEO)
+        if (ABSOLUTE_PATH_NAMES_VIDEO_LIST != null && ABSOLUTE_PATH_NAMES_VIDEO_LIST.size > 0) {
+            var i = 0
+            for (path in ABSOLUTE_PATH_NAMES_VIDEO_LIST) {
+                val fdelete = File(path)
+                if (fdelete.exists()) {
 
-                fdelete.delete()
+                    fdelete.delete()
+                }
+                i++
+
             }
-            i++
-
+            ABSOLUTE_PATH_NAMES_VIDEO_LIST = ArrayList<String>()
+            Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, ABSOLUTE_PATH_NAMES_VIDEO_LIST)
         }
-        Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST = ArrayList<String>()
-        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_VIDEO, Common.ABSOLUTE_PATH_NAMES_VIDEO_LIST)
     }
 
     private fun setTime() {

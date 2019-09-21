@@ -99,6 +99,7 @@
     <string name="activation_code_err_msg">Wrong serial number</string>
     <string name="are_you_sure_reset_memory">Are you sure to reset?</string>
     <string name="reser_successfully_message">Reset Successfully</string>
+    <string name="are_you_sure">Are you sure?</string>
 
 
     <!--extra -->

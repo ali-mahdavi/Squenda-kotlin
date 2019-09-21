@@ -2,8 +2,10 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -18,6 +20,10 @@ import com.electropeyk.squenda.utils.Common.PHOTO_NUM_SELECCTED
 import com.electropeyk.squenda.utils.GridDividerItemDecoration
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_photo_list.*
+import kotlinx.android.synthetic.main.activity_photo_list.btn_share
+import kotlinx.android.synthetic.main.activity_photo_list.btn_trash
+import kotlinx.android.synthetic.main.activity_photo_list.fr_msg
+import kotlinx.android.synthetic.main.activity_video_list.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,12 +36,14 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
     private var mDividerItemDecoration: RecyclerView.ItemDecoration? = null
     lateinit var adapter: PhotoRecyclerViewAdapter
     lateinit var recyclerView: RecyclerView
+    private var isOpen: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
         super.onCreate(savedInstanceState)
         setContentView(com.electropeyk.squenda.R.layout.activity_photo_list)
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
         Paper.init(this);
+        fr_msg.setVisibility(View.GONE)
         recyclerView = findViewById(com.electropeyk.squenda.R.id.recycle_photos)
         Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST = Paper.book(Common.DATABASE).read(Common.ABSOLUTE_PATH_NAMES_PHOTO);
         initRecyclerView();
@@ -65,24 +73,21 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
         btn_trash.setVisibility(View.INVISIBLE);
         btn_trash.setOnClickListener {
             if (PHOTO_NUM_SELECCTED.size > 0) {
+                fr_msg.setVisibility(View.VISIBLE)
+                val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.right_swipe)
+                fr_msg.startAnimation(RightSwipe)
+                isOpen = true
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    if (isOpen) {
+                        val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.left_swipe)
+                        fr_msg.startAnimation(RightSwipe)
+                        fr_msg.setVisibility(View.GONE)
+                    }
 
-                val builder = CFAlertDialog.Builder(this)
-                    .setDialogStyle(CFAlertDialog.CFAlertStyle.NOTIFICATION)
-                    .setTitle("Delete Videos")
-                    .setMessage("Are you sure to delete selected videos?")
-                    .addButton(
-                        "Yes", -1, -1,
-                        CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED
-                    ) { dialog, which ->
-                        deletePhotos()
-                        dialog.dismiss()
-                    }.addButton(
-                        "NO", -1, -1,
-                        CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED
-                    ) { dialog, which -> dialog.dismiss() }
+                }, 4000)
 
-                // Show the alert
-                builder.show()
+
             } else {
                 Toast.makeText(this, "There is not any item selected for delete", Toast.LENGTH_LONG).show()
             }
@@ -110,6 +115,16 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
             } else {
                 Toast.makeText(this, "There is not any item selected for delete", Toast.LENGTH_LONG).show()
             }
+        }
+
+
+        btn_check_photo.setOnClickListener {
+            deletePhotos()
+            val RightSwipe = AnimationUtils.loadAnimation(this, com.electropeyk.squenda.R.anim.left_swipe)
+            fr_msg.startAnimation(RightSwipe)
+            fr_msg.setVisibility(View.GONE)
+            isOpen=false
+
         }
 
         img_back_photo_list.setOnClickListener{
@@ -166,20 +181,24 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
     }
 
     private fun deletePhotos() {
-        for (position in PHOTO_NUM_SELECCTED) {
+        if(ABSOLUTE_PATH_NAMES_PHOTO_LIST.size== PHOTO_NUM_SELECCTED.size)
+            ABSOLUTE_PATH_NAMES_PHOTO_LIST =ArrayList()
+        else {
+            for (position in PHOTO_NUM_SELECCTED) {
 
-            val fdelete = File(ABSOLUTE_PATH_NAMES_PHOTO_LIST[position])
-            if (fdelete.exists()) {
-                if (fdelete.delete()) {
-                    ABSOLUTE_PATH_NAMES_PHOTO_LIST.removeAt(position)
+                val fdelete = File(ABSOLUTE_PATH_NAMES_PHOTO_LIST[position])
+                if (fdelete.exists()) {
+                    if (fdelete.delete()) {
+                        ABSOLUTE_PATH_NAMES_PHOTO_LIST.removeAt(position)
+                    }
                 }
-                }
 
 
+            }
         }
         adapter = PhotoRecyclerViewAdapter(this, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
-        recyclerView.adapter?.notifyDataSetChanged()
-        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST)
+        recyclerView!!.adapter = adapter
+        Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO, ABSOLUTE_PATH_NAMES_PHOTO_LIST)
     }
 
 
