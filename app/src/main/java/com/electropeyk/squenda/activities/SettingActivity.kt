@@ -71,8 +71,12 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
+        rl_brightness.setOnClickListener {
+            val intent = Intent(this, DisplayBrightnessMelodyActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

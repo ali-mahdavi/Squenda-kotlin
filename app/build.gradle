@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.shawnlin:number-picker:2.4.8'
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
     implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation files('libs/org.eclipse.paho.android.service-1.1.1.jar')
     implementation files('libs/org.eclipse.paho.client.mqttv3-1.1.1.jar')
 }

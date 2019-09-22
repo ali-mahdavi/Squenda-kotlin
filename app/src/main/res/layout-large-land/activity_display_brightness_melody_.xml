@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".activities.LivingRoomActivity"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                tools:context=".activities.DisplayBrightnessMelodyActivity"
                 android:background="@color/colorBackGround">
     <FrameLayout
             android:id="@+id/fr_status"
@@ -305,11 +305,36 @@
                 android:layout_marginLeft="30dp"
         >
 
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="160dp"
-                            android:background="@color/cardview_light_background"
-                            android:layout_alignParentBottom="true"
-            ></RelativeLayout>
+
+            <com.chauthai.swipereveallayout.SwipeRevealLayout
+                    android:id="@+id/swipe_layout_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@color/black_overlay"
+
+                    app:mode="same_level"
+                    app:dragEdge="top">
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_overlay"
+                >
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/cardview_light_background"
+                >
+
+
+
+                </FrameLayout>
+            </com.chauthai.swipereveallayout.SwipeRevealLayout>
 
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -336,15 +361,39 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
         >
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:background="@color/cardview_light_background"
-                            android:layout_alignParentBottom="true"
-            ></RelativeLayout>
 
+            <com.chauthai.swipereveallayout.SwipeRevealLayout
+                    android:id="@+id/swipe_layout_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@color/black_overlay"
+
+                    app:mode="same_level"
+                    app:dragEdge="top">
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_overlay"
+                >
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/cardview_light_background"
+                >
+
+
+
+                </FrameLayout>
+            </com.chauthai.swipereveallayout.SwipeRevealLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_sound"
+
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_weight=".25"
@@ -353,7 +402,10 @@
                     android:tint="@color/colordarkGray"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_home"/>
+                    android:src="@drawable/ic_sound2"/>
+
+
+
 
         </RelativeLayout>
 
