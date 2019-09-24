@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_height="match_parent"
                 tools:context=".activities.DisplayBrightnessMelodyActivity"
                 android:background="@color/colorBackGround">
     <FrameLayout
@@ -306,48 +306,19 @@
         >
 
 
-            <com.chauthai.swipereveallayout.SwipeRevealLayout
-                    android:id="@+id/swipe_layout_3"
+            <SeekBar
+                    android:id="@+id/customSeekBarsun"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    android:background="@color/black_overlay"
-
-                    app:mode="same_level"
-                    app:dragEdge="top">
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/black_overlay"
-                >
+                    android:layout_centerInParent="true"
+                    android:max="200"
+                    android:progress="100"
+                    android:maxHeight="150dp"
+                    android:thumb="@drawable/ic_sun"
+                    android:rotation="270"
+                    android:progressDrawable="@drawable/custom_progress"/>
 
 
-                </FrameLayout>
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/cardview_light_background"
-                >
-
-
-
-                </FrameLayout>
-            </com.chauthai.swipereveallayout.SwipeRevealLayout>
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_light"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_weight=".25"
-                    android:layout_margin="22dp"
-                    android:background="@drawable/ripple"
-                    android:tint="@color/colordarkGray"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_sun"/>
 
 
         </RelativeLayout>
@@ -362,48 +333,17 @@
                 android:layout_marginLeft="20dp"
         >
 
-            <com.chauthai.swipereveallayout.SwipeRevealLayout
-                    android:id="@+id/swipe_layout_4"
+            <SeekBar
+                    android:id="@+id/customSeekBarSond"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    android:background="@color/black_overlay"
-
-                    app:mode="same_level"
-                    app:dragEdge="top">
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/black_overlay"
-                >
-
-
-                </FrameLayout>
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/cardview_light_background"
-                >
-
-
-
-                </FrameLayout>
-            </com.chauthai.swipereveallayout.SwipeRevealLayout>
-
-            <androidx.appcompat.widget.AppCompatImageView
-
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_weight=".25"
-                    android:layout_margin="22dp"
-                    android:background="@drawable/ripple"
-                    android:tint="@color/colordarkGray"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_sound2"/>
-
+                    android:layout_centerInParent="true"
+                    android:max="200"
+                    android:progress="100"
+                    android:maxHeight="150dp"
+                    android:thumb="@drawable/ic_sound2"
+                    android:rotation="270"
+                    android:progressDrawable="@drawable/custom_progress"/>
 
 
 

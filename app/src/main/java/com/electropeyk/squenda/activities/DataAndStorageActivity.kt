@@ -73,17 +73,18 @@ class DataAndStorageActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        val available = Common.getAvailableInternalMemorySize();
-        val totalString = Common.getTotalInternalMemorySizeFormateSize()
-        val variable = totalString.substring(0, totalString.length - 2)
-        val availablestr = available.substring(0, available.length - 2)
-        val intAvailable=Integer.parseInt(Common.ReplaceAllCammaToBlank(availablestr))
-        val currentAvailble=intAvailable-viedoSize/1024-photoSize/1204
+        val availableString = Common.getAvailableInternalMemorySize();
+        val totalString = Common.getTotalInternalMemorySize()
+        val total = totalString.substring(0, totalString.length - 2)
+        val available = availableString.substring(0, availableString.length - 2)
+
+        val currentAvailble = Integer.parseInt(available) - viedoSize / 1024 - photoSize / 1204
         val storageMsg = currentAvailble.toString() + "MB of " + totalString + " Used"
         txt_available.text = storageMsg
-        progress_data.max =Integer.parseInt(Common.ReplaceAllCammaToBlank(variable))
+        progress_data.max = Integer.parseInt(Common.ReplaceAllCammaToBlank(total))
         progress_data.progress = viedoSize/1024
-        progress_data.secondaryProgress = photoSize/1204
+        progress_data.secondaryProgress = viedoSize / 1024 + photoSize / 1204
+
         val typeStorage = Paper.book(Common.DATABASE).read<TypeStorage>(Common.PATH_TYPE)
         if (typeStorage != null) {
             if (typeStorage == TypeStorage.SDCARD)

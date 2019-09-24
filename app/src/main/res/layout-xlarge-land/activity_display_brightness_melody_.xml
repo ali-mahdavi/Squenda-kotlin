@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_height="match_parent"
                 tools:context=".activities.DisplayBrightnessMelodyActivity"
                 android:background="@color/colorBackGround">
     <FrameLayout
@@ -199,7 +199,7 @@
                 android:id="@+id/rl_them"
                 android:layout_width="290dp"
                 android:layout_height="200dp"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="70dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rectangle_active_code"
         >
@@ -251,7 +251,7 @@
                 android:background="@drawable/rectangle_active_code"
                 android:layout_below="@+id/rl_them"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="70dp"
         >
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -299,112 +299,83 @@
             </LinearLayout>
 
         </RelativeLayout>
-        <RelativeLayout
-                android:id="@+id/rl_light"
-                android:layout_width="250dp"
-                android:layout_height="440dp"
-                android:background="@drawable/rectangle_active_code"
-                android:layout_toRightOf="@+id/rl_them"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+
+        <LinearLayout android:layout_width="800dp"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_toRightOf="@+id/rl_them"
         >
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+            >
 
-            <com.chauthai.swipereveallayout.SwipeRevealLayout
-                    android:id="@+id/swipe_layout_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@android:color/darker_gray"
+                <SeekBar
+                        android:id="@+id/customSeekBarSun"
+                        android:layout_width="400dp"
+                        android:layout_height="440dp"
+                        android:max="200"
+                        android:progress="100"
+                        android:thumbOffset="33dp"
+                        android:maxHeight="250dp"
+                        android:rotation="270"
 
-                    app:mode="same_level"
-                    app:dragEdge="top">
+                        android:thumb="@android:color/transparent"
+                        android:progressDrawable="@drawable/custom_progress"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/ic_sun"
+                        android:layout_gravity="center"
+                />
 
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/black_overlay"
-                >
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+            >
 
+                <SeekBar
+                        android:id="@+id/customSeekBarSond"
+                        android:layout_width="400dp"
+                        android:layout_height="440dp"
+                        android:max="200"
+                        android:progress="100"
+                        android:thumbOffset="33dp"
+                        android:maxHeight="250dp"
+                        android:rotation="270"
 
-                </FrameLayout>
+                        android:thumb="@android:color/transparent"
+                        android:progressDrawable="@drawable/custom_progress"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/ic_sound2"
+                        android:layout_gravity="center"
+                />
 
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/cardview_light_background"
-                >
-
-
-                </FrameLayout>
-            </com.chauthai.swipereveallayout.SwipeRevealLayout>
-
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_light"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_weight=".25"
-                    android:layout_margin="32dp"
-                    android:background="@drawable/ripple"
-                    android:tint="@color/colordarkGray"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_sun"/>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-                android:id="@+id/rl_sound"
-                android:layout_width="250dp"
-                android:layout_height="440dp"
-                android:background="@drawable/rectangle_active_code"
-                android:layout_toRightOf="@+id/rl_light"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-        >
-
-            <com.chauthai.swipereveallayout.SwipeRevealLayout
-                    android:id="@+id/swipe_layout_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@android:color/darker_gray"
-
-                    app:mode="same_level"
-                    app:dragEdge="top">
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/black_overlay"
-                        >
+            </LinearLayout>
+        </LinearLayout>
 
 
-                </FrameLayout>
+        <!--
 
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/cardview_light_background"
-                        >
+                <SeekBar
+                            android:id="@+id/customSeekBarSond"
+                            android:layout_width="400dp"
+                            android:layout_height="440dp"
+                            android:max="200"
+                            android:progress="100"
+                            android:thumbOffset="33dp"
+                            android:maxHeight="250dp"
+                            android:thumb="@android:color/transparent"
+                            android:rotation="270"
+                            android:layout_toRightOf="@+id/customSeekBarSun"
+                            android:progressDrawable="@drawable/custom_progress"/>
+        -->
 
-
-                </FrameLayout>
-            </com.chauthai.swipereveallayout.SwipeRevealLayout>
-            <androidx.appcompat.widget.AppCompatImageView
-
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_weight=".25"
-                    android:layout_margin="32dp"
-                    android:background="@drawable/ripple"
-                    android:tint="@color/colordarkGray"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_sound2"/>
-
-
-        </RelativeLayout>
 
     </RelativeLayout>
 

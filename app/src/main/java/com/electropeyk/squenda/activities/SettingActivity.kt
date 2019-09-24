@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.electropeyk.squenda.R
+
 import com.electropeyk.squenda.utils.Common
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.text.SimpleDateFormat
@@ -18,10 +18,10 @@ import java.util.*
 class SettingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting)
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        setContentView(com.electropeyk.squenda.R.layout.activity_setting)
+        overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
         btn_home_setting.setOnClickListener {
             val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
@@ -38,7 +38,7 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(this, FirstMenueActivity::class.java)
             // start your next activity
             startActivity(intent)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
             finish()
         }
         txt_time_setting.text= SimpleDateFormat("HH:mm", Locale.US).format( Date())
@@ -76,6 +76,12 @@ class SettingActivity : AppCompatActivity() {
             // start your next activity
             startActivity(intent)
             finish()
+        }
+
+        rl_help_support.setOnClickListener {
+            val intent = Intent()
+            intent.setClassName("com.electropayk", "com.electropayk.MainActivity")
+            startActivity(intent)
         }
     }
 

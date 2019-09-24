@@ -66,15 +66,8 @@ public class Common {
         return formatSize(availableBlocks * blockSize);
     }
 
-    public static long getTotalInternalMemorySize() {
-        File path = Environment.getDataDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSizeLong();
-        long totalBlocks = stat.getBlockCountLong();
-        return totalBlocks * blockSize;
-    }
 
-    public static String getTotalInternalMemorySizeFormateSize() {
+    public static String getTotalInternalMemorySize() {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
         long blockSize = stat.getBlockSizeLong();

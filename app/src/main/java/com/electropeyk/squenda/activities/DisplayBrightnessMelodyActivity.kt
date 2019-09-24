@@ -3,16 +3,14 @@ package com.electropeyk.squenda.activities
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.chauthai.swipereveallayout.SwipeRevealLayout
 import com.electropeyk.squenda.R
-import kotlinx.android.synthetic.main.activity_display_brightness_melody_.*
 
 class DisplayBrightnessMelodyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_brightness_melody_)
-        swipe_layout_4.open(true)
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
