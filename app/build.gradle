@@ -14,9 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-            moduleName "serial_port"
-        }
+
     }
     buildTypes {
         release {
@@ -29,6 +27,8 @@ android {
             path file('jni/Android.mk')
         }
     }
+
+
 }
 
 dependencies {
