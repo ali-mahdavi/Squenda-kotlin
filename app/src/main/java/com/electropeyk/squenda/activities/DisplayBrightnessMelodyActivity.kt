@@ -17,6 +17,9 @@ import android.provider.Settings.System.SCREEN_BRIGHTNESS
 import android.view.Window
 import android.provider.Settings.SettingNotFoundException
 import android.provider.Settings.System.SCREEN_BRIGHTNESS
+import android.media.AudioManager
+
+
 
 
 
@@ -29,7 +32,7 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
 
 
     private var brightness: Int = 0
-
+    private var amanager: AudioManager? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,9 +85,41 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
             e.printStackTrace()
 
         }
+        //get the audio manager
+        amanager = this.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
+        customSeekBarSond.max = amanager!!.getStreamMaxVolume(AudioManager.STREAM_RING)
+        //set the seek bar progress to 1
+        customSeekBarSond.keyProgressIncrement = 1
+
+        //sets the progress of the seek bar based on the system's volume
+        customSeekBarSond.progress = amanager!!.getStreamVolume(AudioManager.STREAM_RING)
+
+        customSeekBarSond.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+
+
+                if(progress>1)
+                amanager!!.setStreamVolume(AudioManager.STREAM_RING, progress, AudioManager.FLAG_SHOW_UI + AudioManager.FLAG_PLAY_SOUND);
+
+
+
+            }
+
+
+        })
 
         customSeekBarSun.progress=brightness
+
 
         customSeekBarSun.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
 
