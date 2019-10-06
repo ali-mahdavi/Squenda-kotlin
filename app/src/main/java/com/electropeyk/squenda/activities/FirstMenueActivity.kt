@@ -3,7 +3,9 @@ package com.electropeyk.squenda.activities
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,11 @@ import com.electropeyk.squenda.utils.Common.months
 import kotlinx.android.synthetic.main.activity_first_menue.*
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.core.app.ActivityCompat.startActivityForResult
+import android.net.Uri
+import android.Manifest.permission
+
+
 
 
 /**
@@ -99,7 +106,8 @@ class FirstMenueActivity : AppCompatActivity() {
             arrayOf(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.CAMERA
+                Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_SETTINGS
             ),
             REQUEST_PERMISSION_CODE
         )
@@ -120,9 +128,32 @@ class FirstMenueActivity : AppCompatActivity() {
             ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         val record_audio_result = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
         val camera_result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-        return write_external_storage_result == PackageManager.PERMISSION_GRANTED &&
-                record_audio_result == PackageManager.PERMISSION_GRANTED &&
-                camera_result == PackageManager.PERMISSION_GRANTED
+        val write_setting:Boolean
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            write_setting = Settings.System.canWrite(this);
+        } else {
+            write_setting = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
+        }
+        if (write_setting) {
+            return write_external_storage_result == PackageManager.PERMISSION_GRANTED &&
+                    record_audio_result == PackageManager.PERMISSION_GRANTED &&
+                    camera_result == PackageManager.PERMISSION_GRANTED
+
+        } else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                intent.data = Uri.parse("package:" + this.getPackageName())
+                this.startActivityForResult(intent, 11)
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.WRITE_SETTINGS),
+                    11
+                )
+            }
+        }
+        return true
+
 
     }
 

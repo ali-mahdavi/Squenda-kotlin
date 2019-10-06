@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:dist="http://schemas.android.com/apk/distribution"
-          package="com.electropeyk.squenda">
+          xmlns:tools="http://schemas.android.com/tools" package="com.electropeyk.squenda">
 
     <dist:module dist:instant="true"/>
 
@@ -16,6 +16,8 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+                     tools:ignore="ProtectedPermissions"/>
 
     <application
             android:allowBackup="true"

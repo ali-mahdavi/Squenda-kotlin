@@ -1,15 +1,120 @@
 package com.electropeyk.squenda.activities
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
-import com.electropeyk.squenda.R
+import kotlinx.android.synthetic.main.activity_display_brightness_melody_.*
+import android.widget.Toast
+import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.core.content.ContextCompat.startActivity
+import android.content.Context
+import android.os.Build
+import android.provider.Settings.System.SCREEN_BRIGHTNESS
+import android.view.Window
+import android.provider.Settings.SettingNotFoundException
+import android.provider.Settings.System.SCREEN_BRIGHTNESS
 
-class DisplayBrightnessMelodyActivity : AppCompatActivity() {
+
+
+
+
+
+
+
+class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
+
+
+    private var brightness: Int = 0
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_display_brightness_melody_)
+        setContentView(com.electropeyk.squenda.R.layout.activity_display_brightness_melody_)
+
+        btn_home_bright.setOnClickListener {
+            val intent = Intent(this, MyHomeActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+            finish()
+        }
+        btn_setting_bright.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+            finish()
+        }
+        btn_profile_bright.setOnClickListener {
+            val intent = Intent(this, MediaActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+            finish()
+        }
+
+
+
+        img_back_bright.setOnClickListener{
+
+            val intent = Intent(this, SettingActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            finish()
+        }
+        try {
+
+            //Get the current system brightness
+
+            brightness = Settings.System.getInt(contentResolver,Settings.System.SCREEN_BRIGHTNESS)
+
+        } catch (e: SettingNotFoundException) {
+
+            //Throw an error case it couldn't be retrieved
+
+           // Log.e("Error", "Cannot access system brightness")
+
+            e.printStackTrace()
+
+        }
+
+
+        customSeekBarSun.progress=brightness
+
+        customSeekBarSun.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+
+
+
+                    Settings.System.putInt(contentResolver,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+
+                  Settings.System.putInt(
+                        contentResolver,
+                        SCREEN_BRIGHTNESS,
+                        progress);
+
+
+
+            }
+
+
+        })
 
     }
 
@@ -42,6 +147,8 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
+
+
 
 }
 

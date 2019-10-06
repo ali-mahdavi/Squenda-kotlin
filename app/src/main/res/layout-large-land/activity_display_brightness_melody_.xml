@@ -94,7 +94,7 @@
                 />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_back_living"
+                    android:id="@+id/img_back_bright"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_below="@+id/rl_status"
@@ -104,7 +104,7 @@
                     android:layout_marginTop="10dp"
             />
             <TextView
-                    android:id="@+id/txt_done"
+                    android:id="@+id/txt_done_bright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -135,7 +135,7 @@
                 android:weightSum="1"
         >
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_profile_data_storage"
+                    android:id="@+id/btn_profile_bright"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight=".25"
@@ -144,7 +144,7 @@
                     android:background="@drawable/ripple"
                     android:src="@drawable/ic_profile"/>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_home_data_storage"
+                    android:id="@+id/btn_home_bright"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight=".25"
@@ -153,7 +153,7 @@
                     android:background="@drawable/ripple"
                     android:src="@drawable/ic_home"/>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_location_data_storage"
+                    android:id="@+id/btn_location_bright"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight=".25"
@@ -162,7 +162,7 @@
                     android:tint="@color/colordarkGray"
                     android:src="@drawable/ic_loc"/>
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_setting_data_storage"
+                    android:id="@+id/btn_setting_bright"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:layout_weight=".25"
@@ -314,8 +314,8 @@
                         android:id="@+id/customSeekBarSun"
                         android:layout_width="320dp"
                         android:layout_height="420dp"
-                        android:max="200"
                         android:progress="100"
+                        android:max="255"
 
                         android:maxHeight="250dp"
                         android:rotation="270"
@@ -340,7 +340,7 @@
                         android:id="@+id/customSeekBarSond"
                         android:layout_width="320dp"
                         android:layout_height="420dp"
-                        android:max="200"
+                        android:max="255"
                         android:progress="100"
 
                         android:maxHeight="250dp"
