@@ -60,6 +60,13 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
             overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
             finish()
         }
+        rl_melody.setOnClickListener {
+            val intent = Intent(this, MelodyActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+            overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
+            finish()
+        }
 
 
 
@@ -91,36 +98,20 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
         customSeekBarSond.max = amanager!!.getStreamMaxVolume(AudioManager.STREAM_RING)
         //set the seek bar progress to 1
         customSeekBarSond.keyProgressIncrement = 1
-
         //sets the progress of the seek bar based on the system's volume
         customSeekBarSond.progress = amanager!!.getStreamVolume(AudioManager.STREAM_RING)
-
         customSeekBarSond.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-
             }
-
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 // TODO Auto-generated method stub
             }
-
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-
-
                 if(progress>1)
                 amanager!!.setStreamVolume(AudioManager.STREAM_RING, progress, AudioManager.FLAG_SHOW_UI + AudioManager.FLAG_PLAY_SOUND);
-
-
-
             }
-
-
         })
-
         customSeekBarSun.progress=brightness
-
-
         customSeekBarSun.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
@@ -132,9 +123,6 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
             }
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-
-
-
                     Settings.System.putInt(contentResolver,
                         Settings.System.SCREEN_BRIGHTNESS_MODE,
                         Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
@@ -143,14 +131,8 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
                         contentResolver,
                         SCREEN_BRIGHTNESS,
                         progress);
-
-
-
             }
-
-
         })
-
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

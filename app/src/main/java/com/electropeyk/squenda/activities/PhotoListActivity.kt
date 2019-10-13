@@ -155,7 +155,7 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
 
     override fun onItemClick(view: View, position: Int) {
         val mediaIntent = Intent(this, PhotoPreviewActivity::class.java)
-        mediaIntent.putExtra("position", position)
+        mediaIntent.putExtra("pos", position)
         startActivity(mediaIntent)
     }
 

@@ -64,7 +64,7 @@ class VideoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
         ultraViewPager!!.setItemRatio(1.0)
         ultraViewPager!!.setRatio(2.0f)
         ultraViewPager!!.setMaxHeight(800)
-        ultraViewPager!!.setCurrentItem(extras.getInt("position"))
+        ultraViewPager!!.setCurrentItem(extras.getInt("pos"))
         ultraViewPager!!.disableAutoScroll()
         ultraViewPager!!.setAutoMeasureHeight(true)
         gravity_indicator = UltraViewPager.Orientation.HORIZONTAL

@@ -61,6 +61,8 @@ dependencies {
     implementation 'com.shawnlin:number-picker:2.4.8'
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
     implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
+    implementation 'com.aurelhubert:ahbottomnavigation:2.0.4'
+    implementation 'com.github.jeancsanchez:JcPlayer:2.6.11'
     implementation files('libs/org.eclipse.paho.android.service-1.1.1.jar')
     implementation files('libs/org.eclipse.paho.client.mqttv3-1.1.1.jar')
 }
