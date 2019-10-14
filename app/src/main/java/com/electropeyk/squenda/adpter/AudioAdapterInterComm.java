@@ -1,30 +1,40 @@
 package com.electropeyk.squenda.adpter;
 
+import android.content.Context;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.electropeyk.squenda.R;
+import com.electropeyk.squenda.models.MetaAudio;
+import com.electropeyk.squenda.utils.Common;
 import com.example.jean.jcplayer.model.JcAudio;
 import com.rey.material.widget.ImageView;
+import io.paperdb.Paper;
 
 import java.util.List;
 
-public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioAdapterViewHolder> {
-    private static final String TAG = AudioAdapter.class.getSimpleName();
+public class AudioAdapterInterComm extends RecyclerView.Adapter<AudioAdapterInterComm.AudioAdapterViewHolder> {
+    private static final String TAG = AudioAdapterInterComm.class.getSimpleName();
     private static OnItemClickListener mListener;
     private List<JcAudio> jcAudioList;
     private SparseArray<Float> progressMap = new SparseArray<>();
+    private Context context;
 
     public int checkedPosition = -1;
-    public AudioAdapter(List<JcAudio> jcAudioList) {
+
+    public AudioAdapterInterComm(Context context, List<JcAudio> jcAudioList) {
         this.jcAudioList = jcAudioList;
         setHasStableIds(true);
+        this.context = context;
+        Paper.init(context);
+        MetaAudio metaAudio = Paper.book(Common.DATABASE).read(Common.AUDIO_INTERCOME);
+        if (metaAudio != null)
+            checkedPosition = metaAudio.getPosition();
+
     }
 
     // Define the method that allows the parent activity or fragment to define the jcPlayerManagerListener
@@ -46,7 +56,16 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioAdapter
         holder.audioTitle.setText(title);
         holder.itemView.setTag(jcAudioList.get(position));
 
-        applyProgressPercentage(holder, progressMap.get(position, 0.0f));
+        if (checkedPosition == -1) {
+            holder.img_check.setVisibility(View.GONE);
+        } else {
+            if (checkedPosition == holder.getAdapterPosition()) {
+                holder.img_check.setVisibility(View.VISIBLE);
+             } else {
+                holder.img_check.setVisibility(View.GONE);
+            }
+        }
+
     }
 
     @Override
@@ -54,32 +73,6 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioAdapter
         return position;
     }
 
-    /**
-     * Applying percentage to progress.
-     *
-     * @param holder     ViewHolder
-     * @param percentage in float value. where 1 is equals as 100%
-     */
-    private void applyProgressPercentage(AudioAdapterViewHolder holder, float percentage) {
-        Log.d(TAG, "applyProgressPercentage() with percentage = " + percentage);
-        LinearLayout.LayoutParams progress = (LinearLayout.LayoutParams) holder.viewProgress.getLayoutParams();
-        LinearLayout.LayoutParams antiProgress = (LinearLayout.LayoutParams) holder.viewAntiProgress.getLayoutParams();
-
-        progress.weight = percentage;
-        holder.viewProgress.setLayoutParams(progress);
-
-        antiProgress.weight = 1.0f - percentage;
-        holder.viewAntiProgress.setLayoutParams(antiProgress);
-        if (checkedPosition == -1) {
-            holder.img_check.setVisibility(View.GONE);
-        } else {
-            if (checkedPosition ==holder.getAdapterPosition()) {
-                holder.img_check.setVisibility(View.VISIBLE);
-            } else {
-                holder.img_check.setVisibility(View.GONE);
-            }
-        }
-    }
 
     @Override
     public int getItemCount() {
@@ -105,7 +98,6 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioAdapter
     }
 
 
-
     // Define the mListener interface
 
     public interface OnItemClickListener {
@@ -114,20 +106,14 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioAdapter
 
     }
 
-     class AudioAdapterViewHolder extends RecyclerView.ViewHolder {
+    class AudioAdapterViewHolder extends RecyclerView.ViewHolder {
         private TextView audioTitle;
         private ImageView img_check;
-        private View viewProgress;
-        private View viewAntiProgress;
-
 
         public AudioAdapterViewHolder(View view) {
             super(view);
             this.audioTitle = view.findViewById(R.id.audio_title);
             this.img_check = view.findViewById(R.id.img_check);
-            viewProgress = view.findViewById(R.id.song_progress_view);
-            viewAntiProgress = view.findViewById(R.id.song_anti_progress_view);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,6 +124,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioAdapter
                     if (checkedPosition != getAdapterPosition()) {
                         notifyItemChanged(checkedPosition);
                         checkedPosition = getAdapterPosition();
+                        Paper.book(Common.DATABASE).write(Common.AUDIO_INTERCOME,
+                                new MetaAudio(checkedPosition, jcAudioList.get(checkedPosition).getPath()));
 
 
                     }

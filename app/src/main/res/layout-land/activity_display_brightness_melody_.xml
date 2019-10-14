@@ -98,7 +98,7 @@
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_below="@+id/rl_status"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="25dp"
                     android:tint="@android:color/white"
                     android:src="@drawable/ic_arrow_back_black_24dp"
                     android:layout_marginTop="10dp"
@@ -163,8 +163,8 @@
                     android:src="@drawable/ic_loc"/>
             <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btn_setting_bright"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
                     android:layout_weight=".25"
                     android:layout_margin="22dp"
                     android:background="@drawable/ripple"
@@ -177,7 +177,7 @@
             android:id="@id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_below="@+id/fr_status"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="25dp"
@@ -186,17 +186,19 @@
             android:text="@string/display_brigthness_sounds"
             android:textColor="@android:color/white"
     />
+
+
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/txt_title"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
     >
         <RelativeLayout
                 android:id="@+id/rl_them"
-                android:layout_width="190dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="60dp"
+                android:layout_width="240dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rectangle_active_code"
         >
@@ -205,7 +207,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/theme"
-                    android:layout_margin="8dp"
+                    android:layout_margin="15dp"
+                    android:textSize="20sp"
             />
 
             <LinearLayout
@@ -218,8 +221,8 @@
             >
                 <RelativeLayout
                         android:id="@+id/rl_them_light"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_below="@+id/txt_them_title"
                         android:background="@drawable/rectangle_theme_light"
 
@@ -228,11 +231,11 @@
 
                 <RelativeLayout
                         android:id="@+id/rl_them_dark"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_toRightOf="@+id/rl_them_light"
                         android:background="@drawable/rectangle_theme_dark"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_below="@+id/txt_them_title"
 
                 />
@@ -242,12 +245,12 @@
         </RelativeLayout>
         <RelativeLayout
                 android:id="@+id/rl_melody"
-                android:layout_width="190dp"
-                android:layout_height="100dp"
+                android:layout_width="240dp"
+                android:layout_height="120dp"
                 android:background="@drawable/rectangle_active_code"
                 android:layout_below="@+id/rl_them"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
         >
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -262,8 +265,8 @@
                         android:layout_height="50dp"
                 >
                     <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="40sp"
-                            android:layout_height="40sp"
+                            android:layout_width="60sp"
+                            android:layout_height="60sp"
                             android:src="@drawable/ic_music"
                             android:tint="@android:color/white"
                             android:layout_centerInParent="true"/>
@@ -279,13 +282,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/melody"
-                            android:textSize="20sp"
+                            android:textSize="28sp"
                             android:textColor="@android:color/white"/>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/reflection"
-                            android:textSize="12sp"
+                            android:textSize="16sp"
                             android:textColor="@color/colorlightGray"
 
                     />
@@ -295,59 +298,87 @@
             </LinearLayout>
 
         </RelativeLayout>
-        <RelativeLayout
-                android:id="@+id/rl_light"
-                android:layout_width="150dp"
-                android:layout_height="220dp"
-                android:background="@drawable/rectangle_active_code"
-                android:layout_toRightOf="@+id/rl_them"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+
+        <LinearLayout android:layout_width="450dp"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_toRightOf="@+id/rl_them"
         >
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+            >
+
+                <SeekBar
+                        android:id="@+id/customSeekBarSun"
+                        android:layout_width="180dp"
+                        android:layout_height="300dp"
+                        android:progress="100"
+                        android:max="255"
+
+                        android:maxHeight="250dp"
+                        android:rotation="270"
+
+                        android:thumb="@android:color/transparent"
+                        android:progressDrawable="@drawable/custom_progress"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/ic_sun"
+                        android:layout_gravity="center"
+                />
+
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+            >
+
+                <SeekBar
+                        android:id="@+id/customSeekBarSond"
+                        android:layout_width="180dp"
+                        android:layout_height="300dp"
+                        android:max="255"
+                        android:progress="100"
+
+                        android:maxHeight="250dp"
+                        android:rotation="270"
+
+                        android:thumb="@android:color/transparent"
+                        android:progressDrawable="@drawable/custom_progress"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/ic_sound2"
+                        android:layout_gravity="center"
+                />
+
+            </LinearLayout>
+        </LinearLayout>
 
 
-            <SeekBar
-                    android:id="@+id/customSeekBarsun"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:thumbOffset="23dp"
-                    android:maxHeight="150dp"
-                    android:progress="100"
-                    android:max="255"
-                    android:thumb="@drawable/ic_sun"
-                    android:rotation="270"
-                    android:progressDrawable="@drawable/custom_progress"/>
+        <!--
+
+                <SeekBar
+                            android:id="@+id/customSeekBarSond"
+                            android:layout_width="400dp"
+                            android:layout_height="440dp"
+                            android:max="200"
+                            android:progress="100"
+                            android:thumbOffset="33dp"
+                            android:maxHeight="250dp"
+                            android:thumb="@android:color/transparent"
+                            android:rotation="270"
+                            android:layout_toRightOf="@+id/customSeekBarSun"
+                            android:progressDrawable="@drawable/custom_progress"/>
+        -->
 
 
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-                android:id="@+id/rl_sound"
-                android:layout_width="150dp"
-                android:layout_height="220dp"
-                android:background="@drawable/rectangle_active_code"
-                android:layout_toRightOf="@+id/rl_light"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-        >
-
-            <SeekBar
-                    android:id="@+id/customSeekBarSond"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:progress="100"
-                    android:max="255"
-                    android:maxHeight="150dp"
-                    android:thumbOffset="23dp"
-                    android:thumb="@drawable/ic_sound2"
-                    android:rotation="270"
-                    android:progressDrawable="@drawable/custom_progress"/>
-
-
-        </RelativeLayout>
     </RelativeLayout>
+
+
+
 </RelativeLayout>

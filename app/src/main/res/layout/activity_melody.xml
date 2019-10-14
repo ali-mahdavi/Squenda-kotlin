@@ -7,7 +7,187 @@
                 android:background="@color/colorBackGround">
 
 
+    <FrameLayout
+            android:id="@+id/fr_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/rl_main_menu"
+            android:layout_alignParentTop="true"
+            android:elevation="4dp"
+    >
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+            <LinearLayout
+                    android:id="@+id/rl_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
 
+                    android:padding="8dp"
+            >
+
+                <TextView
+                        android:id="@+id/txt_time_living"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+
+                        android:layout_marginLeft="20dp"
+                        android:text="9:41"
+                        android:textColor="@android:color/white"
+
+                />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_handset_connected"
+                        android:layout_width="15sp"
+                        android:layout_height="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_handset_connected"
+                />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_battery"
+                        android:layout_width="15sp"
+                        android:layout_height="15sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_battery"
+                />
+
+
+                <TextView
+                        android:id="@+id/txt_tempreture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@android:color/white"
+                        android:text="21C"
+                />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@android:color/white"
+                        android:text="C"
+                />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/white"
+                        android:text="|"
+                />
+                <TextView
+                        android:id="@+id/txt_date_living"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/white"
+                        android:text="Sunday , March 10"
+                />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_back_living"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_below="@+id/rl_status"
+                    android:layout_marginLeft="30dp"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:layout_marginTop="10dp"
+            />
+            <TextView
+                    android:id="@+id/txt_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/done"
+                    android:layout_below="@+id/rl_status"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/colorBlue"
+                    android:layout_marginRight="20dp"
+                    android:textSize="16sp"/>
+        </RelativeLayout>
+    </FrameLayout>
+    <FrameLayout
+            android:id="@+id/rl_main_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:elevation="4dp"
+            android:alpha=".5"
+            android:background="@color/black_overlay"
+    >
+        <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true"
+                android:elevation="4dp"
+                android:weightSum="1"
+        >
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_profile_living"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight=".25"
+                    android:layout_margin="22dp"
+                    android:tint="@color/colordarkGray"
+                    android:background="@drawable/ripple"
+                    android:src="@drawable/ic_profile"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_home_living"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight=".25"
+                    android:layout_margin="22dp"
+                    android:tint="@color/colordarkGray"
+                    android:background="@drawable/ripple"
+                    android:src="@drawable/ic_home"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_location_living"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight=".25"
+                    android:layout_margin="22dp"
+                    android:background="@drawable/ripple"
+                    android:tint="@color/colordarkGray"
+                    android:src="@drawable/ic_loc"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_setting_living"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_weight=".25"
+                    android:layout_margin="22dp"
+                    android:background="@drawable/ripple"
+
+                    android:src="@drawable/ic_setting"/>
+
+        </LinearLayout>
+    </FrameLayout>
+    <TextView
+            android:id="@id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_below="@+id/fr_status"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/rl_main_menu"
+            android:text="@string/melody"
+            android:textColor="@android:color/white"
+    />
 
     <com.electropeyk.squenda.utils.NoSwipePager
             android:id="@+id/viewpager"

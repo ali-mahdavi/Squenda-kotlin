@@ -2,11 +2,15 @@ package com.electropeyk.squenda.utils;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import com.electropeyk.squenda.models.MetaAudio;
 import com.electropeyk.squenda.models.MetaFile;
 
 import java.io.*;
@@ -19,6 +23,9 @@ public class Common {
     public static final String ABSOLUTE_PATH_NAMES_VIDEO = "absolute_path_name_video";
     public static final String RESET_MOMORY = "reset_memory";
     public static final String PATH_TYPE = "path_type";
+    public static final String AUDIO_DOOR1 = "audio_door1";
+    public static final String AUDIO_DOOR2 = "audio_door2";
+    public static final String AUDIO_INTERCOME = "audio_intercome";
     public static final String DATABASE = "squenda_db";
     public static List<MetaFile> ABSOLUTE_PATH_NAMES_VIDEO_LIST = new ArrayList<>();
     public static String ABSOLUTE_PATH_NAMES_PHOTO = "absolute_path_name_photo";
@@ -216,7 +223,27 @@ public class Common {
     }
 
 
-
+    public static void startSound(Context context,String filename) {
+        AssetFileDescriptor afd = null;
+        try {
+            afd =context.getResources().getAssets().openFd(filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        MediaPlayer player = new MediaPlayer();
+        try {
+            assert afd != null;
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        player.start();
+    }
 
 
 

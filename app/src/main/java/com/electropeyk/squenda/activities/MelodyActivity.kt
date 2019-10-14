@@ -63,11 +63,11 @@ class MelodyActivity : AppCompatActivity(){
         val fragment = MelodyDoor1Fragment()
         return fragment
     }
-     private fun createFragmentDoo2(): MelodyDoor2Fragment {
+    private fun createFragmentDoo2(): MelodyDoor2Fragment {
         val fragment = MelodyDoor2Fragment()
         return fragment
     }
-     private fun createFragmentInterComm(): MelodyIntercomFragment {
+    private fun createFragmentInterComm(): MelodyIntercomFragment {
         val fragment = MelodyIntercomFragment()
         return fragment
     }
