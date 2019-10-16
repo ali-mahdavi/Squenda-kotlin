@@ -246,6 +246,19 @@ public class Common {
     }
 
 
-
-
+    public static void RemoveContainDirectory(String directory) {
+        try {
+            File dir = new File(directory);
+            if (dir.isDirectory()) {
+                String[] children = dir.list();
+                for (int i = 0; i < children.length; i++) {
+                    new File(dir, children[i]).delete();
+                }
+            }
+        }
+        catch (Exception exp)
+        {
+            exp.printStackTrace();
+        }
+    }
 }

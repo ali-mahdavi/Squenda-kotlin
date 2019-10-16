@@ -4,6 +4,7 @@ package com.electropeyk.squenda.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Matrix;
@@ -391,7 +392,7 @@ public class Camera2VideoFragment extends Fragment
             }
             case R.id.btn_camera: {
 
-                if (SaveViewUtil.saveScreen(mTextureView.getBitmap(), typeStorage)) {
+                if (SaveViewUtil.saveScreen(getActivity(),mTextureView.getBitmap(), typeStorage)) {
                     Paper.book(Common.DATABASE).write(Common.ABSOLUTE_PATH_NAMES_PHOTO,
                             Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST);
                     Toast.makeText(getActivity(), "Image Saved", Toast.LENGTH_LONG).show();
@@ -679,8 +680,10 @@ public class Camera2VideoFragment extends Fragment
                     File.separator + "videos");
             directory.mkdirs();
         } else {
-            directory = new File(Environment.getDataDirectory() +
-                    File.separator + "videos");
+            String filepath = "videos";
+            ContextWrapper contextWrapper = new ContextWrapper(getActivity());
+            directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);
+
 
 
         }

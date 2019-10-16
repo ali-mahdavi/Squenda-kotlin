@@ -49,20 +49,22 @@ class KeepMediaActivity : AppCompatActivity() {
 
         Paper.init(this)
         val restClass = Paper.book(Common.DATABASE).read<ResetClass>(Common.RESET_MOMORY)
-        if (restClass.type == TypeOfRest.MONTH) {
-            img_foreever_check.visibility = View.GONE
-            img_week_check.visibility = View.GONE
-            img_month_check.visibility = View.VISIBLE
-        }
-        if (restClass.type == TypeOfRest.WEEK) {
-            img_foreever_check.visibility = View.GONE
-            img_week_check.visibility = View.VISIBLE
-            img_month_check.visibility = View.GONE
-        }
-        if (restClass.type == TypeOfRest.FOREVER) {
-            img_foreever_check.visibility = View.VISIBLE
-            img_week_check.visibility = View.GONE
-            img_month_check.visibility = View.GONE
+        if(restClass!=null) {
+            if (restClass.type == TypeOfRest.MONTH) {
+                img_foreever_check.visibility = View.GONE
+                img_week_check.visibility = View.GONE
+                img_month_check.visibility = View.VISIBLE
+            }
+            if (restClass.type == TypeOfRest.WEEK) {
+                img_foreever_check.visibility = View.GONE
+                img_week_check.visibility = View.VISIBLE
+                img_month_check.visibility = View.GONE
+            }
+            if (restClass.type == TypeOfRest.FOREVER) {
+                img_foreever_check.visibility = View.VISIBLE
+                img_week_check.visibility = View.GONE
+                img_month_check.visibility = View.GONE
+            }
         }
 
 

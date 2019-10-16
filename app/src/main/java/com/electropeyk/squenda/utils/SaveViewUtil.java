@@ -1,6 +1,8 @@
 package com.electropeyk.squenda.utils;
 
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import com.electropeyk.squenda.models.MetaFile;
@@ -14,7 +16,7 @@ public class SaveViewUtil {
 
 
     /** Save picture to file */
-    public static boolean saveScreen(Bitmap bitmap, TypeStorage typeStorage) {
+    public static boolean saveScreen(Context context, Bitmap bitmap, TypeStorage typeStorage) {
         final File directory;
         if (typeStorage == TypeStorage.SDCARD) {
 
@@ -23,17 +25,13 @@ public class SaveViewUtil {
                     File.separator + "images");
             directory.mkdirs();
         } else {
-            directory = new File(Environment.getDataDirectory() +
-                    File.separator + "images");
-
-
+            String filepath = "images";
+            ContextWrapper contextWrapper = new ContextWrapper(context);
+             directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);
         }
-
         if (!directory.exists()) {
             directory.mkdirs();
         }
-
-
         try {
             String PATH = directory.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(new File(PATH)));

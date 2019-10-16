@@ -3,6 +3,7 @@ package com.electropeyk.squenda.activities
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -22,6 +23,9 @@ import kotlinx.android.synthetic.main.activity_gallery.txt_video_size
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import android.os.Environment.getExternalStorageDirectory
+
+
 
 
 class DataAndStorageActivity : AppCompatActivity() {
@@ -124,6 +128,11 @@ class DataAndStorageActivity : AppCompatActivity() {
         btn_check_rest.setOnClickListener {
             deletePhotos()
             deleteVideos()
+            Common.RemoveContainDirectory("/storage/emulated/0/images")
+            Common.RemoveContainDirectory("/data/user/0/com.electropeyk.squenda/app_images/")
+            Common.RemoveContainDirectory("/storage/emulated/0/videos")
+            Common.RemoveContainDirectory("/data/user/0/com.electropeyk.squenda/app_videos/")
+
             txt_photo_size.setText("0 KB")
             txt_video_size.setText("0 KB")
             progress_data.progress = 0
