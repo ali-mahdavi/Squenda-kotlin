@@ -27,6 +27,13 @@ class MediaActivity : AppCompatActivity() {
                 .replace(R.id.container, Camera2VideoFragment.newInstance())
                 .commit();
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

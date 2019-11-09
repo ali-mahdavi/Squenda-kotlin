@@ -89,6 +89,13 @@ class PhotoListActivity : AppCompatActivity(), PhotoRecyclerViewAdapter.ItemClic
                 Toast.makeText(this, "There is not any item selected for delete", Toast.LENGTH_LONG).show()
             }
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
         btn_share.setOnClickListener {
             var checked: List<MetaFile> = Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.filter { it.checked == true }
 

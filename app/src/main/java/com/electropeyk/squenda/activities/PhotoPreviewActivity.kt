@@ -2,6 +2,7 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.SparseIntArray
 import android.view.View
 import android.widget.CheckBox
@@ -65,6 +66,13 @@ class PhotoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
             startActivity(intent)
             finish()
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
 
         btn_profile_photo_preview.setOnClickListener {
             val intent = Intent(this, MediaActivity::class.java)

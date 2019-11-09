@@ -8,7 +8,9 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.electropeyk.squenda.adpter.BottomBarAdapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
+import android.os.Handler
 import androidx.core.content.ContextCompat
 import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
@@ -46,6 +48,13 @@ class MelodyActivity : AppCompatActivity(){
 
             true
         })
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

@@ -19,8 +19,13 @@ import java.util.*
 import androidx.core.app.ActivityCompat.startActivityForResult
 import android.net.Uri
 import android.Manifest.permission
-
-
+import androidx.core.os.HandlerCompat.postDelayed
+import android.R.string.no
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Handler
 
 
 /**
@@ -96,6 +101,13 @@ class FirstMenueActivity : AppCompatActivity() {
         val day = days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = months[Calendar.getInstance().get(Calendar.MONTH)]
         txt_date_first.text= "$day,$month $dayOfMonth"
+
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
 
 
     }
@@ -187,5 +199,8 @@ class FirstMenueActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
+
+
+
 
 }

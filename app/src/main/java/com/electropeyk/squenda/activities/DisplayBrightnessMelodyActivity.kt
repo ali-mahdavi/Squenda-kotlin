@@ -18,14 +18,7 @@ import android.view.Window
 import android.provider.Settings.SettingNotFoundException
 import android.provider.Settings.System.SCREEN_BRIGHTNESS
 import android.media.AudioManager
-
-
-
-
-
-
-
-
+import android.os.Handler
 
 
 class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
@@ -67,6 +60,13 @@ class DisplayBrightnessMelodyActivity : AppCompatActivity()  {
             overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
             finish()
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
 
 
 

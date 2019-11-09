@@ -1,100 +1,54 @@
 package com.electropeyk.squenda.activities
 
 import android.content.Intent
-import android.os.Bundle
-import android.os.Handler
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
 import com.electropeyk.squenda.R
-import com.electropeyk.squenda.models.TypeStorage
 import com.electropeyk.squenda.utils.Common
-import io.paperdb.Paper
-import kotlinx.android.synthetic.main.activity_storage.*
+import kotlinx.android.synthetic.main.activity_screen_saver.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StorageActivity : AppCompatActivity() {
+class ScreenSaverActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_storage)
         overridePendingTransition(com.electropeyk.squenda.R.anim.fade_in, com.electropeyk.squenda.R.anim.fade_out)
 
-        img_back_storage.setOnClickListener {
-            val intent = Intent(this, DataAndStorageActivity::class.java)
-            finish()
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_screen_saver)
 
-        btn_home_storage.setOnClickListener {
+        btn_home_screen_saver.setOnClickListener {
             val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity
             startActivity(intent)
             finish()
         }
-        btn_profile_storage.setOnClickListener {
+        btn_profile_screen_saver.setOnClickListener {
             val intent = Intent(this, MediaActivity::class.java)
             // start your next activity
             startActivity(intent)
             finish()
         }
 
-        btn_setting_storage.setOnClickListener {
+        btn_setting_screen_saver.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             // start your next activity
             startActivity(intent)
             finish()
         }
+        img_click.setOnClickListener {
+
+                finish()
 
 
-
+        }
         setTime()
-
-
-
-        Paper.init(this)
-
-        val storageType = Paper.book(Common.DATABASE).read<TypeStorage>(Common.PATH_TYPE)
-        if (storageType == TypeStorage.SQENDA) {
-            img_sdcard_check.visibility = View.GONE
-            img_sqenda_check.visibility = View.VISIBLE
-        } else {
-            img_sdcard_check.visibility = View.VISIBLE
-            img_sqenda_check.visibility = View.GONE
-        }
-
-
-        rl_sqenda.setOnClickListener {
-            img_sdcard_check.visibility = View.GONE
-            img_sqenda_check.visibility = View.VISIBLE
-            Paper.book(Common.DATABASE).write(Common.PATH_TYPE, TypeStorage.SQENDA)
-        }
-
-        rl_sdcard.setOnClickListener {
-            img_sdcard_check.visibility = View.VISIBLE
-            img_sqenda_check.visibility = View.GONE
-            Paper.book(Common.DATABASE).write(Common.PATH_TYPE, TypeStorage.SDCARD)
-        }
-
-        rl_copy_all_to_sd.setOnClickListener {
-
-
-        }
-
-        Handler().postDelayed(Runnable {
-            //here call the second method
-            val intent = Intent(this, ScreenSaverActivity::class.java)
-            // start your next activity
-            startActivity(intent)
-        }, 90000)
-
-
-
     }
 
     private fun setTime() {
 
-        txt_time_storage.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
+        txt_time_screen_saver.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
         val thread = object : Thread() {
 
             override fun run() {
@@ -102,7 +56,7 @@ class StorageActivity : AppCompatActivity() {
                     while (!this.isInterrupted) {
                         sleep(1000)
                         runOnUiThread {
-                            txt_time_storage.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
+                            txt_time_screen_saver.text = SimpleDateFormat("HH:mm", Locale.US).format(Date())
                         }
                     }
                 } catch (e: InterruptedException) {
@@ -115,7 +69,7 @@ class StorageActivity : AppCompatActivity() {
         var dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
-        txt_date_storage.text = "$day,$month $dayOfMonth"
+        txt_date_screen_saver.text = "$day,$month $dayOfMonth"
 
     }
 
@@ -126,7 +80,6 @@ class StorageActivity : AppCompatActivity() {
         else
             showSystemUI()
     }
-
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
@@ -149,6 +102,4 @@ class StorageActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
-
-
 }

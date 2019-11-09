@@ -2,6 +2,7 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -57,6 +58,13 @@ class GalleryActivity : AppCompatActivity() {
                 finish()
             }
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
         rl_photo.setOnClickListener(){
             if (Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST == null || Common.ABSOLUTE_PATH_NAMES_PHOTO_LIST.size == 0) {
                 Toast.makeText(this, "There is not any photo ", Toast.LENGTH_LONG).show()

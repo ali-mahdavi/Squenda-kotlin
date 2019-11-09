@@ -2,6 +2,7 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.electropeyk.squenda.R
@@ -44,6 +45,13 @@ class NotificationActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
         img_back_notify.setOnClickListener{
             val intent = Intent(this, MyHomeActivity::class.java)
             // start your next activity

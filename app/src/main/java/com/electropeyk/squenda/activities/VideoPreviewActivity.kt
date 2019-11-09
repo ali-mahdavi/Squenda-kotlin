@@ -2,6 +2,7 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.SparseIntArray
 import android.view.View
 import android.widget.CheckBox
@@ -102,6 +103,12 @@ class VideoPreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChange
         val day = Common.days[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1]
         val month = Common.months[Calendar.getInstance().get(Calendar.MONTH)]
         txt_date_video_preview.text = "$day,$month $dayOfMonth"
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
 
 
     }

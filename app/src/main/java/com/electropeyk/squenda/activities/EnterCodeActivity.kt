@@ -2,6 +2,7 @@ package com.electropeyk.squenda.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +40,13 @@ class EnterCodeActivity : AppCompatActivity() {
             edit_4.background = getDrawable(R.drawable.rectangle_active_code)
             edit_5.background = getDrawable(R.drawable.rectangle_active_code)
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
 
 
     }

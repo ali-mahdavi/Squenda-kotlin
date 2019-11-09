@@ -143,6 +143,13 @@ class DataAndStorageActivity : AppCompatActivity() {
             isOpen = false
 
         }
+        Handler().postDelayed(Runnable {
+            //here call the second method
+            val intent = Intent(this, ScreenSaverActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }, 90000)
+
 
 
     }
