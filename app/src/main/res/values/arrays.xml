@@ -10,6 +10,7 @@
         <item>/dev/i2c-0</item>
         <item>/dev/i2c-1</item>
         <item>/dev/i2c-2</item>
+        <item>/dev/i2c-3</item>
         <item>/dev/i2c-4</item>
     </string-array>
 </resources>

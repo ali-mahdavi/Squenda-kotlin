@@ -1,0 +1,277 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+
+            android:layout_alignParentTop="true"
+            android:elevation="4dp"
+            >
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                    android:id="@+id/rl_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    >
+                <TextView
+                        android:id="@+id/txt_time_camera_video"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:text="9:41"
+                        android:textColor="@android:color/white"
+                        />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_handset_connected"
+                        android:layout_width="22sp"
+                        android:layout_height="22sp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_handset_connected"
+
+                        />
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_battery"
+                        android:layout_width="22sp"
+                        android:layout_height="22sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_battery"
+
+                        />
+                <TextView
+                        android:id="@+id/txt_tempreture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@android:color/white"
+                        android:text="21C"
+                        />
+                <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+
+                        android:textColor="@android:color/white"
+                        android:text="C"
+                        />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/white"
+                        android:text="|"
+                        />
+                <TextView
+                        android:id="@+id/txt-date_camera_video"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/white"
+                        android:text="Sunday , March 10"
+                        />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_back_camera_video"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_below="@+id/rl_status"
+                    android:layout_marginLeft="30dp"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:layout_marginTop="20dp"
+                    />
+        </RelativeLayout>
+
+    </FrameLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+
+                android:orientation="horizontal" >
+
+            <com.electropeyk.squenda.utils.AutoFitTextureView
+                    android:id="@+id/texture1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    />
+            <com.electropeyk.squenda.utils.AutoFitTextureView
+                    android:id="@+id/texture2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:orientation="horizontal" >
+
+            <com.electropeyk.squenda.utils.AutoFitTextureView
+                    android:id="@+id/texture3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    />
+
+            <com.electropeyk.squenda.utils.AutoFitTextureView
+                    android:id="@+id/texture4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <FrameLayout
+            android:id="@+id/fr_main_menue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:elevation="4dp"
+            android:alpha=".5"
+            android:background="@color/black_overlay"
+            >
+        <LinearLayout
+                android:id="@+id/rl_main_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true"
+                android:elevation="6dp"
+                android:weightSum="1.4"
+                >
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_rotate"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="23dp"
+                    android:background="@drawable/ripple"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_rotate"/>
+            <RelativeLayout
+                    android:layout_width="40dp"
+                    android:layout_height="42dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="20dp">
+                <View
+                        android:id="@+id/view_status"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/green_ellipse_live"
+                        />
+                <TextView
+                        android:id="@+id/txt_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="16sp"
+                        android:text="@string/live"/>
+            </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_video"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="23dp"
+                    android:tint="@android:color/white"
+                    android:background="@drawable/ripple"
+                    android:src="@drawable/ic_video"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_camera"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="23dp"
+                    android:background="@drawable/ripple"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_camera2"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_gallary"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="23dp"
+                    android:background="@drawable/ripple"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_gallary"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_mic_off"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="23dp"
+                    android:background="@drawable/ripple"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_mic_off"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_sound"
+                    android:layout_width="30dp"
+                    android:layout_height="32dp"
+                    android:layout_weight=".2"
+                    android:layout_margin="23dp"
+                    android:background="@drawable/ripple"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_sound2"/>
+
+        </LinearLayout>
+
+
+
+
+
+    </FrameLayout>
+
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seek_volume"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            app:dsb_allowTrackClickToDrag="false"
+            app:dsb_indicatorTextAppearance="@style/CustomFloaterTextAppearance"
+            app:dsb_progressColor="@color/colordarkGray"
+            app:dsb_rippleColor="#FF7788FF"
+            app:dsb_indicatorColor="@color/colorGreen"
+            app:dsb_indicatorFormatter="%d"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/fr_main_menue"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="10dp"
+
+
+            />
+
+
+
+</RelativeLayout>

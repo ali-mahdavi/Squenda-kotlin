@@ -41,7 +41,7 @@ JNIEXPORT jint JNICALL Java_com_electropeyk_squenda_jni_I2C_close(JNIEnv *env, j
 JNIEXPORT jint JNICALL Java_com_electropeyk_squenda_jni_I2C_open(JNIEnv *env, jobject obj,
                                                                  jint fd, jint address) {
 
-    if (ioctl(fd, I2C_SLAVE_FORCE, address) < 0)
+    if (ioctl(fd, I2C_SLAVE, address) < 0)
         return -1;
 
     return 0;
@@ -87,3 +87,4 @@ jint JNI_OnLoad(JavaVM *vm, void *reserverd) {
     return JNI_VERSION_1_6;
 
 }
+

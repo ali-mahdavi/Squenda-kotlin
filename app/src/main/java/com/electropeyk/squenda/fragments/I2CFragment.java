@@ -76,15 +76,16 @@ public class I2CFragment extends Fragment {
          */
         status.setText("Reading from device...");
         if (I2C.open(I2C.fd, address) < 0) {
-            status.setText(status.getText() + "Fail!");
+            status.setText(status.getText() + "Open Fail!");
+            return;
+        } if (I2C.write(I2C.fd, out_buffer, 1) < 0) {
+            status.setText(status.getText() + "Write Fail!");
             return;
         }
-        if (I2C.write(I2C.fd, out_buffer, 1) < 0) {
-            status.setText(status.getText() + "Fail!");
-            return;
-        }
+
         if (I2C.read(I2C.fd, in_buffer, bytes) < 0) {
-            status.setText(status.getText() + "Fail!");
+            status.setText(status.getText() + "Read Fail!");
+            I2C.close(I2C.fd);
             return;
         }
         I2C.close(I2C.fd);
@@ -160,11 +161,11 @@ public class I2CFragment extends Fragment {
          */
         status.setText("Writing to device...");
         if (I2C.open(I2C.fd, address) < 0) {
-            status.setText(status.getText() + "Fail!");
+            status.setText(status.getText() + "Open Fail!");
             return;
         }
         if (I2C.write(I2C.fd, buffer, 2) < 0) {
-            status.setText(status.getText() + "Fail!");
+            status.setText(status.getText() + "Write Fail!");
             return;
         }
         I2C.close(I2C.fd);

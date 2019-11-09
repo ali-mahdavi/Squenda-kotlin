@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <android/log.h>
 #include <fcntl.h>
-#include "../../../../../../../Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/jni.h"
+
 
 
 extern "C" {
